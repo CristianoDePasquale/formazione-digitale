@@ -487,245 +487,20 @@ footer strong { color: rgba(255,255,255,.9); }
     </div>
   </div>
 
-  <div class="wiki-anatomy" id="wiki-demo">
+  <div class="wiki-anatomy">
     <div class="wiki-bar">
       <span class="wiki-logo">Wikipedia</span>
-      <span style="color:var(--gray-mid);font-size:.78rem;">🔍 Cerca...</span>
-      <span class="wiki-tag">🎮 Clicca un link blu</span>
+      <span>🔍 Cerca...</span>
+      <span class="wiki-tag">Esempio interattivo</span>
     </div>
     <div class="wiki-body">
-      <div class="wiki-title" id="wd-title">Pasta</div>
-      <div class="wiki-intro" id="wd-intro">
-        La <a class="wlink" data-key="pasta">pasta</a> è un alimento a base di semola di <a class="wlink" data-key="grano">grano duro</a> impastato con acqua. È uno dei simboli della <a class="wlink" data-key="cucina">cucina italiana</a>, diffuso in tutto il mondo. La produzione moderna avviene in <a class="wlink" data-key="industria">impianti industriali</a> che garantiscono standard uniformi. La pasta secca si conserva a lungo ed è un alimento base nella <a class="wlink highlight" data-key="dieta">dieta mediterranea</a> — uno stile alimentare riconosciuto <a class="wlink" data-key="unesco">patrimonio UNESCO</a> diffuso anche in <a class="wlink" data-key="grecia">Grecia</a>, <a class="wlink" data-key="spagna">Spagna</a> e <a class="wlink" data-key="portogallo">Portogallo</a>.
+      <div class="wiki-title">Pasta</div>
+      <div class="wiki-intro">
+        La <a>pasta</a> è un alimento a base di semola di <a>grano duro</a> impastato con acqua. È uno dei simboli della <a>cucina italiana</a>, diffuso in tutto il mondo. La produzione moderna avviene in <a>impianti industriali</a> che garantiscono standard uniformi. La pasta secca si conserva a lungo ed è un alimento base nella <a class="highlight">dieta mediterranea</a> — uno stile alimentare riconosciuto <a>patrimonio UNESCO</a> diffuso anche in <a>Grecia</a>, <a>Spagna</a> e <a>Portogallo</a>.
       </div>
-      <!-- stato: scegli un link -->
-      <div class="wiki-hint" id="wd-hint">
-        🎯 <strong>Obiettivo: Europa.</strong> Clicca un link qualsiasi — vedi cosa succede.
-      </div>
-      <!-- breadcrumb percorso -->
-      <div id="wd-path" style="display:none;margin-top:.6rem;font-size:.72rem;color:var(--gray-mid);">
-        Percorso: <span id="wd-path-text"></span>
-      </div>
-      <!-- pulsante reset -->
-      <button id="wd-reset" style="display:none;margin-top:.75rem;font-size:.72rem;padding:.3rem .8rem;border-radius:20px;border:1.5px solid var(--blue-light);background:var(--white);color:var(--blue-mid);cursor:pointer;font-family:var(--font-body);transition:all .2s ease;">↺ Ricomincia da Pasta</button>
+      <div class="wiki-hint">💡 Se il tuo obiettivo fosse "Europa" — quale link cliccheresti? <em>dieta mediterranea → Grecia → Europa</em> è una strada. Ma anche <em>patrimonio UNESCO</em> ci porta lì più velocemente.</div>
     </div>
   </div>
-
-  <style>
-  /* link cliccabili nel demo */
-  .wlink {
-    color: #0645ad;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: background .15s ease, color .15s ease;
-    border-radius: 3px;
-    padding: 0 1px;
-  }
-  .wlink:hover { background: #eaf3fb; }
-  .wlink.highlight {
-    background: #fff3cd;
-    border-radius: 3px;
-    padding: 0 2px;
-    font-weight: 600;
-    color: var(--amber-dark);
-    text-decoration: underline;
-    outline: 2px solid var(--amber-dark);
-  }
-  .wlink.highlight:hover { background: #ffe49a; }
-  .wlink.clicked {
-    background: var(--green-light);
-    color: var(--green-dark);
-    font-weight: 600;
-    text-decoration: none;
-    outline: 2px solid var(--green-dark);
-    pointer-events: none;
-  }
-  /* animazione "nuova pagina" */
-  @keyframes wikiPageIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .wiki-body.page-in { animation: wikiPageIn .28s ease both; }
-  /* hint con stati */
-  .wiki-hint.good { background: var(--green-light); border-color: var(--green-dark); color: var(--green-dark); }
-  .wiki-hint.warn { background: var(--amber-light); border-color: var(--amber-dark); color: var(--amber-dark); }
-  .wiki-hint.win  { background: #d4edda; border-color: #28a745; color: #155724; font-weight:600; }
-  </style>
-
-  <script>
-  // ── WIKI DEMO — simulatore mini-speedrun ──────────────────────
-  (function() {
-    // Grafo di pagine simulate: key → { title, intro(html), hint, good }
-    // "good" = true se questa pagina avvicina all'obiettivo (Europa)
-    const PAGES = {
-      'start': {
-        title: 'Pasta',
-        intro: 'La <a class="wlink" data-key="pasta">pasta</a> è un alimento a base di semola di <a class="wlink" data-key="grano">grano duro</a> impastato con acqua. È uno dei simboli della <a class="wlink" data-key="cucina">cucina italiana</a>, diffuso in tutto il mondo. La produzione moderna avviene in <a class="wlink" data-key="industria">impianti industriali</a> che garantiscono standard uniformi. La pasta secca si conserva a lungo ed è un alimento base nella <a class="wlink highlight" data-key="dieta">dieta mediterranea</a> — uno stile alimentare riconosciuto <a class="wlink" data-key="unesco">patrimonio UNESCO</a> diffuso anche in <a class="wlink" data-key="grecia">Grecia</a>, <a class="wlink" data-key="spagna">Spagna</a> e <a class="wlink" data-key="portogallo">Portogallo</a>.',
-        hint: '🎯 <strong>Obiettivo: Europa.</strong> Clicca un link qualsiasi — vedi cosa succede.',
-        hintCls: ''
-      },
-      'pasta': {
-        title: 'Pasta — Varietà e origini',
-        intro: 'Le varietà di pasta sono oltre 350. Le più note includono <a class="wlink" data-key="spaghetti">spaghetti</a>, rigatoni e fusilli. Originaria dell\'<a class="wlink" data-key="italia">Italia</a> meridionale, la pasta è oggi diffusa in tutto il mondo.',
-        hint: '⚠️ Sei rimasto nell\'argomento "pasta". Utile per una ricetta — meno per arrivare a Europa. Prova <strong>Italia</strong>.',
-        hintCls: 'warn'
-      },
-      'grano': {
-        title: 'Grano duro',
-        intro: 'Il grano duro (<em>Triticum durum</em>) è una varietà di frumento coltivata principalmente nel <a class="wlink" data-key="mediterraneo">bacino del Mediterraneo</a> e in <a class="wlink" data-key="nordamerica">Nord America</a>. È la materia prima della semola usata per la pasta.',
-        hint: '⚠️ Percorso possibile ma indiretto. "Bacino del Mediterraneo" ti avvicina — ma ci vorranno ancora 2 click.',
-        hintCls: 'warn'
-      },
-      'cucina': {
-        title: 'Cucina italiana',
-        intro: 'La cucina italiana è riconosciuta tra le più apprezzate al mondo. È strettamente legata alla storia dell\'<a class="wlink" data-key="italia">Italia</a> e delle sue regioni. Influenzata dalla <a class="wlink" data-key="dieta">dieta mediterranea</a>, si basa su ingredienti freschi e ricette tramandate.',
-        hint: '⚠️ Stai girando intorno. "Cucina italiana" → "Italia" → "Europa": fattibile, ma sono 2 click in più rispetto alla strada breve.',
-        hintCls: 'warn'
-      },
-      'industria': {
-        title: 'Industria alimentare',
-        intro: 'L\'industria alimentare comprende tutte le attività di trasformazione dei prodotti agricoli. In <a class="wlink" data-key="italia">Italia</a> rappresenta il secondo settore manifatturiero per fatturato, con un forte orientamento all\'export verso i paesi dell\'<a class="wlink" data-key="europa">Unione Europea</a>.',
-        hint: '✅ Buona mossa! Da "industria alimentare" puoi arrivare a <strong>Unione Europea</strong> in un solo click. Quasi!',
-        hintCls: 'good'
-      },
-      'dieta': {
-        title: 'Dieta mediterranea',
-        intro: 'La dieta mediterranea è un modello alimentare tipico dei paesi del <a class="wlink" data-key="mediterraneo">bacino del Mediterraneo</a>. Riconosciuta patrimonio immateriale <a class="wlink" data-key="unesco">UNESCO</a> nel 2010, è diffusa in <a class="wlink" data-key="grecia">Grecia</a>, <a class="wlink" data-key="europa">Italia meridionale</a>, <a class="wlink" data-key="spagna">Spagna</a> e altri paesi europei.',
-        hint: '✅ Ottima scelta! Da qui puoi raggiungere <strong>Europa</strong> in 1 click. Era il percorso più efficiente.',
-        hintCls: 'good'
-      },
-      'unesco': {
-        title: 'Patrimonio immateriale UNESCO',
-        intro: 'Il patrimonio culturale immateriale UNESCO comprende tradizioni, espressioni e saperi tramandati di generazione in generazione. La lista include elementi provenienti da tutti i continenti, con forte presenza di paesi <a class="wlink" data-key="europa">europei</a> e <a class="wlink" data-key="asia">asiatici</a>.',
-        hint: '✅ Mossa vincente! UNESCO → <strong>Europa</strong> è a 1 click. Percorso efficiente.',
-        hintCls: 'good'
-      },
-      'grecia': {
-        title: 'Grecia',
-        intro: 'La Grecia è uno Stato dell\'<a class="wlink win-link" data-key="europa">Europa</a> meridionale, situato nella penisola balcanica. È membro dell\'Unione Europea dal 1981 e dell\'Eurozona dal 2001. La sua capitale è Atene.',
-        hint: '✅ Grecia → <strong>Europa</strong>: sei a 1 click dalla meta. Clicca!',
-        hintCls: 'good'
-      },
-      'spagna': {
-        title: 'Spagna',
-        intro: 'La Spagna è uno Stato dell\'<a class="wlink win-link" data-key="europa">Europa</a> occidentale. Membro dell\'Unione Europea dal 1986, confina con il Portogallo, la Francia e Andorra. La sua capitale è Madrid.',
-        hint: '✅ Spagna → <strong>Europa</strong>: sei a 1 click. Clicca su Europa per vincere!',
-        hintCls: 'good'
-      },
-      'portogallo': {
-        title: 'Portogallo',
-        intro: 'Il Portogallo è uno Stato della penisola iberica in <a class="wlink win-link" data-key="europa">Europa</a> occidentale. Membro dell\'Unione Europea dal 1986, confina con la Spagna. La sua capitale è Lisbona.',
-        hint: '✅ Portogallo → <strong>Europa</strong>: sei a 1 click. Clicca!',
-        hintCls: 'good'
-      },
-      'italia': {
-        title: 'Italia',
-        intro: 'L\'Italia è uno Stato dell\'<a class="wlink win-link" data-key="europa">Europa</a> meridionale. Membro fondatore dell\'Unione Europea, confina con Francia, Svizzera, Austria e Slovenia. La sua capitale è Roma.',
-        hint: '✅ Italia → <strong>Europa</strong>: a 1 click. Ci sei quasi!',
-        hintCls: 'good'
-      },
-      'mediterraneo': {
-        title: 'Bacino del Mediterraneo',
-        intro: 'Il bacino del Mediterraneo comprende i paesi che si affacciano sul Mar Mediterraneo. La regione include paesi del sud dell\'<a class="wlink win-link" data-key="europa">Europa</a>, del Nord Africa e del Medio Oriente.',
-        hint: '✅ Da qui arrivi a <strong>Europa</strong> in 1 click!',
-        hintCls: 'good'
-      },
-      'nordamerica': {
-        title: 'Nord America',
-        intro: 'Il Nord America è un continente che comprende Canada, Stati Uniti e Messico. È separato dall\'<a class="wlink" data-key="europa">Europa</a> dall\'Oceano Atlantico. Il suo paese più popoloso sono gli Stati Uniti.',
-        hint: '⚠️ Percorso insolito! Nord America → Europa: ci arrivi, ma avresti potuto farne a meno.',
-        hintCls: 'warn'
-      },
-      'spaghetti': {
-        title: 'Spaghetti',
-        intro: 'Gli spaghetti sono un tipo di pasta lunga originaria dell\'<a class="wlink" data-key="italia">Italia</a> meridionale. Sono tra i formati di pasta più consumati al mondo e base di piatti come la carbonara e l\'amatriciana.',
-        hint: '⚠️ Sei tornato su un tipo di pasta. Non ti avvicina a Europa — prova Italia.',
-        hintCls: 'warn'
-      },
-      'asia': {
-        title: 'Asia',
-        intro: 'L\'Asia è il continente più grande e popoloso della Terra. Confina a ovest con l\'<a class="wlink win-link" data-key="europa">Europa</a>, separata convenzionalmente dagli Urali e dal Caucaso.',
-        hint: '⚠️ Giro largo! Asia → Europa funziona, ma avresti potuto arrivare prima.',
-        hintCls: 'warn'
-      },
-      'europa': {
-        title: '🏆 Europa — OBIETTIVO RAGGIUNTO!',
-        intro: 'L\'Europa è uno dei sette continenti della Terra. È il secondo continente più piccolo per superficie, ma il terzo più popoloso. Comprende 44 Stati sovrani, tra cui i 27 membri dell\'Unione Europea.',
-        hint: '🏆 Hai raggiunto Europa! Guarda il percorso che hai fatto — era il più corto possibile?',
-        hintCls: 'win'
-      }
-    };
-
-    let path = ['Pasta'];
-    let currentKey = 'start';
-    const titleEl  = document.getElementById('wd-title');
-    const introEl  = document.getElementById('wd-intro');
-    const hintEl   = document.getElementById('wd-hint');
-    const pathEl   = document.getElementById('wd-path');
-    const pathText = document.getElementById('wd-path-text');
-    const resetBtn = document.getElementById('wd-reset');
-    const body     = document.querySelector('.wiki-body');
-
-    function navigate(key) {
-      if (!PAGES[key]) return;
-      const page = PAGES[key];
-      path.push(page.title.replace('🏆 ', '').replace(' — OBIETTIVO RAGGIUNTO!', ''));
-
-      // animazione pagina
-      body.classList.remove('page-in');
-      void body.offsetWidth; // reflow
-      body.classList.add('page-in');
-
-      titleEl.textContent = page.title;
-      introEl.innerHTML   = page.intro;
-      hintEl.innerHTML    = page.hint;
-      hintEl.className    = 'wiki-hint' + (page.hintCls ? ' ' + page.hintCls : '');
-
-      // breadcrumb
-      pathEl.style.display  = 'block';
-      pathText.textContent  = path.join(' → ');
-      resetBtn.style.display = 'inline-block';
-
-      currentKey = key;
-
-      // se vinta, disabilita tutti i link
-      if (key === 'europa') {
-        introEl.querySelectorAll('.wlink').forEach(a => a.style.pointerEvents = 'none');
-      } else {
-        attachLinks();
-      }
-    }
-
-    function attachLinks() {
-      introEl.querySelectorAll('.wlink').forEach(a => {
-        a.addEventListener('click', function() {
-          const key = this.dataset.key;
-          // feedback visivo sul link cliccato
-          this.classList.add('clicked');
-          setTimeout(() => navigate(key), 180);
-        }, { once: true });
-      });
-    }
-
-    resetBtn.addEventListener('click', function() {
-      path = ['Pasta'];
-      currentKey = 'start';
-      const p = PAGES['start'];
-      body.classList.remove('page-in');
-      void body.offsetWidth;
-      body.classList.add('page-in');
-      titleEl.textContent = p.title;
-      introEl.innerHTML   = p.intro;
-      hintEl.innerHTML    = p.hint;
-      hintEl.className    = 'wiki-hint';
-      pathEl.style.display   = 'none';
-      resetBtn.style.display = 'none';
-      attachLinks();
-    });
-
-    attachLinks();
-  })();
-  </script>
 
   <div class="box box-tip">
     <div class="box-label">💡 Il paradosso dello speedrun</div>
@@ -791,7 +566,7 @@ footer strong { color: rgba(255,255,255,.9); }
     </div>
   </div>
 
-  <div class="box box-note">
+  <div class="box box-info">
     <div class="box-label">📌 Modalità su wikispeedruns.com</div>
     <p><strong>Sprint</strong> — arrivi alla destinazione nel minor numero di click possibile.<br>
     <strong>Marathon</strong> — percorso lungo con tappe intermedie.<br>
