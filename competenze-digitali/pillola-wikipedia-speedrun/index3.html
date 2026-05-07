@@ -491,391 +491,239 @@ footer strong { color: rgba(255,255,255,.9); }
     <div class="wiki-bar">
       <span class="wiki-logo">Wikipedia</span>
       <span style="color:var(--gray-mid);font-size:.78rem;">🔍 Cerca...</span>
-      <span class="wiki-tag" id="wd-tag">🎮 Clicca un link blu</span>
+      <span class="wiki-tag">🎮 Clicca un link blu</span>
     </div>
-    <div class="wiki-body" id="wd-body">
-      <div class="wiki-title" id="wd-title">Pianoforte</div>
-      <div class="wiki-intro" id="wd-intro"></div>
-      <div class="wiki-status-bar">
-        <div class="wiki-hint" id="wd-hint">
-          🎯 <strong>Obiettivo: Guerra Fredda.</strong> Parti da qui — nessun suggerimento.
-        </div>
-        <div id="wd-path" class="wd-path-row" style="display:none;">
-          <span class="wd-path-label">Percorso</span>
-          <span id="wd-path-text"></span>
-          <span id="wd-click-count" class="wd-click-badge">0 click</span>
-        </div>
+    <div class="wiki-body">
+      <div class="wiki-title" id="wd-title">Pasta</div>
+      <div class="wiki-intro" id="wd-intro">
+        La <a class="wlink" data-key="pasta">pasta</a> è un alimento a base di semola di <a class="wlink" data-key="grano">grano duro</a> impastato con acqua. È uno dei simboli della <a class="wlink" data-key="cucina">cucina italiana</a>, diffuso in tutto il mondo. La produzione moderna avviene in <a class="wlink" data-key="industria">impianti industriali</a> che garantiscono standard uniformi. La pasta secca si conserva a lungo ed è un alimento base nella <a class="wlink highlight" data-key="dieta">dieta mediterranea</a> — uno stile alimentare riconosciuto <a class="wlink" data-key="unesco">patrimonio UNESCO</a> diffuso anche in <a class="wlink" data-key="grecia">Grecia</a>, <a class="wlink" data-key="spagna">Spagna</a> e <a class="wlink" data-key="portogallo">Portogallo</a>.
       </div>
-      <div class="wd-controls">
-        <button id="wd-reset" style="display:none;">↺ Ricomincia</button>
-        <button id="wd-spoiler" class="wd-spoiler-btn">Mostra percorso ottimale</button>
+      <!-- stato: scegli un link -->
+      <div class="wiki-hint" id="wd-hint">
+        🎯 <strong>Obiettivo: Europa.</strong> Clicca un link qualsiasi — vedi cosa succede.
       </div>
-      <div id="wd-spoiler-box" style="display:none;" class="wd-spoiler-content">
-        <strong>Percorso minimo (3 click):</strong><br>
-        Pianoforte → <em>Ludwig van Beethoven</em> → <em>Rivoluzione francese</em> → <strong>Guerra Fredda</strong><br>
-        <span style="font-size:.72rem;color:var(--gray-mid);">Logica: Beethoven visse nell'era delle rivoluzioni europee; dalla Rivoluzione francese si apre un arco storico che porta direttamente alla Guerra Fredda come conseguenza del XX secolo.</span>
+      <!-- breadcrumb percorso -->
+      <div id="wd-path" style="display:none;margin-top:.6rem;font-size:.72rem;color:var(--gray-mid);">
+        Percorso: <span id="wd-path-text"></span>
       </div>
+      <!-- pulsante reset -->
+      <button id="wd-reset" style="display:none;margin-top:.75rem;font-size:.72rem;padding:.3rem .8rem;border-radius:20px;border:1.5px solid var(--blue-light);background:var(--white);color:var(--blue-mid);cursor:pointer;font-family:var(--font-body);transition:all .2s ease;">↺ Ricomincia da Pasta</button>
     </div>
   </div>
 
   <style>
+  /* link cliccabili nel demo */
   .wlink {
     color: #0645ad;
     text-decoration: underline;
     cursor: pointer;
-    transition: background .12s ease;
-    border-radius: 2px;
+    transition: background .15s ease, color .15s ease;
+    border-radius: 3px;
     padding: 0 1px;
   }
   .wlink:hover { background: #eaf3fb; }
+  .wlink.highlight {
+    background: #fff3cd;
+    border-radius: 3px;
+    padding: 0 2px;
+    font-weight: 600;
+    color: var(--amber-dark);
+    text-decoration: underline;
+    outline: 2px solid var(--amber-dark);
+  }
+  .wlink.highlight:hover { background: #ffe49a; }
   .wlink.clicked {
-    background: var(--blue-pale);
-    color: var(--blue-dark);
+    background: var(--green-light);
+    color: var(--green-dark);
     font-weight: 600;
     text-decoration: none;
+    outline: 2px solid var(--green-dark);
     pointer-events: none;
   }
+  /* animazione "nuova pagina" */
   @keyframes wikiPageIn {
-    from { opacity: 0; transform: translateY(5px); }
+    from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .wiki-body.page-in { animation: wikiPageIn .22s ease both; }
-
-  .wiki-status-bar { margin-top: .75rem; display: flex; flex-direction: column; gap: .4rem; }
-
-  .wiki-hint { margin: 0; }
-  .wiki-hint.dead { background: #fce8e6; border-color: #e8b4b0; color: #7d1c1c; }
-  .wiki-hint.close { background: var(--amber-light); border-color: var(--amber-dark); color: var(--amber-dark); }
-  .wiki-hint.win  { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
-
-  .wd-path-row {
-    display: flex; align-items: center; gap: .5rem;
-    font-size: .72rem; color: var(--gray-mid);
-    flex-wrap: wrap;
-  }
-  .wd-path-label {
-    font-weight: 700; font-size: .65rem; letter-spacing: .07em;
-    text-transform: uppercase; color: var(--blue-mid); flex-shrink: 0;
-  }
-  #wd-path-text { flex: 1; }
-  .wd-click-badge {
-    background: var(--blue-dark); color: #fff;
-    font-size: .65rem; font-weight: 700; padding: .15rem .55rem;
-    border-radius: 20px; flex-shrink: 0;
-  }
-
-  .wd-controls { display: flex; align-items: center; gap: .6rem; margin-top: .65rem; flex-wrap: wrap; }
-  #wd-reset {
-    font-size: .72rem; padding: .3rem .85rem; border-radius: 20px;
-    border: 1.5px solid var(--blue-light); background: var(--white);
-    color: var(--blue-mid); cursor: pointer; font-family: var(--font-body);
-    transition: all .15s ease;
-  }
-  #wd-reset:hover { border-color: var(--blue-mid); background: var(--blue-pale); }
-  .wd-spoiler-btn {
-    font-size: .72rem; padding: .3rem .85rem; border-radius: 20px;
-    border: 1.5px solid var(--gray-light); background: var(--white);
-    color: var(--gray-mid); cursor: pointer; font-family: var(--font-body);
-    transition: all .15s ease;
-  }
-  .wd-spoiler-btn:hover { border-color: var(--gray-mid); color: var(--gray-dark); }
-  .wd-spoiler-content {
-    margin-top: .6rem; background: var(--gray-light);
-    border-radius: 8px; padding: .75rem 1rem;
-    font-size: .78rem; line-height: 1.7; color: var(--gray-dark);
-    border: 1px solid #ddd;
-  }
+  .wiki-body.page-in { animation: wikiPageIn .28s ease both; }
+  /* hint con stati */
+  .wiki-hint.good { background: var(--green-light); border-color: var(--green-dark); color: var(--green-dark); }
+  .wiki-hint.warn { background: var(--amber-light); border-color: var(--amber-dark); color: var(--amber-dark); }
+  .wiki-hint.win  { background: #d4edda; border-color: #28a745; color: #155724; font-weight:600; }
   </style>
 
   <script>
-  (function () {
-    // ── GRAFO PIANOFORTE → GUERRA FREDDA ─────────────────────────
-    // Nessun link pre-evidenziato. Hint solo DOPO la scelta.
-    // Vicoli ciechi reali: Musica, Accordo, Tasto — sembrano ragionevoli ma portano lontano.
-    // Percorso ottimale: Beethoven → Rivoluzione francese → Guerra Fredda (3 click).
-    // Percorso alternativo valido: Sonata → XVIII secolo → Rivoluzione industriale → Guerra Fredda (4 click).
-    // Percorso lungo ma possibile: Germania → Seconda guerra mondiale → Guerra Fredda (4 click da Beethoven).
-
+  // ── WIKI DEMO — simulatore mini-speedrun ──────────────────────
+  (function() {
+    // Grafo di pagine simulate: key → { title, intro(html), hint, good }
+    // "good" = true se questa pagina avvicina all'obiettivo (Europa)
     const PAGES = {
-      start: {
-        title: 'Pianoforte',
-        intro: 'Il <strong>pianoforte</strong> è uno strumento <a class="wlink" data-key="musica">musicale</a> a <a class="wlink" data-key="corde">corde</a> percosse, inventato da <a class="wlink" data-key="cristofori">Bartolomeo Cristofori</a> intorno al <a class="wlink" data-key="1700">1700</a>. È considerato lo strumento principe della <a class="wlink" data-key="musica_classica">musica classica</a> occidentale. Il meccanismo è basato su <a class="wlink" data-key="tasti">tasti</a> che azionano martelletti che percuotono le corde. Compositori come <a class="wlink" data-key="beethoven">Ludwig van Beethoven</a>, <a class="wlink" data-key="chopin">Frédéric Chopin</a> e <a class="wlink" data-key="liszt">Franz Liszt</a> ne hanno definito il repertorio fondamentale.',
-        hint: '🎯 <strong>Obiettivo: Guerra Fredda.</strong> Parti da qui — nessun suggerimento.',
+      'start': {
+        title: 'Pasta',
+        intro: 'La <a class="wlink" data-key="pasta">pasta</a> è un alimento a base di semola di <a class="wlink" data-key="grano">grano duro</a> impastato con acqua. È uno dei simboli della <a class="wlink" data-key="cucina">cucina italiana</a>, diffuso in tutto il mondo. La produzione moderna avviene in <a class="wlink" data-key="industria">impianti industriali</a> che garantiscono standard uniformi. La pasta secca si conserva a lungo ed è un alimento base nella <a class="wlink highlight" data-key="dieta">dieta mediterranea</a> — uno stile alimentare riconosciuto <a class="wlink" data-key="unesco">patrimonio UNESCO</a> diffuso anche in <a class="wlink" data-key="grecia">Grecia</a>, <a class="wlink" data-key="spagna">Spagna</a> e <a class="wlink" data-key="portogallo">Portogallo</a>.',
+        hint: '🎯 <strong>Obiettivo: Europa.</strong> Clicca un link qualsiasi — vedi cosa succede.',
         hintCls: ''
       },
-
-      // ── VICOLI CIECHI (sembrano buoni, non lo sono) ───────────
-      musica: {
-        title: 'Musica',
-        intro: 'La <strong>musica</strong> è l\'arte di organizzare i <a class="wlink" data-key="suono">suoni</a> nel tempo. È presente in ogni cultura umana conosciuta. Le principali tradizioni musicali includono la musica <a class="wlink" data-key="musica_classica">classica</a> occidentale, il <a class="wlink" data-key="jazz">jazz</a>, la musica <a class="wlink" data-key="folk">folk</a> e la musica <a class="wlink" data-key="pop">pop</a>. La notazione musicale moderna è stata sviluppata in <a class="wlink" data-key="europa_medievale">Europa nel Medioevo</a>.',
-        hint: '↩ Vicolo cieco. "Musica" è un nodo denso ma distante dall\'obiettivo — ci vorranno molti click. Torna a ragionare sulla pagina di partenza.',
-        hintCls: 'dead'
+      'pasta': {
+        title: 'Pasta — Varietà e origini',
+        intro: 'Le varietà di pasta sono oltre 350. Le più note includono <a class="wlink" data-key="spaghetti">spaghetti</a>, rigatoni e fusilli. Originaria dell\'<a class="wlink" data-key="italia">Italia</a> meridionale, la pasta è oggi diffusa in tutto il mondo.',
+        hint: '⚠️ Sei rimasto nell\'argomento "pasta". Utile per una ricetta — meno per arrivare a Europa. Prova <strong>Italia</strong>.',
+        hintCls: 'warn'
       },
-      tasti: {
-        title: 'Tasto (pianoforte)',
-        intro: 'I <strong>tasti</strong> del pianoforte sono le leve bianche e nere che l\'esecutore preme per produrre i suoni. I tasti bianchi corrispondono alle <a class="wlink" data-key="note">note</a> naturali, i tasti neri alle note <a class="wlink" data-key="alterazioni">alterate</a>. La disposizione standard prevede 88 tasti totali.',
-        hint: '↩ Vicolo cieco profondo. Sei sceso nel dettaglio tecnico dello strumento — da qui è difficile risalire verso storia o geopolitica.',
-        hintCls: 'dead'
+      'grano': {
+        title: 'Grano duro',
+        intro: 'Il grano duro (<em>Triticum durum</em>) è una varietà di frumento coltivata principalmente nel <a class="wlink" data-key="mediterraneo">bacino del Mediterraneo</a> e in <a class="wlink" data-key="nordamerica">Nord America</a>. È la materia prima della semola usata per la pasta.',
+        hint: '⚠️ Percorso possibile ma indiretto. "Bacino del Mediterraneo" ti avvicina — ma ci vorranno ancora 2 click.',
+        hintCls: 'warn'
       },
-      corde: {
-        title: 'Corde (strumenti musicali)',
-        intro: 'Gli <strong>strumenti a corde</strong> producono il suono tramite la vibrazione di corde tese. Si dividono in strumenti a corde pizzicate (come la <a class="wlink" data-key="chitarra">chitarra</a>), a corde percosse (come il <a class="wlink" data-key="start">pianoforte</a>) e a corde strofinate (come il <a class="wlink" data-key="violino">violino</a>).',
-        hint: '↩ Vicolo cieco. Classificazione organologica — utile per un esame di musica, inutile per raggiungere Guerra Fredda.',
-        hintCls: 'dead'
+      'cucina': {
+        title: 'Cucina italiana',
+        intro: 'La cucina italiana è riconosciuta tra le più apprezzate al mondo. È strettamente legata alla storia dell\'<a class="wlink" data-key="italia">Italia</a> e delle sue regioni. Influenzata dalla <a class="wlink" data-key="dieta">dieta mediterranea</a>, si basa su ingredienti freschi e ricette tramandate.',
+        hint: '⚠️ Stai girando intorno. "Cucina italiana" → "Italia" → "Europa": fattibile, ma sono 2 click in più rispetto alla strada breve.',
+        hintCls: 'warn'
       },
-      jazz: {
-        title: 'Jazz',
-        intro: 'Il <strong>jazz</strong> è un genere musicale nato negli <a class="wlink" data-key="usa">Stati Uniti</a> alla fine del XIX secolo, con radici nella musica <a class="wlink" data-key="blues">blues</a> e nella tradizione africano-americana. Durante la <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>, il Dipartimento di Stato americano usò il jazz come strumento di diplomazia culturale.',
-        hint: '🔥 Percorso inaspettato ma reale! Il jazz fu usato come arma culturale durante la Guerra Fredda — sei a 1 click.',
-        hintCls: 'close'
+      'industria': {
+        title: 'Industria alimentare',
+        intro: 'L\'industria alimentare comprende tutte le attività di trasformazione dei prodotti agricoli. In <a class="wlink" data-key="italia">Italia</a> rappresenta il secondo settore manifatturiero per fatturato, con un forte orientamento all\'export verso i paesi dell\'<a class="wlink" data-key="europa">Unione Europea</a>.',
+        hint: '✅ Buona mossa! Da "industria alimentare" puoi arrivare a <strong>Unione Europea</strong> in un solo click. Quasi!',
+        hintCls: 'good'
       },
-      suono: {
-        title: 'Suono',
-        intro: 'Il <strong>suono</strong> è una perturbazione meccanica che si propaga in un mezzo elastico. La <a class="wlink" data-key="fisica">fisica</a> del suono è studiata dall\'<a class="wlink" data-key="acustica">acustica</a>. La velocità del suono nell\'aria a 20°C è circa 343 m/s.',
-        hint: '↩ Vicolo cieco fisico. Sei entrato nella fisica del suono — strada molto lunga verso la storia.',
-        hintCls: 'dead'
+      'dieta': {
+        title: 'Dieta mediterranea',
+        intro: 'La dieta mediterranea è un modello alimentare tipico dei paesi del <a class="wlink" data-key="mediterraneo">bacino del Mediterraneo</a>. Riconosciuta patrimonio immateriale <a class="wlink" data-key="unesco">UNESCO</a> nel 2010, è diffusa in <a class="wlink" data-key="grecia">Grecia</a>, <a class="wlink" data-key="europa">Italia meridionale</a>, <a class="wlink" data-key="spagna">Spagna</a> e altri paesi europei.',
+        hint: '✅ Ottima scelta! Da qui puoi raggiungere <strong>Europa</strong> in 1 click. Era il percorso più efficiente.',
+        hintCls: 'good'
       },
-
-      // ── RAMI PRODUTTIVI ───────────────────────────────────────
-      cristofori: {
-        title: 'Bartolomeo Cristofori',
-        intro: '<strong>Bartolomeo Cristofori di Francesco</strong> (1655–1731) fu un liutaio italiano, inventore del pianoforte. Nacque a <a class="wlink" data-key="padova">Padova</a> e lavorò a lungo per la corte dei <a class="wlink" data-key="medici">Medici</a> a <a class="wlink" data-key="firenze">Firenze</a>. Lavorò nell\'<a class="wlink" data-key="italia_barocca">Italia del periodo barocco</a>, in un\'epoca in cui la musica era strettamente connessa al potere delle corti europee.',
-        hint: 'Percorso geografico aperto. Da Cristofori puoi risalire verso l\'<strong>Italia</strong> o verso le <strong>corti europee</strong> — entrambi portano verso la storia moderna.',
-        hintCls: 'close'
+      'unesco': {
+        title: 'Patrimonio immateriale UNESCO',
+        intro: 'Il patrimonio culturale immateriale UNESCO comprende tradizioni, espressioni e saperi tramandati di generazione in generazione. La lista include elementi provenienti da tutti i continenti, con forte presenza di paesi <a class="wlink" data-key="europa">europei</a> e <a class="wlink" data-key="asia">asiatici</a>.',
+        hint: '✅ Mossa vincente! UNESCO → <strong>Europa</strong> è a 1 click. Percorso efficiente.',
+        hintCls: 'good'
       },
-      '1700': {
-        title: 'XVIII secolo',
-        intro: 'Il <strong>XVIII secolo</strong> (1701–1800) è noto come il <a class="wlink" data-key="illuminismo">Secolo dei Lumi</a>. Fu caratterizzato dalla <a class="wlink" data-key="rivoluzione_francese">Rivoluzione francese</a> (1789), dalla <a class="wlink" data-key="rivoluzione_industriale">Rivoluzione industriale</a> in Inghilterra e dall\'<a class="wlink" data-key="indipendenza_usa">Indipendenza americana</a> (1776). Questi eventi trasformarono radicalmente la politica e l\'economia mondiali.',
-        hint: '✅ Nodo storico ricco. Da qui si aprono percorsi diretti verso la modernità — e verso la Guerra Fredda.',
-        hintCls: 'close'
+      'grecia': {
+        title: 'Grecia',
+        intro: 'La Grecia è uno Stato dell\'<a class="wlink win-link" data-key="europa">Europa</a> meridionale, situato nella penisola balcanica. È membro dell\'Unione Europea dal 1981 e dell\'Eurozona dal 2001. La sua capitale è Atene.',
+        hint: '✅ Grecia → <strong>Europa</strong>: sei a 1 click dalla meta. Clicca!',
+        hintCls: 'good'
       },
-      musica_classica: {
-        title: 'Musica classica',
-        intro: 'La <strong>musica classica</strong> occidentale si sviluppò tra il <a class="wlink" data-key="1700">XVIII</a> e il XIX secolo. I principali compositori del periodo classico includono <a class="wlink" data-key="haydn">Franz Joseph Haydn</a>, <a class="wlink" data-key="mozart">Wolfgang Amadeus Mozart</a> e <a class="wlink" data-key="beethoven">Ludwig van Beethoven</a>. Il periodo romantico che seguì fu segnato da forti tensioni nazionaliste in <a class="wlink" data-key="europa_800">Europa</a>.',
-        hint: 'Percorso valido: musica classica → Beethoven → Rivoluzione francese. Oppure, il nazionalismo romantico apre strade verso la storia europea.',
-        hintCls: 'close'
+      'spagna': {
+        title: 'Spagna',
+        intro: 'La Spagna è uno Stato dell\'<a class="wlink win-link" data-key="europa">Europa</a> occidentale. Membro dell\'Unione Europea dal 1986, confina con il Portogallo, la Francia e Andorra. La sua capitale è Madrid.',
+        hint: '✅ Spagna → <strong>Europa</strong>: sei a 1 click. Clicca su Europa per vincere!',
+        hintCls: 'good'
       },
-
-      // ── NODI CHIAVE DEL PERCORSO OTTIMALE ────────────────────
-      beethoven: {
-        title: 'Ludwig van Beethoven',
-        intro: '<strong>Ludwig van Beethoven</strong> (1770–1827) fu un compositore e pianista tedesco. Nacque a <a class="wlink" data-key="bonn">Bonn</a>, nel <a class="wlink" data-key="sacro_romano">Sacro Romano Impero</a>, e trascorse la maggior parte della vita a <a class="wlink" data-key="vienna">Vienna</a>. La sua opera riflette il periodo della <a class="wlink" data-key="rivoluzione_francese">Rivoluzione francese</a> e delle guerre napoleoniche: la Terza Sinfonia ("Eroica") fu inizialmente dedicata a <a class="wlink" data-key="napoleone">Napoleone Bonaparte</a>. Divenne sordo progressivamente a partire dal 1798.',
-        hint: '✅ Nodo strategico. Beethoven è contemporaneo della Rivoluzione francese e di Napoleone — entrambi aprono strade dirette verso la storia moderna e la Guerra Fredda.',
-        hintCls: 'close'
+      'portogallo': {
+        title: 'Portogallo',
+        intro: 'Il Portogallo è uno Stato della penisola iberica in <a class="wlink win-link" data-key="europa">Europa</a> occidentale. Membro dell\'Unione Europea dal 1986, confina con la Spagna. La sua capitale è Lisbona.',
+        hint: '✅ Portogallo → <strong>Europa</strong>: sei a 1 click. Clicca!',
+        hintCls: 'good'
       },
-      chopin: {
-        title: 'Frédéric Chopin',
-        intro: '<strong>Frédéric Chopin</strong> (1810–1849) fu un compositore e pianista polacco. Visse la maggior parte della sua vita adulta a <a class="wlink" data-key="parigi">Parigi</a>, in esilio dopo la <a class="wlink" data-key="rivolta_polacca">Rivolta di novembre</a> del 1830 contro la dominazione russa. Le sue composizioni sono profondamente legate all\'identità nazionale <a class="wlink" data-key="polonia">polacca</a>.',
-        hint: 'Percorso interessante. Chopin → Polonia → dominazione russa → URSS è una strada possibile verso la Guerra Fredda, ma richiede 3+ click ancora.',
-        hintCls: 'close'
+      'italia': {
+        title: 'Italia',
+        intro: 'L\'Italia è uno Stato dell\'<a class="wlink win-link" data-key="europa">Europa</a> meridionale. Membro fondatore dell\'Unione Europea, confina con Francia, Svizzera, Austria e Slovenia. La sua capitale è Roma.',
+        hint: '✅ Italia → <strong>Europa</strong>: a 1 click. Ci sei quasi!',
+        hintCls: 'good'
       },
-      liszt: {
-        title: 'Franz Liszt',
-        intro: '<strong>Franz Liszt</strong> (1811–1886) fu un pianista e compositore ungherese. È considerato uno dei più grandi virtuosi nella storia del pianoforte. Fu profondamente influenzato dal movimento <a class="wlink" data-key="romanticismo">Romanticismo</a> e dalle idee nazionaliste che agitavano l\'<a class="wlink" data-key="europa_800">Europa del XIX secolo</a>.',
-        hint: 'Percorso più lungo. Dal nazionalismo europeo del XIX secolo si può arrivare ai conflitti del XX — ma servono ancora 3+ click.',
-        hintCls: ''
+      'mediterraneo': {
+        title: 'Bacino del Mediterraneo',
+        intro: 'Il bacino del Mediterraneo comprende i paesi che si affacciano sul Mar Mediterraneo. La regione include paesi del sud dell\'<a class="wlink win-link" data-key="europa">Europa</a>, del Nord Africa e del Medio Oriente.',
+        hint: '✅ Da qui arrivi a <strong>Europa</strong> in 1 click!',
+        hintCls: 'good'
       },
-
-      // ── STRADE ALTERNATIVE VALIDE ─────────────────────────────
-      napoleone: {
-        title: 'Napoleone Bonaparte',
-        intro: '<strong>Napoleone Bonaparte</strong> (1769–1821) fu imperatore dei francesi. Le guerre napoleoniche ridisegnarono la mappa politica dell\'<a class="wlink" data-key="europa_800">Europa</a>. Dopo la sua sconfitta, il <a class="wlink" data-key="congresso_vienna">Congresso di Vienna</a> (1815) ridefinì gli equilibri continentali — un sistema che avrebbe retto fino alla <a class="wlink" data-key="prima_guerra">Prima guerra mondiale</a>.',
-        hint: '✅ Buon nodo. Napoleone → Prima guerra mondiale → Seconda guerra mondiale → Guerra Fredda: percorso logico, ancora 2 click.',
-        hintCls: 'close'
+      'nordamerica': {
+        title: 'Nord America',
+        intro: 'Il Nord America è un continente che comprende Canada, Stati Uniti e Messico. È separato dall\'<a class="wlink" data-key="europa">Europa</a> dall\'Oceano Atlantico. Il suo paese più popoloso sono gli Stati Uniti.',
+        hint: '⚠️ Percorso insolito! Nord America → Europa: ci arrivi, ma avresti potuto farne a meno.',
+        hintCls: 'warn'
       },
-      rivoluzione_francese: {
-        title: 'Rivoluzione francese',
-        intro: 'La <strong>Rivoluzione francese</strong> (1789–1799) fu un periodo di radicale trasformazione politica e sociale in <a class="wlink" data-key="francia">Francia</a>. Portò all\'abolizione della monarchia, alla <a class="wlink" data-key="prima_repubblica">Prima Repubblica</a> e aprì la strada all\'ascesa di <a class="wlink" data-key="napoleone">Napoleone</a>. I suoi ideali di libertà, uguaglianza e fraternità influenzarono i movimenti rivoluzionari di tutto il <a class="wlink" data-key="novecento">XIX e XX secolo</a>, inclusa la <a class="wlink" data-key="rivoluzione_russa">Rivoluzione russa</a> del 1917.',
-        hint: '🔥 Sei vicino. Da qui: Rivoluzione russa → URSS → Guerra Fredda. Oppure direttamente dal XX secolo.',
-        hintCls: 'close'
+      'spaghetti': {
+        title: 'Spaghetti',
+        intro: 'Gli spaghetti sono un tipo di pasta lunga originaria dell\'<a class="wlink" data-key="italia">Italia</a> meridionale. Sono tra i formati di pasta più consumati al mondo e base di piatti come la carbonara e l\'amatriciana.',
+        hint: '⚠️ Sei tornato su un tipo di pasta. Non ti avvicina a Europa — prova Italia.',
+        hintCls: 'warn'
       },
-      rivoluzione_industriale: {
-        title: 'Rivoluzione industriale',
-        intro: 'La <strong>Rivoluzione industriale</strong> (fine XVIII – XIX secolo) trasformò l\'economia mondiale. Iniziata in <a class="wlink" data-key="inghilterra">Gran Bretagna</a>, si diffuse in <a class="wlink" data-key="europa_800">Europa</a> e <a class="wlink" data-key="usa">Stati Uniti</a>. Le trasformazioni sociali che produsse alimentarono i movimenti <a class="wlink" data-key="socialismo">socialisti</a> e <a class="wlink" data-key="comunismo">comunisti</a> del XIX e XX secolo.',
-        hint: '✅ Percorso alternativo solido. Rivoluzione industriale → comunismo → URSS → Guerra Fredda. Ancora 2 click.',
-        hintCls: 'close'
+      'asia': {
+        title: 'Asia',
+        intro: 'L\'Asia è il continente più grande e popoloso della Terra. Confina a ovest con l\'<a class="wlink win-link" data-key="europa">Europa</a>, separata convenzionalmente dagli Urali e dal Caucaso.',
+        hint: '⚠️ Giro largo! Asia → Europa funziona, ma avresti potuto arrivare prima.',
+        hintCls: 'warn'
       },
-      illuminismo: {
-        title: 'Illuminismo',
-        intro: 'L\'<strong>Illuminismo</strong> fu un movimento filosofico e culturale del <a class="wlink" data-key="1700">XVIII secolo</a>. Valorizzava la ragione, la scienza e la libertà individuale contro autorità religiose e monarchiche. I suoi ideali influenzarono la <a class="wlink" data-key="rivoluzione_francese">Rivoluzione francese</a> e l\'<a class="wlink" data-key="indipendenza_usa">Indipendenza americana</a>.',
-        hint: '✅ Percorso corretto. Illuminismo → Rivoluzione francese → Rivoluzione russa → Guerra Fredda. Ancora 2 click.',
-        hintCls: 'close'
-      },
-      rivoluzione_russa: {
-        title: 'Rivoluzione russa',
-        intro: 'La <strong>Rivoluzione russa</strong> del 1917 portò all\'abbattimento dello zarismo e alla nascita del primo Stato socialista della storia. La presa del potere da parte dei <a class="wlink" data-key="bolscevichi">bolscevichi</a> di <a class="wlink" data-key="lenin">Lenin</a> portò alla fondazione dell\'<a class="wlink" data-key="urss">Unione Sovietica</a> nel 1922. Il conflitto ideologico tra il modello sovietico e quello capitalista occidentale avrebbe generato la <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '🔥 A un passo. URSS → Guerra Fredda oppure direttamente — sei a 1 click.',
-        hintCls: 'close'
-      },
-      urss: {
-        title: 'Unione Sovietica',
-        intro: 'L\'<strong>Unione delle Repubbliche Socialiste Sovietiche</strong> (URSS) fu uno Stato federale socialista esistito dal 1922 al 1991. Dopo la <a class="wlink" data-key="seconda_guerra">Seconda guerra mondiale</a>, divenne una delle due superpotenze mondiali, insieme agli <a class="wlink" data-key="usa">Stati Uniti</a>. Il confronto tra le due superpotenze definì la <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '🔥 Sei a 1 click dalla meta.',
-        hintCls: 'close'
-      },
-      usa: {
-        title: 'Stati Uniti d\'America',
-        intro: 'Gli <strong>Stati Uniti d\'America</strong> sono una repubblica federale composta da 50 stati. Dopo la <a class="wlink" data-key="seconda_guerra">Seconda guerra mondiale</a>, divennero la principale potenza occidentale e si contrapposero all\'<a class="wlink" data-key="urss">Unione Sovietica</a> nel confronto geopolitico noto come <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '🔥 USA → Guerra Fredda: 1 click.',
-        hintCls: 'close'
-      },
-      seconda_guerra: {
-        title: 'Seconda guerra mondiale',
-        intro: 'La <strong>Seconda guerra mondiale</strong> (1939–1945) fu il conflitto armato più devastante della storia. Coinvolse la maggior parte delle nazioni del mondo. Alla fine del conflitto, l\'Europa era divisa tra la sfera d\'influenza degli <a class="wlink" data-key="usa">Stati Uniti</a> e quella dell\'<a class="wlink" data-key="urss">Unione Sovietica</a>. Questa divisione fu il presupposto diretto della <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '🔥 Sei a 1 click. USA o URSS portano direttamente all\'obiettivo.',
-        hintCls: 'close'
-      },
-      prima_guerra: {
-        title: 'Prima guerra mondiale',
-        intro: 'La <strong>Prima guerra mondiale</strong> (1914–1918) fu un conflitto che coinvolse le principali potenze europee. Le sue conseguenze includono la caduta dei grandi imperi (russo, austro-ungarico, ottomano), la <a class="wlink" data-key="rivoluzione_russa">Rivoluzione russa</a> del 1917 e le condizioni che portarono alla <a class="wlink" data-key="seconda_guerra">Seconda guerra mondiale</a>.',
-        hint: '✅ Vicino. Prima guerra → Seconda guerra → Guerra Fredda: 2 click.',
-        hintCls: 'close'
-      },
-      comunismo: {
-        title: 'Comunismo',
-        intro: 'Il <strong>comunismo</strong> è una teoria politica ed economica che propugna la proprietà collettiva dei mezzi di produzione. Basato sulle teorie di <a class="wlink" data-key="marx">Karl Marx</a>, trovò la sua prima applicazione pratica con la <a class="wlink" data-key="rivoluzione_russa">Rivoluzione russa</a> del 1917 e la nascita dell\'<a class="wlink" data-key="urss">URSS</a>. Il contrasto tra comunismo e capitalismo fu il cuore ideologico della <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '🔥 Comunismo → Guerra Fredda: a 1 click direttamente.',
-        hintCls: 'close'
-      },
-      novecento: {
-        title: 'XX secolo',
-        intro: 'Il <strong>XX secolo</strong> fu segnato da due guerre mondiali, dalla <a class="wlink" data-key="rivoluzione_russa">Rivoluzione russa</a>, dalla nascita dei regimi totalitari e dalla <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>. Fu anche il secolo della decolonizzazione, della corsa allo spazio e dell\'era nucleare.',
-        hint: '🔥 XX secolo → Guerra Fredda: 1 click.',
-        hintCls: 'close'
-      },
-      socialismo: {
-        title: 'Socialismo',
-        intro: 'Il <strong>socialismo</strong> è un sistema politico ed economico che propone il controllo collettivo o statale dell\'economia. Diversamente dal <a class="wlink" data-key="comunismo">comunismo</a>, ammette la pluralità politica. Durante la <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>, molti paesi del Terzo Mondo adottarono politiche socialiste influenzate dall\'<a class="wlink" data-key="urss">URSS</a>.',
-        hint: '🔥 Percorso valido. Socialismo → Guerra Fredda o → URSS: 1-2 click.',
-        hintCls: 'close'
-      },
-      polonia: {
-        title: 'Polonia',
-        intro: 'La <strong>Polonia</strong> è uno Stato dell\'<a class="wlink" data-key="europa_800">Europa centrale</a>. Dopo la <a class="wlink" data-key="seconda_guerra">Seconda guerra mondiale</a>, fu incorporata nella sfera d\'influenza sovietica e divenne uno dei paesi satellite dell\'<a class="wlink" data-key="urss">URSS</a>. Il movimento sindacale <em>Solidarność</em> fu uno dei fattori che contribuì alla fine della <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '✅ Percorso legittimo. Polonia → URSS → Guerra Fredda: 2 click.',
-        hintCls: 'close'
-      },
-
-      // ── NODI GEOGRAFICI/ACCESSORI ─────────────────────────────
-      vienna: {
-        title: 'Vienna',
-        intro: 'Vienna è la capitale dell\'<a class="wlink" data-key="austria">Austria</a>. Fu per secoli il centro dell\'Impero asburgico e una delle capitali culturali d\'<a class="wlink" data-key="europa_800">Europa</a>. Dopo la <a class="wlink" data-key="seconda_guerra">Seconda guerra mondiale</a>, fu divisa in quattro zone di occupazione tra le potenze vincitrici — un microcosmo della <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '✅ Vienna occupata → Guerra Fredda: percorso geografico valido, 1-2 click.',
-        hintCls: 'close'
-      },
-      bonn: {
-        title: 'Bonn',
-        intro: 'Bonn è una città della <a class="wlink" data-key="germania">Germania</a>, sul Reno. Fu la capitale della <a class="wlink" data-key="germania_ovest">Germania Ovest</a> (Repubblica Federale Tedesca) dal 1949 al 1990 — per tutta la durata della <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '🔥 Bonn fu la capitale della Germania durante la Guerra Fredda — sei a 1-2 click.',
-        hintCls: 'close'
-      },
-      germania: {
-        title: 'Germania',
-        intro: 'La <strong>Germania</strong> fu al centro della <a class="wlink" data-key="seconda_guerra">Seconda guerra mondiale</a>. Dopo la sconfitta, fu divisa in <a class="wlink" data-key="germania_ovest">Germania Ovest</a> (filo-occidentale) e <a class="wlink" data-key="guerra_fredda">Germania Est</a> (filo-sovietica). La divisione di Berlino con il Muro (1961-1989) divenne il simbolo più potente della <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>.',
-        hint: '🔥 Germania divisa = cuore della Guerra Fredda. Sei a 1 click.',
-        hintCls: 'close'
-      },
-      germania_ovest: {
-        title: 'Germania Ovest',
-        intro: 'La <strong>Repubblica Federale Tedesca</strong> (Germania Ovest) fu uno dei principali teatri della <a class="wlink" data-key="guerra_fredda">Guerra Fredda</a>. Membro della NATO e dell\'alleanza occidentale, si contrapponeva alla <a class="wlink" data-key="urss">sfera sovietica</a> lungo la Cortina di Ferro.',
-        hint: '🔥 A 1 click.',
-        hintCls: 'close'
-      },
-
-      // ── OBIETTIVO ─────────────────────────────────────────────
-      guerra_fredda: {
-        title: '🏆 Guerra Fredda — OBIETTIVO RAGGIUNTO!',
-        intro: 'La <strong>Guerra Fredda</strong> (1947–1991) fu il periodo di tensione geopolitica tra le due superpotenze uscite vittoriose dal secondo conflitto mondiale: gli <a class="wlink" data-key="usa">Stati Uniti</a> e l\'<a class="wlink" data-key="urss">Unione Sovietica</a>. Non fu una guerra diretta ma un confronto su scala globale — ideologico, economico, militare e culturale — che tenne il mondo in equilibrio precario per oltre quarant\'anni.',
-        hint: '🏆 Obiettivo raggiunto! Guarda il percorso — quanti click hai fatto? Il minimo è 3.',
+      'europa': {
+        title: '🏆 Europa — OBIETTIVO RAGGIUNTO!',
+        intro: 'L\'Europa è uno dei sette continenti della Terra. È il secondo continente più piccolo per superficie, ma il terzo più popoloso. Comprende 44 Stati sovrani, tra cui i 27 membri dell\'Unione Europea.',
+        hint: '🏆 Hai raggiunto Europa! Guarda il percorso che hai fatto — era il più corto possibile?',
         hintCls: 'win'
       }
     };
 
-    const startKey  = 'start';
-    const winKey    = 'guerra_fredda';
-    const startLabel = 'Pianoforte';
-
-    let path = [startLabel];
-    let clicks = 0;
-
+    let path = ['Pasta'];
+    let currentKey = 'start';
     const titleEl  = document.getElementById('wd-title');
     const introEl  = document.getElementById('wd-intro');
     const hintEl   = document.getElementById('wd-hint');
     const pathEl   = document.getElementById('wd-path');
     const pathText = document.getElementById('wd-path-text');
-    const clickBadge = document.getElementById('wd-click-count');
     const resetBtn = document.getElementById('wd-reset');
-    const spoilerBtn = document.getElementById('wd-spoiler');
-    const spoilerBox = document.getElementById('wd-spoiler-box');
-    const body     = document.getElementById('wd-body');
+    const body     = document.querySelector('.wiki-body');
 
-    // render iniziale
-    renderPage(startKey, false);
-
-    spoilerBtn.addEventListener('click', () => {
-      const open = spoilerBox.style.display === 'block';
-      spoilerBox.style.display = open ? 'none' : 'block';
-      spoilerBtn.textContent = open ? 'Mostra percorso ottimale' : 'Nascondi percorso ottimale';
-    });
-
-    resetBtn.addEventListener('click', () => {
-      path = [startLabel];
-      clicks = 0;
-      pathEl.style.display = 'none';
-      resetBtn.style.display = 'none';
-      spoilerBox.style.display = 'none';
-      spoilerBtn.textContent = 'Mostra percorso ottimale';
-      renderPage(startKey, false);
-    });
-
-    function renderPage(key, animate) {
+    function navigate(key) {
+      if (!PAGES[key]) return;
       const page = PAGES[key];
-      if (!page) return;
+      path.push(page.title.replace('🏆 ', '').replace(' — OBIETTIVO RAGGIUNTO!', ''));
 
-      if (animate) {
-        body.classList.remove('page-in');
-        void body.offsetWidth;
-        body.classList.add('page-in');
-      }
+      // animazione pagina
+      body.classList.remove('page-in');
+      void body.offsetWidth; // reflow
+      body.classList.add('page-in');
 
       titleEl.textContent = page.title;
       introEl.innerHTML   = page.intro;
       hintEl.innerHTML    = page.hint;
       hintEl.className    = 'wiki-hint' + (page.hintCls ? ' ' + page.hintCls : '');
 
-      if (key === winKey) {
+      // breadcrumb
+      pathEl.style.display  = 'block';
+      pathText.textContent  = path.join(' → ');
+      resetBtn.style.display = 'inline-block';
+
+      currentKey = key;
+
+      // se vinta, disabilita tutti i link
+      if (key === 'europa') {
         introEl.querySelectorAll('.wlink').forEach(a => a.style.pointerEvents = 'none');
       } else {
         attachLinks();
       }
     }
 
-    function navigate(key) {
-      const page = PAGES[key];
-      if (!page) return;
-
-      clicks++;
-      const label = page.title.replace('🏆 ', '').replace(' — OBIETTIVO RAGGIUNTO!', '');
-      path.push(label);
-
-      pathEl.style.display = 'flex';
-      pathText.textContent = path.join(' → ');
-      clickBadge.textContent = clicks + (clicks === 1 ? ' click' : ' click');
-      resetBtn.style.display = 'inline-block';
-
-      renderPage(key, true);
-    }
-
     function attachLinks() {
       introEl.querySelectorAll('.wlink').forEach(a => {
-        a.addEventListener('click', function () {
-          this.classList.add('clicked');
+        a.addEventListener('click', function() {
           const key = this.dataset.key;
-          setTimeout(() => navigate(key), 160);
+          // feedback visivo sul link cliccato
+          this.classList.add('clicked');
+          setTimeout(() => navigate(key), 180);
         }, { once: true });
       });
     }
 
+    resetBtn.addEventListener('click', function() {
+      path = ['Pasta'];
+      currentKey = 'start';
+      const p = PAGES['start'];
+      body.classList.remove('page-in');
+      void body.offsetWidth;
+      body.classList.add('page-in');
+      titleEl.textContent = p.title;
+      introEl.innerHTML   = p.intro;
+      hintEl.innerHTML    = p.hint;
+      hintEl.className    = 'wiki-hint';
+      pathEl.style.display   = 'none';
+      resetBtn.style.display = 'none';
+      attachLinks();
+    });
+
+    attachLinks();
   })();
   </script>
 
