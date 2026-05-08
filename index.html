@@ -124,9 +124,19 @@ header {
 }
 .btn-contact:hover { background: var(--blue-light); transform: translateY(-1px); }
 
-@media(max-width:520px){
-  .header-nav { display: none; }
-  .btn-contact { font-size: .75rem; padding: .32rem .8rem; }
+@media(max-width:700px) {
+  header { padding: 0 1rem; }
+  .header-nav  { display: none; }
+  .header-sep  { display: none; }
+  .header-tag  { display: none; }
+  .header-right { gap: .4rem; }
+  .header-pill-btn { padding: 4px 10px; font-size: .72rem; }
+}
+
+@media(max-width:480px) {
+  .header-pill-btn:nth-child(1),
+  .header-pill-btn:nth-child(2) { display: none; }
+  .header-name { font-size: .95rem; }
 }
 
 /* ── HERO ───────────────────────────────────────────────── */
