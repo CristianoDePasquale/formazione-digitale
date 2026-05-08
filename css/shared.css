@@ -586,3 +586,27 @@ footer a { color: var(--blue-light); text-decoration: none; }
 @media(max-width:640px) {
   .two-col { grid-template-columns: 1fr; }
 }
+
+
+/* ── FOOTER NAV LINK — navigazione tra risorse collegate ── */
+.footer-nav-link {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .82rem; color: rgba(255,255,255,.7);
+  text-decoration: none;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px;
+  padding: .55rem .95rem;
+  transition: all var(--transition);
+}
+.footer-nav-link:hover {
+  background: rgba(255,255,255,.16);
+  border-color: rgba(255,255,255,.3);
+  color: #fff;
+}
+.footer-nav-link.primary {
+  background: var(--blue-mid);
+  border-color: var(--blue-mid);
+  color: #fff;
+}
+.footer-nav-link.primary:hover { background: #3d88cc; }

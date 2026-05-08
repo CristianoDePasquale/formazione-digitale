@@ -333,5 +333,34 @@
   "digcomp_level": "foundation",
   "digcomp_areas": ["informazione", "comunicazione"],
   "digcompedu": ["DCEdu 3.1"]
+},
+{
+  "path": "/competenze-digitali/pillola-valutazione-fonti/",
+  "label": "Valutare le Fonti Online",
+  "short": "Valutazione Fonti",
+  "cat": "pillola",
+  "emoji": "🔎",
+  "tags": [
+    "fonti",
+    "valutazione",
+    "craap test",
+    "lateral reading",
+    "reverse image search",
+    "disinformazione",
+    "fake news",
+    "fact checking",
+    "affidabilità",
+    "informazione",
+    "media literacy",
+    "competenze digitali"
+  ],
+  "meta": "CRAAP test · Lateral reading · Livello base · ~15 min",
+  "description": "Tre metodi per valutare qualsiasi fonte online in 5 minuti: CRAAP test, lateral reading e reverse image search. Per studenti e docenti.",
+  "featured": false,
+  "active": true,
+  "digcomp": ["DC 1.2", "DC 1.1"],
+  "digcomp_level": "foundation",
+  "digcompedu": ["DCEdu 6.1", "DCEdu 3.2"],
+  "digcomp_areas": ["informazioni"]
 }
 ]
