@@ -968,7 +968,7 @@ body {
       <div class="checklist-wrap">
         <div class="checklist-header">✅ Checklist rapida — verifica fonte</div>
 		<div class="checklist-items" id="checklist-items">
-		  <label class="checklist-item" onclick="toggleCheck(this)">
+		  <label class="checklist-item" onclick="toggleCheck(event, this)">
 			<input type="checkbox">
 			<div class="checklist-box"></div>
 			<div class="checklist-content">
@@ -976,7 +976,7 @@ body {
 			  <div class="checklist-detail">Cerca il nome dell'autore su Google. Hai trovato un profilo LinkedIn, una pagina istituzionale, un curriculum? Se l'autore è anonimo o il nome non dà risultati verificabili, è un segnale di allerta.</div>
 			</div>
 		  </label>
-		  <label class="checklist-item" onclick="toggleCheck(this)">
+		  <label class="checklist-item" onclick="toggleCheck(event, this)">
 			<input type="checkbox">
 			<div class="checklist-box"></div>
 			<div class="checklist-content">
@@ -984,7 +984,7 @@ body {
 			  <div class="checklist-detail">Cerca la data in fondo all'articolo o nell'URL. Per temi scientifici o di attualità, una fonte di 5+ anni fa può essere obsoleta. Per eventi storici o classici, la data conta meno.</div>
 			</div>
 		  </label>
-		  <label class="checklist-item" onclick="toggleCheck(this)">
+		  <label class="checklist-item" onclick="toggleCheck(event, this)">
 			<input type="checkbox">
 			<div class="checklist-box"></div>
 			<div class="checklist-content">
@@ -992,7 +992,7 @@ body {
 			  <div class="checklist-detail">Un contenuto affidabile cita le sue fonti — studi, dati, istituzioni. Se non c'è nessun link o riferimento verificabile, stai leggendo un'opinione, non un fatto documentato.</div>
 			</div>
 		  </label>
-		  <label class="checklist-item" onclick="toggleCheck(this)">
+		  <label class="checklist-item" onclick="toggleCheck(event, this)">
 			<input type="checkbox">
 			<div class="checklist-box"></div>
 			<div class="checklist-content">
@@ -1000,7 +1000,7 @@ body {
 			  <div class="checklist-detail">Apri una nuova scheda e cerca "[nome sito] affidabile" o "[nome sito] bias". Non cercare la notizia — cerca la fonte. Cosa dicono di lei fonti indipendenti? MediaBias/AllSides e Chi.it sono ottimi punti di partenza.</div>
 			</div>
 		  </label>
-		  <label class="checklist-item" onclick="toggleCheck(this)">
+		  <label class="checklist-item" onclick="toggleCheck(event, this)">
 			<input type="checkbox">
 			<div class="checklist-box"></div>
 			<div class="checklist-content">
@@ -1150,6 +1150,7 @@ applyMode(savedMode);
 
 /* ── CHECKLIST ───────────────────────────────────────────── */
 function toggleCheck(label) {
+  e.preventDefault();
   label.classList.toggle('checked');
   updateChecklist();
 }
