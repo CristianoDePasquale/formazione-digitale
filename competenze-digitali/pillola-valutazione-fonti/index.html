@@ -1149,7 +1149,7 @@ const savedMode = localStorage.getItem(MODE_KEY) || 'student';
 applyMode(savedMode);
 
 /* ── CHECKLIST ───────────────────────────────────────────── */
-function toggleCheck(label) {
+function toggleCheck(e, label) {
   e.preventDefault();
   label.classList.toggle('checked');
   updateChecklist();
