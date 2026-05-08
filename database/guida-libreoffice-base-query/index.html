@@ -1731,6 +1731,66 @@ section { animation: fadeIn 0.4s ease both; }
     <div class="step"><div class="step-body">Per cancellare una riga: selezionala cliccando sul quadratino a sinistra → tasto <strong>Canc</strong> → conferma.</div></div>
   </div>
 
+	<h3>Esempio reale — Elimina cascata + Imposta NULL a confronto</h3>
+
+	<p>
+	  Lo stesso evento — <strong>cancellare un cliente</strong> — può avere effetti diversi
+	  su tabelle diverse, a seconda di come è configurata ogni relazione.
+	  Nell'esempio seguente il database gestisce tre tabelle collegate a CLIENTE:
+	  TESSERA e SCONTRINO.
+	</p>
+
+	<div class="highlight-box">
+	  <h4>// Scenario: cancello il cliente Rossi Mario (CF: RSSMRA80A01H501Z)</h4>
+	  <ul>
+		<li>
+		  <strong>TESSERA → Elimina cascata:</strong> la tessera fedeltà di Rossi
+		  viene cancellata automaticamente. Non ha senso conservarla senza il
+		  cliente a cui appartiene.
+		</li>
+		<li>
+		  <strong>SCONTRINO → Imposta NULL:</strong> gli scontrini di Rossi
+		  rimangono nel sistema — sono dati fiscali e storici da preservare —
+		  ma il campo <code>FK_CF_Cliente</code> viene impostato a
+		  <code>NULL</code>. Lo scontrino esiste ancora, ma non è più
+		  attribuito a nessun cliente.
+		</li>
+	  </ul>
+	</div>
+
+	<div class="two-col">
+	  <figure class="screenshot">
+		<img loading="lazy" src="img/1778268092371_image.png"
+			 alt="Dialog Relazioni TESSERA–CLIENTE con Elimina cascata"
+			 style="max-width:380px; display:block; margin:0 auto;">
+		<figcaption>
+		  Relazione TESSERA → CLIENTE — <em>Elimina cascata</em> attivo:
+		  cancellando il cliente, la tessera viene eliminata automaticamente.
+		</figcaption>
+	  </figure>
+
+	  <figure class="screenshot">
+		<img loading="lazy" src="img/1778268159982_image.png"
+			 alt="Dialog Relazioni SCONTRINO–CLIENTE con Imposta NULL"
+			 style="max-width:380px; display:block; margin:0 auto;">
+		<figcaption>
+		  Relazione SCONTRINO → CLIENTE — <em>Imposta NULL</em> attivo:
+		  cancellando il cliente, gli scontrini restano ma
+		  <code>FK_CF_Cliente</code> diventa <code>NULL</code>.
+		</figcaption>
+	  </figure>
+	</div>
+
+	<div class="callout tip">
+	  <div class="callout-icon">💡</div>
+	  <div class="callout-body">
+		<strong>Regola pratica:</strong> usa <em>Elimina cascata</em> quando il
+		record figlio non ha senso senza il padre (tessera senza cliente).
+		Usa <em>Imposta NULL</em> quando il dato figlio va conservato anche dopo
+		la cancellazione del padre (scontrino come dato storico/fiscale).
+	  </div>
+	</div>
+
   <div class="callout tip">
     <div class="callout-icon">💡</div>
     <div class="callout-body"><strong>La cascata fa il lavoro sporco.</strong> Se le relazioni sono configurate correttamente con Aggiorna/Elimina cascata, puoi modificare o cancellare record padre direttamente dalla vista tabella — il database propagherà le modifiche ai figli in automatico.</div>
