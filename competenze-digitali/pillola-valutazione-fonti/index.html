@@ -482,6 +482,25 @@ body {
   color: var(--gray-dark);
   transition: color .2s ease;
 }
+.checklist-content {
+  display: flex; flex-direction: column; gap: 0;
+  flex: 1;
+}
+.checklist-detail {
+  max-height: 0;
+  overflow: hidden;
+  font-size: .82rem;
+  color: var(--amber-dark);
+  line-height: 1.6;
+  transition: max-height .35s ease, margin-top .35s ease, opacity .35s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+.checklist-item.checked .checklist-detail {
+  max-height: 8rem;
+  opacity: 1;
+  margin-top: .4rem;
+}
 .checklist-footer {
   border-top: 1px solid var(--blue-light);
   padding: .85rem 1.25rem;
@@ -945,33 +964,48 @@ body {
 
       <div class="checklist-wrap">
         <div class="checklist-header">✅ Checklist rapida — verifica fonte</div>
-        <div class="checklist-items" id="checklist-items">
-          <label class="checklist-item" onclick="toggleCheck(this)">
-            <input type="checkbox">
-            <div class="checklist-box"></div>
-            <span class="checklist-text">Ho verificato chi ha scritto questo contenuto e le sue credenziali</span>
-          </label>
-          <label class="checklist-item" onclick="toggleCheck(this)">
-            <input type="checkbox">
-            <div class="checklist-box"></div>
-            <span class="checklist-text">Ho controllato la data di pubblicazione — il contenuto è ancora valido</span>
-          </label>
-          <label class="checklist-item" onclick="toggleCheck(this)">
-            <input type="checkbox">
-            <div class="checklist-box"></div>
-            <span class="checklist-text">Ci sono fonti citate, oppure è tutto opinion non verificabile</span>
-          </label>
-          <label class="checklist-item" onclick="toggleCheck(this)">
-            <input type="checkbox">
-            <div class="checklist-box"></div>
-            <span class="checklist-text">Ho cercato questa fonte su Google (lateral reading) e fonti indipendenti la confermano</span>
-          </label>
-          <label class="checklist-item" onclick="toggleCheck(this)">
-            <input type="checkbox">
-            <div class="checklist-box"></div>
-            <span class="checklist-text">Immagini e video presenti sono nel contesto originale (ho verificato con reverse search)</span>
-          </label>
-        </div>
+		<div class="checklist-items" id="checklist-items">
+		  <label class="checklist-item" onclick="toggleCheck(this)">
+			<input type="checkbox">
+			<div class="checklist-box"></div>
+			<div class="checklist-content">
+			  <span class="checklist-text">Ho verificato chi ha scritto questo contenuto e le sue credenziali</span>
+			  <div class="checklist-detail">Cerca il nome dell'autore su Google. Hai trovato un profilo LinkedIn, una pagina istituzionale, un curriculum? Se l'autore è anonimo o il nome non dà risultati verificabili, è un segnale di allerta.</div>
+			</div>
+		  </label>
+		  <label class="checklist-item" onclick="toggleCheck(this)">
+			<input type="checkbox">
+			<div class="checklist-box"></div>
+			<div class="checklist-content">
+			  <span class="checklist-text">Ho controllato la data di pubblicazione — il contenuto è ancora valido</span>
+			  <div class="checklist-detail">Cerca la data in fondo all'articolo o nell'URL. Per temi scientifici o di attualità, una fonte di 5+ anni fa può essere obsoleta. Per eventi storici o classici, la data conta meno.</div>
+			</div>
+		  </label>
+		  <label class="checklist-item" onclick="toggleCheck(this)">
+			<input type="checkbox">
+			<div class="checklist-box"></div>
+			<div class="checklist-content">
+			  <span class="checklist-text">Ci sono fonti citate, oppure è tutto opinion non verificabile</span>
+			  <div class="checklist-detail">Un contenuto affidabile cita le sue fonti — studi, dati, istituzioni. Se non c'è nessun link o riferimento verificabile, stai leggendo un'opinione, non un fatto documentato.</div>
+			</div>
+		  </label>
+		  <label class="checklist-item" onclick="toggleCheck(this)">
+			<input type="checkbox">
+			<div class="checklist-box"></div>
+			<div class="checklist-content">
+			  <span class="checklist-text">Ho cercato questa fonte su Google (<strong>lateral reading</strong>) e fonti indipendenti la confermano</span>
+			  <div class="checklist-detail">Apri una nuova scheda e cerca "[nome sito] affidabile" o "[nome sito] bias". Non cercare la notizia — cerca la fonte. Cosa dicono di lei fonti indipendenti? MediaBias/AllSides e Chi.it sono ottimi punti di partenza.</div>
+			</div>
+		  </label>
+		  <label class="checklist-item" onclick="toggleCheck(this)">
+			<input type="checkbox">
+			<div class="checklist-box"></div>
+			<div class="checklist-content">
+			  <span class="checklist-text">Immagini e video presenti sono nel contesto originale (ho verificato con reverse search)</span>
+			  <div class="checklist-detail">Clicca destro sull'immagine → "Cerca immagine con Google". Guarda dove è apparsa per la prima volta. Una foto reale usata fuori contesto è la forma più comune di disinformazione visiva.</div>
+			</div>
+		  </label>
+		</div>
         <div class="checklist-footer">
           <div class="checklist-score" id="checklist-score">0 / 5 verificati</div>
           <div class="checklist-verdict" id="checklist-verdict"></div>
