@@ -49,7 +49,6 @@
 }
 </script>
 
-
 <!-- GoatCounter tracking -->
 <script data-goatcounter="https://formazionedigitale.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <!-- Statistiche homepage -->
@@ -62,7 +61,20 @@
   window.logout            = logout;
   document.addEventListener('DOMContentLoaded', () => { initAuth(); initAuthForm(); });
 </script>
+
+<script>
+/* Font random per "Digitale" — sincrono, nessun flash */
+(function() {
+  var fonts = ['f-sharetech', 'f-orbitron', 'f-rajdhani', 'f-audiowide', 'f-vt323'];
+  var picked = fonts[Math.floor(Math.random() * fonts.length)];
+  document.documentElement.dataset.digitaleFont = picked;
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@600&family=Rajdhani:wght@600&family=Audiowide&family=VT323&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/shared.css?v=1">
+
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -163,7 +175,19 @@ header {
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   color: #fff; line-height: 1.08; margin-bottom: .9rem;
 }
-.hero-title em { font-style: italic; color: var(--blue-light); }
+.hero-title em {
+  font-style: normal;
+  color: var(--blue-light);
+  display: inline-block;
+  min-height: 1.15em; /* assorbe variazioni di altezza tra i font */
+}
+/* classi applicate randomicamente via JS */
+.hero-title em.f-sharetech { font-family: 'Share Tech Mono', monospace; }
+.hero-title em.f-orbitron  { font-family: 'Orbitron', sans-serif; font-weight: 600; letter-spacing: .04em; font-size: .85em; }
+.hero-title em.f-rajdhani  { font-family: 'Rajdhani', sans-serif; font-weight: 600; letter-spacing: .06em; }
+.hero-title em.f-audiowide { font-family: 'Audiowide', sans-serif; font-size: .82em; }
+.hero-title em.f-vt323     { font-family: 'VT323', monospace; font-size: 1.25em; line-height: .9; }
+
 .hero-sub {
   font-size: clamp(.92rem, 1.6vw, 1.08rem);
   color: rgba(255,255,255,.72);
@@ -811,7 +835,7 @@ body.modal-open { overflow: hidden; }
 
 <!-- ── HERO ────────────────────────────────────────────────────── -->
 <section class="hero">
-  <h1 class="hero-title">Formazione<br><em>Digitale</em></h1>
+<h1 class="hero-title">Formazione<br><em id="hero-digitale">Digitale</em></h1>
   <div class="hero-eyebrow">Risorse libere · Aggiornate · Per tutti</div>
   <div class="hero-search-row">
     <div class="hero-search">
@@ -1582,6 +1606,18 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAbout()
   </div>
 </div>
 
-</body><script src="/scripts/ui.js" defer></script>
+</body>
+
+<script>
+(function applyDigitaleFont() {
+  var f = document.documentElement.dataset.digitaleFont;
+  if (f) {
+    var el = document.getElementById('hero-digitale');
+    if (el) el.classList.add(f);
+  }
+})();
+</script>
+
+<script src="/scripts/ui.js" defer></script>
 
 </html>
