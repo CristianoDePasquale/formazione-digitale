@@ -196,35 +196,17 @@ header {
   background: var(--white);
   border-bottom: 1px solid var(--blue-light);
   padding: .9rem 2rem;
-  display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap;
 }
-
-/* Bottoni filtro-stat (Guide / Strumenti / Pillole) */
-.stat-btn {
-  display: flex; flex-direction: column; align-items: center;
-  padding: .4rem .9rem; border-radius: 20px;
-  border: 1.5px solid var(--blue-light); background: var(--white);
-  cursor: pointer; font-family: var(--font-body);
-  transition: all var(--transition); gap: .1rem;
-}
-.stat-btn:hover { border-color: var(--blue-mid); }
-.stat-btn:hover .stat-num { color: var(--blue-mid); }
-.stat-btn.active { background: var(--blue-dark); border-color: var(--blue-dark); }
-.stat-btn.active .stat-num { color: #fff; }
-.stat-btn.active .stat-label { color: rgba(255,255,255,.75); }
-
-/* Stat generica (Pageview totali) */
 .stat { text-align: center; }
+
 .stat-num { font-family: var(--font-display); font-size: 1.4rem; color: var(--blue-dark); }
 .stat-label { font-size: .72rem; color: var(--gray-mid); text-transform: uppercase; letter-spacing: .06em; }
-
-/* Top pages */
 .stat-top { text-align: left; }
 .gc-top-list { display: flex; flex-direction: column; gap: .2rem; }
 .gc-top-item { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .gc-top-label { font-size: .78rem; color: var(--gray-dark); }
 .gc-top-count { font-family: var(--font-display); font-size: .95rem; color: var(--blue-mid); font-weight: 600; }
-
 
 /* ── MAIN ───────────────────────────────────────────────── */
 main { max-width: 1040px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
@@ -823,19 +805,9 @@ body.modal-open { overflow: hidden; }
 
 <!-- ── STATS ────────────────────────────────────────────────────── -->
 <div class="stats-bar">
-  <button class="filter-btn active" onclick="setFilter('all', this)">Tutto</button>
-  <button class="stat-btn filter-btn" onclick="setFilter('guide', this)">
-    <div class="stat-num" id="count-guide">—</div>
-    <div class="stat-label">📘 Guide</div>
-  </button>
-  <button class="stat-btn filter-btn" onclick="setFilter('strumento', this)">
-    <div class="stat-num" id="count-tool">—</div>
-    <div class="stat-label">🛠 Strumenti</div>
-  </button>
-  <button class="stat-btn filter-btn" onclick="setFilter('pillola', this)">
-    <div class="stat-num" id="count-pill">—</div>
-    <div class="stat-label">💡 Pillole</div>
-  </button>
+  <div class="stat"><div class="stat-num" id="count-guide">1</div><div class="stat-label">Guide</div></div>
+  <div class="stat"><div class="stat-num" id="count-tool">0</div><div class="stat-label">Strumenti</div></div>
+  <div class="stat"><div class="stat-num" id="count-pill">0</div><div class="stat-label">Pillole</div></div>
   <div style="width:1px;height:40px;background:var(--blue-light);align-self:center;flex-shrink:0;"></div>
   <div class="stat"><div class="stat-num" id="gc-total">—</div><div class="stat-label">Pageview totali</div></div>
   <div style="width:1px;height:40px;background:var(--blue-light);align-self:center;flex-shrink:0;"></div>
@@ -1451,6 +1423,10 @@ function updateStats() {
   document.getElementById('count-guide').textContent = guides;
   document.getElementById('count-tool').textContent  = tools;
   document.getElementById('count-pill').textContent  = pills;
+  document.getElementById('label-count-guide').textContent = guides + (guides === 1 ? ' risorsa' : ' risorse');
+  document.getElementById('label-count-tool').textContent  = tools  > 0 ? tools + ' risorse' : 'In arrivo';
+  document.getElementById('label-count-pill').textContent  = pills  > 0 ? pills + ' risorse' : 'In arrivo';
+
   // GoatCounter stats — gestite da stats.js
 }
 updateStats();
