@@ -1327,7 +1327,8 @@ function generateReport() {
 /* ═══════════════════════════════════════════════════════
    AZIONI POST REPORT
 ═══════════════════════════════════════════════════════ */
-function copyReport(punteggio, fascia, fonte) {
+function copyReport() {
+  const { punteggio, fascia, fonte } = window._reportData;
   const righe = Object.entries(analisi.risposte).map(([d, r]) =>
     `${DOMANDE_LABEL[d]}: ${r.colore.toUpperCase()}`
   ).join('\n');
