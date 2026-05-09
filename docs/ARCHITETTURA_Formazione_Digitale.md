@@ -420,6 +420,82 @@ Il dark mode è raccomandato. Il costo reale non è tecnico — è di manutenzio
 
 ---
 
+# Esercitazioni Svolte — Architettura
+
+Raccolta curata di verifiche complete con soluzione e griglia di valutazione. Destinatario primario: **docenti** che cercano un modello di riferimento validato sul campo. Destinatario secondario: studenti per auto-correzione.
+
+## Posizionamento nei framework
+
+| Framework | Competenze attivate |
+|---|---|
+| **DigComp** | DC 3.1, DC 3.2, DC 3.3 — Creazione e rielaborazione contenuti |
+| **DigCompEdu** | DCEdu 2.2·2.3 (creazione/condivisione risorse) · DCEdu 4.1·4.2 (valutazione) · DCEdu 6.2·6.3 |
+| **INDIRE** | A3 (valutazione) · A4 (inclusione, se livelli differenziati) · **B1** (collaborazione tra colleghi — impatto principale) |
+
+## Principio di selezione
+
+Solo esercitazioni di livello avanzato con pacchetto completo:
+
+- File dati/template da completare (vuoto)
+- Soluzione svolta
+- Istruzioni con griglia di valutazione
+- Eventuali file accessori (stampa unione, database)
+
+Le esercitazioni semplici non mancano sul web — il valore aggiunto è nelle verifiche integrate e strutturate.
+
+## Struttura cartelle
+
+```
+esercitazioni/
+|--- index.html                        ← pagina catalogo con card
+|--- verifica-excel-titanic/
+|    |--- index.html                   ← scheda esercitazione
+|    |--- istruzioni.pdf
+|    |--- dati-vuoti.xlsx
+|    |--- soluzione.xlsx
+|    |--- stampa-unione-vuota.docx
+|    └--- stampa-unione-svolta.docx
+|--- verifica-word-formattazione/
+|    └--- ...
+└--- verifica-access-query/
+     └--- ...
+```
+
+## Scheda esercitazione (index.html)
+
+Ogni scheda contiene:
+
+- Titolo + livello (base / intermedio / avanzato)
+- Strumenti coinvolti (Excel, Word, Access...)
+- Competenze esercitate — lista delle funzioni/tecniche
+- Tag DigComp — coerenti con il resto del portale
+- Griglia di valutazione inline
+- Pulsanti download: file vuoto, soluzione, istruzioni PDF
+
+## Convenzioni
+
+- Nomi cartelle: kebab-case descrittivo, senza riferimenti a classi o anni scolastici
+- Nomi file: `istruzioni.pdf`, `dati-vuoti.xlsx`, `soluzione.xlsx` — standardizzati
+- I file originali con nomi da registro (es. `3RIM_VERIFICA_...`) vanno rinominati prima del deploy
+- Licenza: uso libero non commerciale — come il resto del portale
+
+## Integrazione nel portale
+
+Card in `#cards-strumento` — tipo `card-green`:
+
+```
+[emoji] Esercitazioni Svolte
+Verifiche complete con soluzione e griglia di valutazione.
+Excel · Word · Access · Livello avanzato
+[link: esercitazioni/]
+```
+
+## Stato
+
+In preparazione. Prima esercitazione: Verifica Excel/Word — dataset Titanic (livello avanzato, 3a/4a superiore). File in fase di bonifica (rimozione riferimenti alla classe).
+
+---
+
 # Roadmap
 
 ## Completato
@@ -447,12 +523,21 @@ Completare **in questo ordine**:
 7. Segnalibri sulle card
 8. Checklist persistenti via Supabase
 
+## Nuovi contenuti — priorità DigComp/INDIRE
+
+| Priorità | Risorsa | Standard attivati |
+|---|---|---|
+| [!] 1 | Pillola netiquette / cittadinanza digitale | DC 2.2–2.4 · DCEdu 6.4 · INDIRE A4 |
+| [~] 2 | Esercitazioni svolte (vedi sezione dedicata) | DCEdu 2.2·2.3·4.1 · INDIRE A3·B1 |
+| [~] 3 | Guida/strumento collaborazione scolastica | INDIRE B1·B2 · DCEdu 1.2·2.3 |
+| [?] 4 | Risorsa valutazione digitale (rubric builder) | DCEdu 4.1·4.2·4.3 · INDIRE A3 |
+
 ## Miglioramenti continui
 
 - `font-display: swap` per migliorare LCP mobile (attuale 4.8s)
 - Conversione PNG → WebP
 - Migrazione JS in `/js/`
-- Nuovi contenuti: Pillola netiquette · Pillola PageSpeed · Pillola Triade CIA
+- Nuovi contenuti: Pillola PageSpeed · Pillola Triade CIA
 
 ## Settembre 2026 — badge DigComp (ordine obbligatorio)
 
