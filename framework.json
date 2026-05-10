@@ -80,10 +80,26 @@
         "short": "Coinvolgimento professionale",
         "color": "#1F4E79",
         "competences": [
-          { "id": "DCEdu 1.1", "label": "Comunicazione organizzativa" },
-          { "id": "DCEdu 1.2", "label": "Collaborazione professionale" },
-          { "id": "DCEdu 1.3", "label": "Pratica riflessiva" },
-          { "id": "DCEdu 1.4", "label": "Aggiornamento continuo" }
+          {
+            "id": "DCEdu 1.1",
+            "label": "Comunicazione organizzativa",
+            "desc": "Uso degli strumenti digitali per comunicare con studenti, famiglie e colleghi: email istituzionale, registro elettronico, piattaforme scolastiche."
+          },
+          {
+            "id": "DCEdu 1.2",
+            "label": "Collaborazione professionale",
+            "desc": "Uso di ambienti digitali condivisi per collaborare con altri docenti: co-progettazione di unità didattiche, condivisione di materiali, lavoro in team a distanza."
+          },
+          {
+            "id": "DCEdu 1.3",
+            "label": "Pratica riflessiva",
+            "desc": "Capacità di analizzare criticamente la propria pratica didattica digitale, documentarla e usarla come base per il miglioramento continuo."
+          },
+          {
+            "id": "DCEdu 1.4",
+            "label": "Aggiornamento continuo",
+            "desc": "Partecipazione attiva a comunità di pratica, webinar, newsletter professionali e risorse online per tenersi aggiornati sulle tecnologie e le metodologie didattiche."
+          }
         ]
       },
       {
@@ -92,9 +108,21 @@
         "short": "Risorse digitali",
         "color": "#2E75B6",
         "competences": [
-          { "id": "DCEdu 2.1", "label": "Selezione di risorse digitali" },
-          { "id": "DCEdu 2.2", "label": "Creazione e modifica di risorse digitali" },
-          { "id": "DCEdu 2.3", "label": "Gestione, protezione e condivisione di risorse digitali" }
+          {
+            "id": "DCEdu 2.1",
+            "label": "Selezione di risorse digitali",
+            "desc": "Capacità di identificare, valutare e scegliere risorse digitali appropriate (video, simulazioni, OER) in base agli obiettivi didattici e al contesto classe."
+          },
+          {
+            "id": "DCEdu 2.2",
+            "label": "Creazione e modifica di risorse digitali",
+            "desc": "Produzione di materiali digitali originali o adattati: presentazioni, video didattici, schede interattive, quiz, podcast educativi."
+          },
+          {
+            "id": "DCEdu 2.3",
+            "label": "Gestione, protezione e condivisione di risorse digitali",
+            "desc": "Organizzazione dei materiali digitali in archivi strutturati, rispetto del copyright e delle licenze aperte, condivisione consapevole con colleghi e studenti."
+          }
         ]
       },
       {
@@ -103,10 +131,26 @@
         "short": "Pratiche di insegnamento",
         "color": "#1E6B3C",
         "competences": [
-          { "id": "DCEdu 3.1", "label": "Insegnamento" },
-          { "id": "DCEdu 3.2", "label": "Guida all'apprendimento" },
-          { "id": "DCEdu 3.3", "label": "Apprendimento collaborativo" },
-          { "id": "DCEdu 3.4", "label": "Apprendimento autoregolato" }
+          {
+            "id": "DCEdu 3.1",
+            "label": "Insegnamento",
+            "desc": "Integrazione intenzionale e strategica delle tecnologie digitali nelle lezioni per migliorare la qualità dell'insegnamento e la chiarezza dei contenuti."
+          },
+          {
+            "id": "DCEdu 3.2",
+            "label": "Guida all'apprendimento",
+            "desc": "Uso degli strumenti digitali per supportare, monitorare e orientare il percorso di apprendimento individuale degli studenti, anche a distanza."
+          },
+          {
+            "id": "DCEdu 3.3",
+            "label": "Apprendimento collaborativo",
+            "desc": "Progettazione di attività in cui gli studenti lavorano insieme usando strumenti digitali: documenti condivisi, ambienti collaborativi, progetti di gruppo online."
+          },
+          {
+            "id": "DCEdu 3.4",
+            "label": "Apprendimento autoregolato",
+            "desc": "Uso del digitale per favorire l'autonomia degli studenti: risorse per lo studio autonomo, strumenti per l'automonitoraggio, feedback personalizzati."
+          }
         ]
       },
       {
@@ -115,9 +159,21 @@
         "short": "Valutazione",
         "color": "#7D4E00",
         "competences": [
-          { "id": "DCEdu 4.1", "label": "Strategie di valutazione" },
-          { "id": "DCEdu 4.2", "label": "Analisi delle evidenze" },
-          { "id": "DCEdu 4.3", "label": "Feedback e pianificazione" }
+          {
+            "id": "DCEdu 4.1",
+            "label": "Strategie di valutazione",
+            "desc": "Uso di strumenti digitali per diversificare la valutazione: quiz online, rubriche digitali, portfolio, valutazione tra pari mediata da piattaforme."
+          },
+          {
+            "id": "DCEdu 4.2",
+            "label": "Analisi delle evidenze",
+            "desc": "Raccolta e interpretazione dei dati di apprendimento prodotti dalle piattaforme digitali per comprendere i progressi degli studenti e adattare l'insegnamento."
+          },
+          {
+            "id": "DCEdu 4.3",
+            "label": "Feedback e pianificazione",
+            "desc": "Uso del digitale per fornire feedback tempestivo, personalizzato e continuo agli studenti, e per pianificare interventi didattici sulla base dei risultati."
+          }
         ]
       },
       {
@@ -126,9 +182,21 @@
         "short": "Valorizzazione studenti",
         "color": "#4A148C",
         "competences": [
-          { "id": "DCEdu 5.1", "label": "Accessibilità e inclusione" },
-          { "id": "DCEdu 5.2", "label": "Differenziazione e personalizzazione" },
-          { "id": "DCEdu 5.3", "label": "Coinvolgimento attivo degli studenti" }
+          {
+            "id": "DCEdu 5.1",
+            "label": "Accessibilità e inclusione",
+            "desc": "Uso di tecnologie assistive e strumenti digitali per garantire l'accesso ai contenuti a tutti gli studenti, inclusi quelli con bisogni educativi speciali."
+          },
+          {
+            "id": "DCEdu 5.2",
+            "label": "Differenziazione e personalizzazione",
+            "desc": "Progettazione di percorsi digitali differenziati per rispondere ai diversi livelli, stili e ritmi di apprendimento della classe."
+          },
+          {
+            "id": "DCEdu 5.3",
+            "label": "Coinvolgimento attivo degli studenti",
+            "desc": "Uso di strumenti digitali per aumentare la motivazione e la partecipazione attiva: gamification, debate online, produzione di contenuti digitali da parte degli studenti."
+          }
         ]
       },
       {
@@ -137,11 +205,31 @@
         "short": "Competenze digitali studenti",
         "color": "#B71C1C",
         "competences": [
-          { "id": "DCEdu 6.1", "label": "Information and media literacy" },
-          { "id": "DCEdu 6.2", "label": "Comunicazione digitale" },
-          { "id": "DCEdu 6.3", "label": "Creazione di contenuti digitali" },
-          { "id": "DCEdu 6.4", "label": "Uso responsabile e benessere" },
-          { "id": "DCEdu 6.5", "label": "Problem solving digitale" }
+          {
+            "id": "DCEdu 6.1",
+            "label": "Information and media literacy",
+            "desc": "Capacità di guidare gli studenti nella ricerca, valutazione critica e uso consapevole delle informazioni digitali e dei media, contrastando disinformazione e bias."
+          },
+          {
+            "id": "DCEdu 6.2",
+            "label": "Comunicazione digitale",
+            "desc": "Sviluppo negli studenti delle competenze per comunicare efficacemente in ambienti digitali: email, presentazioni, social media scolastici, netiquette."
+          },
+          {
+            "id": "DCEdu 6.3",
+            "label": "Creazione di contenuti digitali",
+            "desc": "Attività in cui gli studenti producono contenuti digitali originali: video, podcast, blog, infografiche, codice — sviluppando creatività e competenze tecniche."
+          },
+          {
+            "id": "DCEdu 6.4",
+            "label": "Uso responsabile e benessere",
+            "desc": "Educazione all'uso sicuro, etico e consapevole del digitale: privacy, cybersicurezza, dipendenze tecnologiche, benessere online e identità digitale."
+          },
+          {
+            "id": "DCEdu 6.5",
+            "label": "Problem solving digitale",
+            "desc": "Sviluppo del pensiero computazionale e della capacità degli studenti di usare le tecnologie per risolvere problemi reali in modo creativo e sistematico."
+          }
         ]
       }
     ]
