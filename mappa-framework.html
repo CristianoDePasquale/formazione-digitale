@@ -103,10 +103,10 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
   flex-wrap: wrap;
 }
 .fw-hero h1 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-size: 1.1rem; font-weight: 700;
   color: #fff; margin: 0;
-  white-space: nowrap;
+  white-space: nowrap; letter-spacing: .01em;
 }
 .fw-hero p {
   font-size: .8rem; color: rgba(255,255,255,.65);
@@ -131,19 +131,24 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 
 .fw-info-header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: .7rem 1rem;
+  padding: .85rem 1.1rem;
   cursor: pointer; user-select: none;
   background: var(--blue-pale);
   transition: background var(--transition);
+  text-align: center;
 }
 .fw-info-header:hover { background: var(--blue-light); }
-.fw-info-header-left { display: flex; align-items: center; gap: .6rem; }
+.fw-info-header-left {
+  display: flex; align-items: center; justify-content: center;
+  gap: .5rem; flex: 1;
+}
 .fw-info-title {
-  font-family: var(--font-display); font-size: .95rem;
-  color: var(--blue-dark);
+  font-family: var(--font-body); font-size: 1.05rem; font-weight: 700;
+  color: var(--blue-dark); letter-spacing: .01em;
 }
 .fw-info-subtitle {
-  font-size: .7rem; color: var(--gray-mid); margin-left: .1rem;
+  font-size: .8rem; color: var(--gray-mid);
+  font-family: var(--font-body); font-style: italic;
 }
 .fw-info-chevron {
   font-size: .7rem; color: var(--gray-mid);
@@ -187,7 +192,7 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
   background: #fff;
   border-bottom: 1px solid var(--blue-light);
   padding: .75rem 1.5rem;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: center;
   gap: 1rem; flex-wrap: wrap;
   position: sticky; top: 52px; z-index: 90;
   box-shadow: 0 2px 8px rgba(31,78,121,.06);
@@ -240,7 +245,7 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 /* ── SUMMARY ── */
 .fw-summary {
   display: flex; gap: 1rem; flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  margin-bottom: .75rem;
 }
 .fw-summary-card {
   flex: 1; min-width: 140px;
