@@ -159,14 +159,22 @@ header p {
 nav.toc {
   padding: 0.7rem 1.5rem;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap;
   gap: 0.25rem;
   align-items: center;
   justify-content: center;
-  scrollbar-width: none;
 }
-nav.toc::-webkit-scrollbar { display: none; }
+
+@media (max-width: 600px) {
+  nav.toc {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    justify-content: flex-start;
+  }
+  nav.toc::-webkit-scrollbar { display: none; }
+  nav.toc .row-break { display: none; }
+}
 
 nav.toc a {
   font-size: 0.82rem;
@@ -2024,7 +2032,16 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 sections.forEach(s => observer.observe(s));
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+  btt.classList.toggle('visible', window.scrollY > 300);
+});
 </script>
+
+
+</script>
+
+
 
 <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna su">↑</button>
 
