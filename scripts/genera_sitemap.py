@@ -13,7 +13,7 @@ import os
 from datetime import date
 
 # ── CONFIGURAZIONE ───────────────────────────────────────────────
-BASE_URL   = "https://formazione-digitale.github.io"
+BASE_URL   = "https://formazione-digitale.it"
 LASTMOD    = date.today().isoformat()  # es. 2026-05-01
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT       = os.path.dirname(SCRIPT_DIR)  # risale da scripts/ alla root
@@ -22,8 +22,9 @@ OUTPUT     = os.path.join(ROOT, "sitemap.xml")
 
 # ── PAGINE FISSE (non nel manifest) ─────────────────────────────
 PAGINE_FISSE = [
-    {"loc": "/",          "priority": "1.0", "changefreq": "weekly"},
-    {"loc": "/mappa.html","priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/",                     "priority": "1.0", "changefreq": "weekly"},
+    {"loc": "/mappa.html",           "priority": "0.5", "changefreq": "monthly"},
+    {"loc": "/mappa-framework.html", "priority": "0.5", "changefreq": "monthly"},
 ]
 
 # ── CARICA MANIFEST ──────────────────────────────────────────────

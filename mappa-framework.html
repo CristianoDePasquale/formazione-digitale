@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mappa Framework — Formazione Digitale</title>
+
+<meta name="description" content="Naviga le risorse di Formazione Digitale per competenza DigComp 2.2 e DigCompEdu. Visualizza copertura e gap del portale.">
+<meta name="author" content="Cristiano De Pasquale">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://formazione-digitale.it/mappa-framework.html">
+<link rel="icon" type="image/png" href="https://formazione-digitale.it/img/favicon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1F4E79">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Mappa Framework — Formazione Digitale">
+<meta property="og:description" content="Naviga le risorse per competenza DigComp 2.2 e DigCompEdu.">
+<meta property="og:url" content="https://formazione-digitale.it/mappa-framework/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://formazione-digitale.it/img/formazione-digitale-logo.png">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Formazione Digitale">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mappa Framework DigComp / DigCompEdu",
+  "description": "Navigazione delle risorse di Formazione Digitale per competenza DigComp 2.2 e DigCompEdu.",
+  "url": "https://formazione-digitale.it/mappa-framework/",
+  "inLanguage": "it",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Formazione Digitale",
+    "url": "https://formazione-digitale.it"
+  }
+}
+</script>
+
+<!-- GoatCounter -->
+<script data-goatcounter="https://formazionedigitale.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css?v=1">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-dark:   #1F4E79;
+  --blue-mid:    #2E75B6;
+  --blue-light:  #D6E8F7;
+  --blue-pale:   #EBF3FC;
+  --green-dark:  #1E6B3C;
+  --green-light: #E8F5EE;
+  --amber-dark:  #7D4E00;
+  --amber-light: #FFF3CD;
+  --purple-dark: #4A148C;
+  --purple-light:#F3E5F5;
+  --red-dark:    #B71C1C;
+  --red-light:   #FFEBEE;
+  --gray-dark:   #2C2C2C;
+  --gray-mid:    #666;
+  --gray-light:  #F5F5F5;
+  --white:       #FFFFFF;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --radius: 10px;
+  --transition: .22s cubic-bezier(.4,0,.2,1);
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6FF; min-height: 100vh; }
+
+/* ── HEADER ── */
+.fw-header {
+  background: var(--blue-dark);
+  height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,.2);
+}
+.fw-header-left { display: flex; align-items: center; gap: .75rem; }
+.fw-back {
+  display: flex; align-items: center; gap: .35rem;
+  font-size: .8rem; color: rgba(255,255,255,.7);
+  text-decoration: none; transition: color var(--transition);
+}
+.fw-back:hover { color: #fff; }
+.fw-back svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.fw-sep { width: 1px; height: 20px; background: rgba(255,255,255,.2); }
+.fw-title { font-family: var(--font-display); font-size: 1rem; color: #fff; }
+.fw-sub   { font-size: .7rem; color: var(--blue-light); opacity: .8; }
+
+/* ── HERO STRIP ── */
+.fw-hero {
+  background: linear-gradient(135deg, #1A3F63 0%, var(--blue-dark) 60%, #2A6099 100%);
+  padding: 2rem 1.5rem 1.5rem;
+  text-align: center;
+}
+.fw-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: #fff; margin-bottom: .4rem;
+}
+.fw-hero p {
+  font-size: .88rem; color: rgba(255,255,255,.7);
+  max-width: 500px; margin: 0 auto;
+}
+
+/* ── CONTROLLI ── */
+.fw-controls {
+  background: #fff;
+  border-bottom: 1px solid var(--blue-light);
+  padding: .75rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  position: sticky; top: 52px; z-index: 90;
+  box-shadow: 0 2px 8px rgba(31,78,121,.06);
+}
+
+/* Tab framework */
+.fw-tabs { display: flex; gap: .4rem; }
+.fw-tab {
+  padding: .45rem 1.1rem;
+  border-radius: 50px;
+  border: 1.5px solid var(--blue-light);
+  background: #fff;
+  font-family: var(--font-body); font-size: .82rem; font-weight: 600;
+  color: var(--gray-mid); cursor: pointer;
+  transition: all var(--transition);
+}
+.fw-tab:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+.fw-tab.active {
+  background: var(--blue-dark); border-color: var(--blue-dark);
+  color: #fff;
+}
+
+/* Toggle vista */
+.fw-toggle { display: flex; gap: 0; border: 1.5px solid var(--blue-light); border-radius: 8px; overflow: hidden; }
+.fw-toggle-btn {
+  padding: .45rem .9rem;
+  border: none; background: #fff;
+  font-family: var(--font-body); font-size: .8rem; font-weight: 500;
+  color: var(--gray-mid); cursor: pointer;
+  transition: all var(--transition);
+  display: flex; align-items: center; gap: .35rem;
+}
+.fw-toggle-btn:first-child { border-right: 1px solid var(--blue-light); }
+.fw-toggle-btn:hover { background: var(--blue-pale); color: var(--blue-mid); }
+.fw-toggle-btn.active { background: var(--blue-pale); color: var(--blue-dark); font-weight: 600; }
+
+/* Legenda gap */
+.fw-legend {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: .72rem; color: var(--gray-mid);
+}
+.fw-legend-item { display: flex; align-items: center; gap: .35rem; }
+.fw-legend-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.fw-legend-dot.covered { background: var(--blue-mid); }
+.fw-legend-dot.gap     { background: #ddd; border: 1.5px dashed #bbb; }
+
+/* ── CONTENUTO ── */
+.fw-content { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* ── VISTA ALBERO ── */
+.fw-area {
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--blue-light);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 8px rgba(31,78,121,.06);
+}
+
+.fw-area-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition);
+}
+.fw-area-header:hover { background: var(--blue-pale); }
+
+.fw-area-header-left { display: flex; align-items: center; gap: .75rem; }
+.fw-area-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.fw-area-label {
+  font-family: var(--font-display); font-size: 1rem; color: var(--blue-dark);
+}
+.fw-area-header-right { display: flex; align-items: center; gap: .75rem; }
+.fw-area-badge {
+  font-size: .7rem; font-weight: 600;
+  padding: .2rem .6rem; border-radius: 20px;
+  background: var(--blue-pale); color: var(--blue-mid);
+}
+.fw-area-badge.has-resources { background: var(--blue-mid); color: #fff; }
+.fw-area-chevron {
+  font-size: .75rem; color: var(--gray-mid);
+  transition: transform var(--transition);
+}
+.fw-area.collapsed .fw-area-chevron { transform: rotate(-90deg); }
+
+.fw-competences {
+  border-top: 1px solid var(--blue-light);
+}
+.fw-area.collapsed .fw-competences { display: none; }
+
+.fw-comp {
+  padding: .75rem 1.2rem .75rem 2.8rem;
+  border-bottom: 1px solid #F0F6FF;
+  transition: background var(--transition);
+}
+.fw-comp:last-child { border-bottom: none; }
+.fw-comp-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 1rem;
+}
+.fw-comp-id {
+  font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+  color: var(--gray-mid); white-space: nowrap;
+  padding: .15rem .4rem; border-radius: 4px;
+  background: var(--gray-light);
+  flex-shrink: 0; margin-top: .1rem;
+}
+.fw-comp-label {
+  font-size: .88rem; color: var(--gray-dark); flex: 1; line-height: 1.4;
+}
+.fw-comp.gap .fw-comp-label { color: #bbb; }
+.fw-comp.gap .fw-comp-id    { opacity: .5; }
+
+/* Risorse collegate */
+.fw-resources {
+  margin-top: .6rem;
+  display: flex; flex-wrap: wrap; gap: .4rem;
+}
+.fw-resource-chip {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .25rem .65rem;
+  border-radius: 20px;
+  font-size: .75rem; font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all var(--transition);
+}
+.fw-resource-chip.cat-guide  { background: var(--blue-pale);   color: var(--blue-mid);   border-color: var(--blue-light); }
+.fw-resource-chip.cat-strumento { background: var(--green-light); color: var(--green-dark); border-color: #b2d8c0; }
+.fw-resource-chip.cat-pillola { background: var(--amber-light); color: var(--amber-dark); border-color: #f0d990; }
+.fw-resource-chip:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+
+.fw-gap-label {
+  font-size: .75rem; color: #ccc;
+  font-style: italic; margin-top: .4rem;
+  display: flex; align-items: center; gap: .35rem;
+}
+.fw-gap-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 1px;
+  background: #ddd;
+}
+
+/* ── VISTA MATRICE ── */
+.fw-matrix-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--blue-light);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(31,78,121,.06);
+}
+
+.fw-matrix {
+  border-collapse: collapse;
+  min-width: 100%;
+  font-size: .78rem;
+}
+
+.fw-matrix th, .fw-matrix td {
+  border: 1px solid #EBF3FC;
+  padding: 0;
+}
+
+/* Header colonne (risorse) */
+.fw-matrix thead th {
+  background: var(--blue-dark);
+  color: #fff; font-weight: 600;
+  padding: .5rem .4rem;
+  text-align: center;
+  min-width: 80px; max-width: 100px;
+  vertical-align: bottom;
+}
+.fw-matrix thead th:first-child {
+  text-align: left;
+  min-width: 200px;
+  padding: .5rem .75rem;
+  position: sticky; left: 0;
+  z-index: 10;
+}
+.fw-matrix-res-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: .7rem;
+  max-height: 120px;
+  overflow: hidden;
+  display: block;
+  padding: .25rem 0;
+}
+.fw-matrix-res-emoji { display: block; text-align: center; font-size: 1rem; margin-bottom: .2rem; }
+
+/* Righe area */
+.fw-matrix-area-row td {
+  background: var(--blue-dark);
+  color: #fff; font-weight: 700;
+  font-size: .72rem; letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .4rem .75rem;
+  position: sticky; left: 0;
+}
+
+/* Righe competenza */
+.fw-matrix tbody tr:not(.fw-matrix-area-row) td:first-child {
+  background: var(--blue-pale);
+  color: var(--gray-dark);
+  padding: .4rem .75rem;
+  position: sticky; left: 0;
+  z-index: 5;
+  font-size: .78rem;
+  line-height: 1.3;
+}
+.fw-matrix tbody tr:not(.fw-matrix-area-row) td:first-child .fw-matrix-comp-id {
+  display: block;
+  font-size: .65rem; font-weight: 700;
+  color: var(--blue-mid); letter-spacing: .06em;
+  margin-bottom: .15rem;
+}
+
+/* Celle copertura */
+.fw-matrix td.cell-covered {
+  background: var(--blue-mid);
+  text-align: center; vertical-align: middle;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.fw-matrix td.cell-covered:hover { background: var(--blue-dark); }
+.fw-matrix td.cell-covered a {
+  display: block; width: 100%; height: 100%;
+  padding: .5rem .3rem;
+  color: #fff; text-decoration: none;
+  font-size: .9rem;
+}
+.fw-matrix td.cell-gap {
+  background: #FAFAFA;
+}
+.fw-matrix tbody tr:hover td:not(.fw-matrix-area-row td) {
+  background-color: #F0F6FF;
+}
+.fw-matrix tbody tr:hover td.cell-covered { background: var(--blue-dark); }
+
+/* ── SUMMARY STRIP ── */
+.fw-summary {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.fw-summary-card {
+  flex: 1; min-width: 140px;
+  background: #fff;
+  border: 1px solid var(--blue-light);
+  border-radius: var(--radius);
+  padding: .9rem 1.1rem;
+  box-shadow: 0 1px 6px rgba(31,78,121,.06);
+}
+.fw-summary-num {
+  font-family: var(--font-display); font-size: 1.8rem;
+  color: var(--blue-dark); line-height: 1;
+}
+.fw-summary-label {
+  font-size: .72rem; color: var(--gray-mid);
+  text-transform: uppercase; letter-spacing: .06em;
+  margin-top: .25rem;
+}
+.fw-summary-card.gap-card .fw-summary-num { color: #bbb; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .fw-controls { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .fw-legend { display: none; }
+  .fw-content { padding: 1.25rem 1rem 3rem; }
+  .fw-comp { padding-left: 1.2rem; }
+  .fw-header { padding: 0 1rem; }
+  .fw-sub { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="fw-header">
+  <div class="fw-header-left">
+    <a href="/" class="fw-back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+    <div class="fw-sep"></div>
+    <span class="fw-title">Mappa Framework</span>
+    <span class="fw-sub">DigComp 2.2 &amp; DigCompEdu</span>
+  </div>
+  <a href="/mappa.html" class="fw-back">🗺 Mappa risorse</a>
+</header>
+
+<!-- ── HERO ── -->
+<div class="fw-hero">
+  <h1>Navigazione per Competenza</h1>
+  <p>Esplora le risorse del portale organizzate per framework europeo. Identifica coperture e gap.</p>
+</div>
+
+<!-- ── CONTROLLI ── -->
+<div class="fw-controls">
+  <div class="fw-tabs">
+    <button class="fw-tab active" onclick="switchTab('digcomp', this)">DigComp 2.2</button>
+    <button class="fw-tab" onclick="switchTab('digcompedu', this)">DigCompEdu</button>
+  </div>
+  <div class="fw-toggle">
+    <button class="fw-toggle-btn active" id="btn-tree" onclick="switchView('tree')">🌳 Albero</button>
+    <button class="fw-toggle-btn" id="btn-matrix" onclick="switchView('matrix')">⊞ Matrice</button>
+  </div>
+  <div class="fw-legend">
+    <div class="fw-legend-item"><div class="fw-legend-dot covered"></div> Risorsa disponibile</div>
+    <div class="fw-legend-item"><div class="fw-legend-dot gap"></div> Gap — nessuna risorsa</div>
+  </div>
+</div>
+
+<!-- ── CONTENUTO ── -->
+<div class="fw-content">
+  <div id="fw-summary" class="fw-summary"></div>
+  <div id="fw-tree"></div>
+  <div id="fw-matrix" style="display:none;"></div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   MAPPA FRAMEWORK — Formazione Digitale
+   Legge manifest.json + framework.json e costruisce
+   vista albero e vista matrice per DigComp 2.2 / DigCompEdu
+══════════════════════════════════════════════════════════════ */
+
+let activeTab  = 'digcomp';
+let activeView = 'tree';
+let FRAMEWORK  = null;
+let RISORSE    = null;
+
+/* ── CARICAMENTO DATI ── */
+async function init() {
+  try {
+    const [fw, mf] = await Promise.all([
+      fetch('/framework.json').then(r => r.json()),
+      fetch('/manifest.json').then(r => r.json())
+    ]);
+    FRAMEWORK = fw;
+    RISORSE   = mf.filter(r => r.active !== false);
+    render();
+  } catch(e) {
+    document.getElementById('fw-tree').innerHTML =
+      '<p style="color:#999;padding:2rem;text-align:center;">Errore nel caricamento dei dati.</p>';
+  }
+}
+
+/* ── MAPPA RISORSA → COMPETENZE ── */
+function getRisorsePerComp(compId, fwKey) {
+  const campo = fwKey === 'digcomp' ? 'digcomp' : 'digcompedu';
+  return RISORSE.filter(r => Array.isArray(r[campo]) && r[campo].includes(compId));
+}
+
+/* ── RENDER PRINCIPALE ── */
+function render() {
+  const fwData = FRAMEWORK[activeTab];
+  renderSummary(fwData);
+  if (activeView === 'tree') {
+    renderTree(fwData);
+    document.getElementById('fw-tree').style.display   = '';
+    document.getElementById('fw-matrix').style.display = 'none';
+  } else {
+    renderMatrix(fwData);
+    document.getElementById('fw-tree').style.display   = 'none';
+    document.getElementById('fw-matrix').style.display = '';
+  }
+}
+
+/* ── SUMMARY ── */
+function renderSummary(fwData) {
+  const allComps = fwData.areas.flatMap(a => a.competences);
+  const covered  = allComps.filter(c => getRisorsePerComp(c.id, activeTab).length > 0);
+  const gaps     = allComps.length - covered.length;
+  const risorse  = new Set(
+    allComps.flatMap(c => getRisorsePerComp(c.id, activeTab).map(r => r.path))
+  ).size;
+
+  document.getElementById('fw-summary').innerHTML = `
+    <div class="fw-summary-card">
+      <div class="fw-summary-num">${allComps.length}</div>
+      <div class="fw-summary-label">Competenze totali</div>
+    </div>
+    <div class="fw-summary-card">
+      <div class="fw-summary-num" style="color:var(--blue-mid)">${covered.length}</div>
+      <div class="fw-summary-label">Competenze coperte</div>
+    </div>
+    <div class="fw-summary-card gap-card">
+      <div class="fw-summary-num">${gaps}</div>
+      <div class="fw-summary-label">Gap da colmare</div>
+    </div>
+    <div class="fw-summary-card">
+      <div class="fw-summary-num" style="color:var(--green-dark)">${risorse}</div>
+      <div class="fw-summary-label">Risorse mappate</div>
+    </div>
+  `;
+}
+
+/* ── VISTA ALBERO ── */
+function renderTree(fwData) {
+  const container = document.getElementById('fw-tree');
+  container.innerHTML = fwData.areas.map(area => {
+    const risPerArea = area.competences.reduce((acc, c) => {
+      return acc + getRisorsePerComp(c.id, activeTab).length;
+    }, 0);
+
+    const compsHtml = area.competences.map(comp => {
+      const risorse = getRisorsePerComp(comp.id, activeTab);
+      const hasRes  = risorse.length > 0;
+      const chipsHtml = hasRes
+        ? risorse.map(r => `
+            <a href="${r.path}" class="fw-resource-chip cat-${r.cat}" title="${r.label}">
+              ${r.emoji} ${r.short}
+            </a>`).join('')
+        : `<span class="fw-gap-label">Nessuna risorsa disponibile</span>`;
+
+      return `
+        <div class="fw-comp${hasRes ? '' : ' gap'}">
+          <div class="fw-comp-header">
+            <span class="fw-comp-id">${comp.id}</span>
+            <span class="fw-comp-label">${comp.label}</span>
+          </div>
+          <div class="fw-resources">${chipsHtml}</div>
+        </div>`;
+    }).join('');
+
+    return `
+      <div class="fw-area" id="area-${area.id}">
+        <div class="fw-area-header" onclick="toggleArea('area-${area.id}')">
+          <div class="fw-area-header-left">
+            <div class="fw-area-dot" style="background:${area.color}"></div>
+            <span class="fw-area-label">${area.label}</span>
+          </div>
+          <div class="fw-area-header-right">
+            <span class="fw-area-badge${risPerArea > 0 ? ' has-resources' : ''}">
+              ${risPerArea > 0 ? risPerArea + ' risorsa' + (risPerArea > 1 ? 'e' : '') : 'gap'}
+            </span>
+            <span class="fw-area-chevron">▾</span>
+          </div>
+        </div>
+        <div class="fw-competences">${compsHtml}</div>
+      </div>`;
+  }).join('');
+}
+
+/* ── VISTA MATRICE ── */
+function renderMatrix(fwData) {
+  const container = document.getElementById('fw-matrix');
+
+  // Raccoglie risorse che hanno almeno una competenza nel framework attivo
+  const campo = activeTab === 'digcomp' ? 'digcomp' : 'digcompedu';
+  const risorseAttive = RISORSE.filter(r => Array.isArray(r[campo]) && r[campo].length > 0);
+
+  // Header colonne
+  const headerCols = risorseAttive.map(r => `
+    <th>
+      <span class="fw-matrix-res-emoji">${r.emoji}</span>
+      <span class="fw-matrix-res-label">${r.short}</span>
+    </th>`).join('');
+
+  // Righe
+  const righe = fwData.areas.flatMap(area => {
+    const areaRow = `<tr class="fw-matrix-area-row">
+      <td colspan="${risorseAttive.length + 1}" style="background:${area.color}">
+        ${area.short}
+      </td>
+    </tr>`;
+
+    const compRows = area.competences.map(comp => {
+      const celle = risorseAttive.map(r => {
+        const coperto = Array.isArray(r[campo]) && r[campo].includes(comp.id);
+        if (coperto) {
+          return `<td class="cell-covered" title="${r.label}">
+            <a href="${r.path}">✓</a>
+          </td>`;
+        }
+        return `<td class="cell-gap"></td>`;
+      }).join('');
+
+      return `<tr>
+        <td>
+          <span class="fw-matrix-comp-id">${comp.id}</span>
+          ${comp.label}
+        </td>
+        ${celle}
+      </tr>`;
+    }).join('');
+
+    return areaRow + compRows;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="fw-matrix-wrap">
+      <table class="fw-matrix">
+        <thead>
+          <tr>
+            <th>Competenza</th>
+            ${headerCols}
+          </tr>
+        </thead>
+        <tbody>${righe}</tbody>
+      </table>
+    </div>`;
+}
+
+/* ── INTERAZIONI ── */
+function switchTab(tab, btn) {
+  activeTab = tab;
+  document.querySelectorAll('.fw-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+  // Aggiorna hash URL
+  history.replaceState(null, '', '#' + tab);
+}
+
+function switchView(view) {
+  activeView = view;
+  document.getElementById('btn-tree').classList.toggle('active',   view === 'tree');
+  document.getElementById('btn-matrix').classList.toggle('active', view === 'matrix');
+  render();
+}
+
+function toggleArea(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+/* ── GESTIONE HASH ── */
+function applyHash() {
+  const hash = location.hash.replace('#', '');
+  if (hash === 'digcompedu') {
+    activeTab = 'digcompedu';
+    document.querySelectorAll('.fw-tab').forEach((b, i) => {
+      b.classList.toggle('active', i === 1);
+    });
+  }
+}
+
+/* ── AVVIO ── */
+applyHash();
+init();
+</script>
+
+</body>
+</html>

@@ -1,12 +1,14 @@
 Elenco del percorso delle cartelle per il volume Acer
-Numero di serie del volume: 000000FC-544D:3F7C
+Numero di serie del volume: 0000004C-544D:3F7C
 C:.
+|   .nojekyll
 |   404.html
 |   auth.js
 |   cookie-policy.html
-|   index - Copia.html
+|   framework.json
 |   index.html
 |   manifest.json
+|   mappa-framework.html
 |   mappa.html
 |   privacy-policy.html
 |   robots.txt
@@ -32,7 +34,6 @@ C:.
 |   |       
 |   \---strumento-valutazione-fonti
 |           index.html
-|           INTEGRAZIONI.md
 |           
 +---css
 |       shared.css
@@ -45,7 +46,8 @@ C:.
 |       \---img
 |               
 +---docs
-|   |   ARCHITETTURA_Formazione_Digitale_v2.docx
+|   |   ARCHITETTURA_Formazione_Digitale.md
+|   |   ARCHITETTURA_Formazione_Digitale.pdf
 |   |   DARK_MODE_architettura.md
 |   |   Formazione_Digitale_Guida_Collaboratori.docx
 |   |   MAPPA_DigComp_metodo.md
@@ -60,7 +62,6 @@ C:.
 |           digcomp 2.2_ita_syllabus.pdf
 |           digcompedu_syllabus.pdf
 |           INTEGRAZIONE_DigComp_Badge.md
-|           manifest_digcomp.json
 |           
 +---elaborazione-testi
 |   \---guida-word
