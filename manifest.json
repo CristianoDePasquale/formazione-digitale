@@ -442,5 +442,21 @@
     "digcomp_level": "foundation",
     "digcomp_areas": ["informazioni"],
     "digcompedu": ["DCEdu 6.1", "DCEdu 4.1"]
-  }
+  },
+  {
+  "path": "/competenze-digitali/pillola-aggiornamento-digitale/",
+  "label": "Come Tenersi Aggiornati nel Digitale",
+  "short": "Aggiornamento Digitale",
+  "cat": "pillola",
+  "emoji": "📡",
+  "tags": ["aggiornamento", "newsletter", "podcast", "rss", "community", "competenze digitali", "digcompedu"],
+  "meta": "Newsletter · Podcast · RSS · Livello base · ~15 min",
+  "description": "Newsletter, podcast, community e RSS: costruisci il tuo flusso personale di aggiornamento digitale senza perdere ore.",
+  "featured": false,
+  "active": true,
+  "digcomp": ["DC 5.4"],
+  "digcomp_level": "foundation",
+  "digcomp_areas": ["problem-solving"],
+  "digcompedu": ["DCEdu 1.4", "DCEdu 6.1"]
+}
 ]

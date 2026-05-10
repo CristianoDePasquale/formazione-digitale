@@ -1,5 +1,5 @@
 Elenco del percorso delle cartelle per il volume Acer
-Numero di serie del volume: 0000004C-544D:3F7C
+Numero di serie del volume: 000000A0-544D:3F7C
 C:.
 |   .nojekyll
 |   404.html
@@ -24,6 +24,9 @@ C:.
 |           supabase-keep-alive.yml
 |           
 +---competenze-digitali
+|   +---pillola-aggiornamento-digitale
+|   |       index.html
+|   |       
 |   +---pillola-valutazione-fonti
 |   |       Caccia_alla_fonte_griglia.pdf
 |   |       CRAAP_test_griglia.pdf

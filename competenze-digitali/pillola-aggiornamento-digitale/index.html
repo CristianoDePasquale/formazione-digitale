@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Come Tenersi Aggiornati nel Digitale — Formazione Digitale</title>
+
+<meta name="description" content="Newsletter, podcast, community e RSS: guida pratica per costruire il tuo flusso di aggiornamento digitale. Con piano settimanale e checklist interattiva.">
+<meta name="author" content="Cristiano De Pasquale">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://formazione-digitale.it/competenze-digitali/pillola-aggiornamento-digitale/">
+<link rel="icon" type="image/png" href="https://formazione-digitale.it/img/favicon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1F4E79">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Come Tenersi Aggiornati nel Digitale — Formazione Digitale">
+<meta property="og:description" content="Newsletter, podcast, community e RSS per costruire il tuo flusso di aggiornamento digitale. Con checklist interattiva.">
+<meta property="og:url" content="https://formazione-digitale.it/competenze-digitali/pillola-aggiornamento-digitale/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://formazione-digitale.it/img/formazione-digitale-logo.png">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Formazione Digitale">
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Come Tenersi Aggiornati nel Digitale — Formazione Digitale">
+<meta name="twitter:description" content="Newsletter, podcast, RSS e community: il tuo sistema di aggiornamento digitale in 6 passi.">
+<meta name="twitter:image" content="https://formazione-digitale.it/img/formazione-digitale-logo.png">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Come Tenersi Aggiornati nel Digitale",
+  "description": "Newsletter, podcast, community e RSS per costruire un flusso personale di aggiornamento digitale. Con piano settimanale e checklist interattiva.",
+  "url": "https://formazione-digitale.it/competenze-digitali/pillola-aggiornamento-digitale/",
+  "inLanguage": "it",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "Pillola digitale",
+  "author": {
+    "@type": "Person",
+    "name": "Cristiano De Pasquale"
+  },
+  "competencyRequired": ["DC 5.4", "DCEdu 1.4"],
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Formazione Digitale",
+    "url": "https://formazione-digitale.it"
+  }
+}
+</script>
+
+<!-- GoatCounter -->
+<script data-goatcounter="https://formazionedigitale.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<!-- Anti-flash theme -->
+<script>
+  (function() {
+    const t = localStorage.getItem('fd-theme');
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/shared.css?v=1">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+details summary > span:first-child { display: inline-block; transition: transform .2s ease; }
+details[open] summary > span:first-child { transform: rotate(90deg); }
+
+:root {
+  --pill-bg:     var(--amber-light);
+  --pill-border: #f0d990;
+  --pill-accent: var(--amber-dark);
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--gray-dark);
+  background: #FAFBFC;
+  min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════════════ */
+.pill-header {
+  background: var(--blue-dark);
+  height: 52px;
+  display: flex; align-items: center;
+  padding: 0 1.5rem;
+  gap: 1rem;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,.2);
+}
+.pill-header-back {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .8rem; color: rgba(255,255,255,.7);
+  text-decoration: none; transition: color var(--transition);
+  flex-shrink: 0;
+}
+.pill-header-back:hover { color: #fff; }
+.pill-header-back svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.pill-header-sep { width:1px; height:20px; background:rgba(255,255,255,.2); }
+.pill-header-title { font-family: var(--font-display); font-size: .95rem; color: #fff; }
+.pill-header-badge {
+  margin-left: auto;
+  font-size: .68rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,.15);
+  color: rgba(255,255,255,.85);
+  padding: .2rem .65rem; border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════ */
+.pill-hero {
+  background: linear-gradient(135deg, var(--amber-dark) 0%, #A06200 40%, #C47B00 100%);
+  padding: 2.75rem 1.5rem 2rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.pill-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 65% 40%, rgba(255,220,100,.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+.pill-hero-eyebrow {
+  font-size: .72rem; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(255,255,255,.75);
+  margin-bottom: .75rem;
+}
+.pill-hero-icon { font-size: 2.8rem; margin-bottom: .6rem; }
+.pill-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #fff; line-height: 1.05;
+  margin-bottom: .8rem;
+}
+.pill-hero-title em { font-style: italic; color: rgba(255,255,255,.8); }
+.pill-hero-sub {
+  font-size: clamp(.9rem, 1.6vw, 1.05rem);
+  color: rgba(255,255,255,.8);
+  max-width: 500px; margin: 0 auto 1.75rem;
+  line-height: 1.65;
+}
+.pill-hero-meta {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .75rem; color: rgba(255,255,255,.65);
+  background: rgba(0,0,0,.18); border-radius: 20px;
+  padding: .35rem .9rem;
+}
+.pill-hero-meta-sep { opacity: .4; }
+
+/* ═══════════════════════════════════════════════════════════
+   MODE TOGGLE
+═══════════════════════════════════════════════════════════ */
+.mode-toggle-wrap {
+  background: var(--amber-light);
+  border-bottom: 2px solid var(--pill-border);
+  padding: 1rem 1.5rem;
+  display: flex; justify-content: center;
+  position: sticky; top: 52px; z-index: 90;
+}
+.mode-toggle {
+  display: inline-flex;
+  background: #fff;
+  border: 1.5px solid var(--pill-border);
+  border-radius: 50px;
+  padding: .25rem;
+  gap: .25rem;
+  box-shadow: 0 2px 8px rgba(125,78,0,.1);
+}
+.mode-btn {
+  padding: .5rem 1.2rem;
+  border-radius: 50px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: .85rem; font-weight: 500;
+  color: var(--gray-mid);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.mode-btn.active {
+  background: var(--amber-dark);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(125,78,0,.25);
+}
+.mode-btn:not(.active):hover {
+  color: var(--amber-dark);
+  background: var(--amber-light);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HOOK DIFFERENZIATO
+═══════════════════════════════════════════════════════════ */
+.mode-hook {
+  background: var(--amber-light);
+  border-left: 4px solid var(--amber-dark);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  font-size: .92rem;
+  line-height: 1.65;
+  color: var(--gray-dark);
+  margin-bottom: 2rem;
+}
+.mode-hook[hidden] { display: none; }
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════════════════════════ */
+.pill-main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SEZIONE
+═══════════════════════════════════════════════════════════ */
+.pill-section { margin-bottom: 3rem; }
+.section-num {
+  display: inline-block;
+  font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--amber-dark);
+  background: var(--amber-light);
+  border: 1px solid var(--pill-border);
+  border-radius: 20px;
+  padding: .2rem .65rem;
+  margin-bottom: .6rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+  color: var(--blue-dark);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.section-body { font-size: .95rem; line-height: 1.75; color: var(--gray-dark); }
+.section-body p { margin-bottom: .9rem; }
+.section-body p:last-child { margin-bottom: 0; }
+
+.pill-divider { border: none; border-top: 1px solid var(--blue-light); margin: 2.5rem 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   STAT BOX
+═══════════════════════════════════════════════════════════ */
+.stat-box {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  margin: 1.25rem 0;
+}
+.stat-item {
+  flex: 1; min-width: 160px;
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-light);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  text-align: center;
+}
+.stat-item .stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem; color: var(--blue-dark);
+  line-height: 1; margin-bottom: .3rem;
+}
+.stat-item .stat-desc {
+  font-size: .78rem; color: var(--gray-mid); line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SEZIONE DIFFERENZIATA — label badge
+═══════════════════════════════════════════════════════════ */
+.diff-label {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .18rem .55rem; border-radius: 20px;
+  margin-bottom: .75rem;
+}
+.diff-label-student { background: var(--blue-pale); color: var(--blue-dark); }
+.diff-label-teacher { background: var(--green-light); color: var(--green-dark); }
+.diff-block[hidden] { display: none; }
+
+/* ═══════════════════════════════════════════════════════════
+   BOX CALLOUT
+═══════════════════════════════════════════════════════════ */
+.box-tip {
+  background: var(--green-light);
+  border-left: 4px solid var(--green-dark);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  font-size: .9rem;
+  line-height: 1.65;
+}
+.box-tip-label {
+  font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--green-dark);
+  margin-bottom: .4rem;
+}
+.box-info {
+  background: var(--blue-pale);
+  border-left: 4px solid var(--blue-mid);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  font-size: .9rem;
+  line-height: 1.65;
+  color: var(--blue-dark);
+}
+.box-info-label {
+  font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blue-mid);
+  margin-bottom: .4rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESOURCE CARDS GRID
+═══════════════════════════════════════════════════════════ */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: .9rem;
+  margin: 1.25rem 0;
+}
+.resource-card {
+  background: #fff;
+  border: 1.5px solid var(--blue-light);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  display: flex; flex-direction: column; gap: .35rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.resource-card:hover {
+  border-color: var(--blue-mid);
+  box-shadow: 0 4px 16px rgba(31,78,121,.1);
+}
+.resource-card a {
+  text-decoration: none;
+  color: inherit;
+  display: flex; flex-direction: column; gap: .35rem;
+  flex: 1;
+}
+.resource-card-icon { font-size: 1.4rem; }
+.resource-card-type {
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gray-mid);
+}
+.resource-card-name {
+  font-weight: 600; color: var(--blue-dark); font-size: .9rem;
+  line-height: 1.3;
+}
+.resource-card-desc {
+  font-size: .8rem; color: var(--gray-mid); line-height: 1.5;
+  flex: 1;
+}
+.resource-card-badge {
+  align-self: flex-start;
+  font-size: .65rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .15rem .5rem; border-radius: 20px;
+  margin-top: .25rem;
+}
+.badge-it { background: var(--blue-pale); color: var(--blue-dark); }
+.badge-en { background: var(--green-light); color: var(--green-dark); }
+.badge-free { background: var(--amber-light); color: var(--amber-dark); }
+
+/* ═══════════════════════════════════════════════════════════
+   PASSI OPERATIVI
+═══════════════════════════════════════════════════════════ */
+.steps-list {
+  list-style: none;
+  counter-reset: steps;
+  margin: 1rem 0;
+  display: flex; flex-direction: column; gap: .75rem;
+}
+.steps-list li {
+  counter-increment: steps;
+  display: flex; align-items: flex-start; gap: .85rem;
+  font-size: .9rem; line-height: 1.6;
+}
+.steps-list li::before {
+  content: counter(steps);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--amber-dark);
+  color: #fff; font-size: .75rem; font-weight: 700;
+  margin-top: .15rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ATTIVITÀ DOCENTE
+═══════════════════════════════════════════════════════════ */
+.activity-box {
+  background: var(--blue-pale);
+  border: 1.5px solid var(--blue-light);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+}
+.activity-box-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem; color: var(--blue-dark);
+  margin-bottom: .75rem;
+}
+.activity-meta {
+  display: flex; gap: .6rem; flex-wrap: wrap;
+  margin-bottom: .75rem;
+}
+.activity-chip {
+  font-size: .75rem; font-weight: 600;
+  background: #fff; border: 1px solid var(--blue-light);
+  border-radius: 20px; padding: .2rem .7rem;
+  color: var(--blue-dark);
+}
+.activity-body {
+  font-size: .88rem; line-height: 1.7; color: var(--gray-dark);
+}
+.activity-body p { margin-bottom: .6rem; }
+.activity-body p:last-child { margin-bottom: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   CHECKLIST INTERATTIVA
+═══════════════════════════════════════════════════════════ */
+.checklist-wrap {
+  background: #fff;
+  border: 2px solid var(--pill-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 1.25rem 0;
+  box-shadow: 0 4px 16px rgba(125,78,0,.08);
+}
+.checklist-header {
+  background: var(--amber-dark);
+  color: #fff;
+  padding: .85rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+.checklist-group-label {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  padding: .9rem 1.25rem .4rem;
+  border-top: 1px solid var(--blue-light);
+}
+.checklist-group-label:first-of-type { border-top: none; padding-top: .75rem; }
+.checklist-items { padding: 0 1.25rem .75rem; display: flex; flex-direction: column; gap: .65rem; }
+.checklist-item {
+  display: flex; align-items: flex-start; gap: .9rem;
+  cursor: pointer; user-select: none;
+  padding: .1rem 0;
+}
+.checklist-item input[type="checkbox"] { display: none; }
+.checklist-box {
+  width: 22px; height: 22px; flex-shrink: 0;
+  border: 2px solid var(--pill-border);
+  border-radius: 5px;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+  margin-top: .1rem;
+}
+.checklist-item.checked .checklist-box {
+  background: var(--amber-dark);
+  border-color: var(--amber-dark);
+}
+.checklist-item.checked .checklist-box::after {
+  content: '✓';
+  color: #fff; font-size: .8rem; font-weight: 700;
+}
+.checklist-item.checked .checklist-text {
+  text-decoration: line-through;
+  color: var(--gray-mid);
+}
+.checklist-text {
+  font-size: .88rem; line-height: 1.5;
+  color: var(--gray-dark);
+  transition: color .2s ease;
+}
+.checklist-footer {
+  border-top: 1px solid var(--blue-light);
+  padding: .85rem 1.25rem;
+  background: var(--gray-light);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.checklist-score { font-size: .85rem; color: var(--gray-dark); font-weight: 500; }
+.checklist-reset {
+  font-size: .78rem; color: var(--gray-mid);
+  background: none; border: 1px solid #ddd;
+  border-radius: 20px; padding: .25rem .75rem;
+  cursor: pointer; font-family: var(--font-body);
+  transition: all var(--transition);
+}
+.checklist-reset:hover { border-color: var(--amber-dark); color: var(--amber-dark); }
+.checklist-verdict {
+  width: 100%;
+  font-size: .82rem;
+  padding: .45rem .85rem;
+  border-radius: 6px;
+  display: none;
+}
+.checklist-verdict.show { display: block; }
+.verdict-ok   { background: var(--green-light); color: var(--green-dark); }
+.verdict-warn { background: var(--amber-light); color: var(--amber-dark); }
+.verdict-no   { background: #fde8e8; color: #c0392b; }
+
+/* ═══════════════════════════════════════════════════════════
+   PIANO SETTIMANALE — timeline
+═══════════════════════════════════════════════════════════ */
+.piano-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .85rem;
+  margin: 1.25rem 0;
+}
+.piano-card {
+  background: #fff;
+  border: 1.5px solid var(--blue-light);
+  border-top: 4px solid var(--amber-dark);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+.piano-card.verde { border-top-color: var(--green-dark); }
+.piano-card.blu   { border-top-color: var(--blue-mid); }
+.piano-day {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gray-mid);
+  margin-bottom: .4rem;
+}
+.piano-action {
+  font-size: .88rem; font-weight: 600; color: var(--blue-dark);
+  margin-bottom: .3rem; line-height: 1.3;
+}
+.piano-detail {
+  font-size: .78rem; color: var(--gray-mid); line-height: 1.5;
+}
+.piano-time {
+  display: inline-block;
+  font-size: .68rem; font-weight: 700;
+  background: var(--amber-light);
+  color: var(--amber-dark);
+  border-radius: 20px; padding: .15rem .55rem;
+  margin-top: .5rem;
+}
+.piano-card.verde .piano-time { background: var(--green-light); color: var(--green-dark); }
+.piano-card.blu   .piano-time { background: var(--blue-pale);   color: var(--blue-mid); }
+
+/* ═══════════════════════════════════════════════════════════
+   RISORSE ESTERNE
+═══════════════════════════════════════════════════════════ */
+.resource-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: .5rem;
+  margin: .75rem 0;
+}
+.resource-list li a {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .88rem; color: var(--blue-mid);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.resource-list li a:hover { color: var(--blue-dark); }
+.resource-list li a::before { content: '↗'; font-size: .75rem; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER PILLOLA
+═══════════════════════════════════════════════════════════ */
+.pill-footer {
+  background: var(--blue-dark);
+  color: rgba(255,255,255,.7);
+  padding: 2.5rem 1.5rem;
+  margin-top: 4rem;
+}
+.pill-footer-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.pill-footer-title {
+  font-family: var(--font-display);
+  font-size: 1rem; color: #fff;
+  margin-bottom: 1.25rem;
+}
+.pill-footer-badges {
+  display: flex; flex-wrap: wrap; gap: .5rem;
+  margin-bottom: 1.5rem;
+}
+.digcomp-badge {
+  font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .25rem .75rem; border-radius: 20px;
+  border: 1.5px solid;
+}
+.digcomp-badge.dc {
+  background: rgba(46,117,182,.2);
+  border-color: var(--blue-mid);
+  color: var(--blue-light);
+}
+.digcomp-badge.dcedu {
+  background: rgba(30,107,60,.2);
+  border-color: #4caf80;
+  color: #9de0bb;
+}
+.digcomp-badge.level {
+  background: rgba(125,78,0,.3);
+  border-color: #c49a40;
+  color: #f5d98a;
+}
+.pill-footer-nav {
+  display: flex; flex-wrap: wrap; gap: .75rem;
+  border-top: 1px solid rgba(255,255,255,.15);
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+}
+.footer-nav-link {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .82rem; color: rgba(255,255,255,.7);
+  text-decoration: none;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px;
+  padding: .55rem .95rem;
+  transition: all var(--transition);
+}
+.footer-nav-link:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.3); color: #fff; }
+.footer-nav-link.primary { background: var(--blue-mid); border-color: var(--blue-mid); color: #fff; }
+.footer-nav-link.primary:hover { background: #3d88cc; }
+.pill-footer-legal {
+  margin-top: 1.5rem;
+  font-size: .72rem; color: rgba(255,255,255,.35);
+  line-height: 1.6;
+}
+.pill-footer-legal a { color: rgba(255,255,255,.4); text-decoration: none; }
+.pill-footer-legal a:hover { color: rgba(255,255,255,.7); }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media(max-width: 600px) {
+  .pill-main { padding: 2rem 1rem 4rem; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .piano-grid { grid-template-columns: 1fr 1fr; }
+  .stat-box { flex-direction: column; }
+  .pill-header-badge { display: none; }
+}
+@media(max-width: 420px) {
+  .piano-grid { grid-template-columns: 1fr; }
+}
+
+/* ── BACK TO TOP ── */
+.back-to-top {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+  width: 40px; height: 40px;
+  background: var(--amber-dark); color: #fff;
+  border: none; border-radius: 50%;
+  font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 12px rgba(125,78,0,.3);
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+}
+.back-to-top.visible { opacity: 1; pointer-events: all; }
+.back-to-top:hover { transform: translateY(-2px); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header class="pill-header">
+  <a class="pill-header-back" href="/">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Portale
+  </a>
+  <div class="pill-header-sep"></div>
+  <span class="pill-header-title">Tenersi aggiornati nel digitale</span>
+  <span class="pill-header-badge">💡 Pillola · DC 5.4 · DCEdu 1.4</span>
+</header>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="pill-hero">
+  <div class="pill-hero-eyebrow">Competenze digitali · Pillola DC 5.4</div>
+  <div class="pill-hero-icon">📡</div>
+  <h1 class="pill-hero-title">Come tenersi aggiornati<br><em>nel digitale</em></h1>
+  <p class="pill-hero-sub">Il digitale cambia ogni settimana. Newsletter, podcast, community e RSS: costruisci il tuo flusso personale senza perdere ore.</p>
+  <div class="pill-hero-meta">
+    <span>🕐 ~15 minuti</span>
+    <span class="pill-hero-meta-sep">·</span>
+    <span>📊 Livello base</span>
+    <span class="pill-hero-meta-sep">·</span>
+    <span>DC 5.4 · DCEdu 1.4</span>
+  </div>
+</section>
+
+<!-- ══════════════ MODE TOGGLE ══════════════ -->
+<div class="mode-toggle-wrap">
+  <div class="mode-toggle" role="group" aria-label="Modalità di lettura">
+    <button class="mode-btn active" id="btn-student" onclick="setMode('student')" aria-pressed="true">
+      👤 Sono uno studente
+    </button>
+    <button class="mode-btn" id="btn-teacher" onclick="setMode('teacher')" aria-pressed="false">
+      🎓 Sono un docente
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<main class="pill-main">
+
+  <!-- HOOK differenziato -->
+  <div class="mode-hook" id="hook-student">
+    Vuoi sapere cosa succede nel mondo tech prima degli altri? Non serve seguire mille account — basta un sistema semplice che porta le notizie giuste a te, non il contrario.
+  </div>
+  <div class="mode-hook" id="hook-teacher" hidden>
+    I tuoi studenti vivono immersi nel digitale ma non sanno come tenersi aggiornati in modo critico e autonomo. Questa pillola ti dà strumenti concreti per il tuo sviluppo professionale continuo (DCEdu 1.4) e un'attività pratica da portare in classe.
+  </div>
+
+  <!-- ══ SEZIONE 1 — Perché è difficile ══ -->
+  <section class="pill-section">
+    <div class="section-num">Contesto</div>
+    <h2 class="section-title">Il problema non è la mancanza di informazioni</h2>
+    <div class="section-body">
+
+      <div class="stat-box">
+        <div class="stat-item">
+          <div class="stat-num">≈ 328M</div>
+          <div class="stat-desc">Terabyte di dati prodotti ogni giorno nel mondo<br><small>(Forbes, 2023)</small></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">18 mesi</div>
+          <div class="stat-desc">Tempo medio di dimezzamento delle competenze digitali prima che richiedano aggiornamento<br><small>(IBM Institute, 2022)</small></div>
+        </div>
+      </div>
+
+      <p>Il problema non è trovare informazioni — è <strong>non affogare in esse</strong>. Aprire TikTok, Twitter/X o LinkedIn produce un flusso infinito di contenuti digitali, ma non è aggiornamento: è rumore. L'aggiornamento professionale richiede un sistema, non uno scroll.</p>
+
+      <p>La differenza tra chi si aggiorna e chi no non è il tempo disponibile — è la presenza o assenza di un <strong>flusso intenzionale</strong>: poche fonti selezionate, consultate con regolarità, integrate nella routine settimanale.</p>
+
+      <div class="diff-block" id="hook2-teacher">
+        <div class="diff-label diff-label-teacher">🎓 Perché conta per te</div>
+        <div class="box-tip">
+          <div class="box-tip-label">DCEdu 1.4 — Aggiornamento continuo</div>
+          Il framework DigCompEdu identifica nell'aggiornamento continuo (1.4) una competenza professionale fondamentale, non opzionale. Non si tratta di seguire le mode tecnologiche, ma di mantenere la capacità di valutare criticamente gli strumenti digitali — per sé e per guidare gli studenti.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="pill-divider">
+
+  <!-- ══ SEZIONE 2 — Newsletter ══ -->
+  <section class="pill-section">
+    <div class="section-num">Fonte 1</div>
+    <h2 class="section-title">Newsletter — il flusso che arriva da te</h2>
+    <div class="section-body">
+
+      <p>Le newsletter sono la forma di aggiornamento più efficiente: arrivano nella tua casella, le leggi quando vuoi, non richiedono di aprire un'app. Il trucco è scegliere bene — <strong>3 newsletter di qualità valgono più di 30 feed di social</strong>.</p>
+
+      <!-- Studente -->
+      <div class="diff-block" id="nl-student">
+        <div class="diff-label diff-label-student">👤 Selezione per studenti</div>
+        <div class="resource-grid">
+          <div class="resource-card">
+            <div class="resource-card-icon">🇮🇹</div>
+            <div class="resource-card-type">Newsletter settimanale</div>
+            <div class="resource-card-name">TechInsight</div>
+            <div class="resource-card-desc">Tecnologia, IA e startup spiegati in italiano da Alessandro Oteri. Accessibile e aggiornata, ideale come primo approccio.</div>
+            <span class="resource-card-badge badge-it">🇮🇹 Italiano</span>
+          </div>
+          <div class="resource-card">
+            <div class="resource-card-icon">💻</div>
+            <div class="resource-card-type">Newsletter settimanale</div>
+            <div class="resource-card-name">TLDR</div>
+            <div class="resource-card-desc">Tech e AI in 5 minuti: riassunti brevi delle notizie più importanti del settore. Gratuita.</div>
+            <span class="resource-card-badge badge-en">🌐 Inglese</span>
+          </div>
+          <div class="resource-card">
+            <div class="resource-card-icon">🤖</div>
+            <div class="resource-card-type">Newsletter settimanale</div>
+            <div class="resource-card-name">Ben's Bites</div>
+            <div class="resource-card-desc">Tutto sull'IA: nuovi strumenti, ricerche, casi d'uso concreti. Concisa e senza hype.</div>
+            <span class="resource-card-badge badge-en">🌐 Inglese</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Docente -->
+      <div class="diff-block" id="nl-teacher" hidden>
+        <div class="diff-label diff-label-teacher">🎓 Selezione per docenti</div>
+        <div class="resource-grid">
+          <div class="resource-card">
+            <div class="resource-card-icon">🇮🇹</div>
+            <div class="resource-card-type">Newsletter bimensile</div>
+            <div class="resource-card-name">Aula Digitale</div>
+            <div class="resource-card-desc">Strumenti didattici digitali, esempi pratici in classe, aggiornamenti su IA e scuola.</div>
+            <span class="resource-card-badge badge-it">🇮🇹 Italiano</span>
+          </div>
+          <div class="resource-card">
+            <div class="resource-card-icon">📚</div>
+            <div class="resource-card-type">Newsletter settimanale</div>
+            <div class="resource-card-name">EdSurge</div>
+            <div class="resource-card-desc">Tecnologia e innovazione nell'educazione: ricerche, tendenze, esperienze pratiche internazionali.</div>
+            <span class="resource-card-badge badge-en">🌐 Inglese</span>
+          </div>
+          <div class="resource-card">
+            <div class="resource-card-icon">🤖</div>
+            <div class="resource-card-type">Newsletter settimanale</div>
+            <div class="resource-card-name">The Rundown AI</div>
+            <div class="resource-card-desc">Aggiornamenti quotidiani sull'IA: nuovi modelli, applicazioni, impatti sull'istruzione.</div>
+            <span class="resource-card-badge badge-en">🌐 Inglese</span>
+          </div>
+        </div>
+
+        <div class="box-info" style="margin-top:1rem;">
+          <div class="box-info-label">💡 Suggerimento</div>
+          Crea un indirizzo email dedicato per le newsletter professionali — o usa un'etichetta Gmail specifica. Separare il flusso professionale dall'email quotidiana evita di perdersi i contenuti importanti nel rumore della posta ordinaria.
+        </div>
+      </div>
+
+      <ul class="steps-list" style="margin-top:1.25rem;">
+        <li>Scegli <strong>massimo 3 newsletter</strong> per cominciare — qualità sopra quantità</li>
+        <li>Crea una cartella dedicata nel tuo client email (es. "Aggiornamento")</li>
+        <li>Stabilisci un momento fisso nella settimana per leggerle (es. lunedì mattina)</li>
+        <li>Disiscrivi senza esitare se dopo 4 settimane non le hai mai aperte</li>
+      </ul>
+
+    </div>
+  </section>
+
+  <hr class="pill-divider">
+
+  <!-- ══ SEZIONE 3 — Podcast ══ -->
+  <section class="pill-section">
+    <div class="section-num">Fonte 2</div>
+    <h2 class="section-title">Podcast — aggiornati mentre fai altro</h2>
+    <div class="section-body">
+
+      <p>I podcast sono l'unica forma di aggiornamento che si consuma <strong>in parallelo</strong> — durante il tragitto, la palestra, la spesa. Non richiedono tempo extra: si inseriscono nel tempo già esistente.</p>
+
+      <!-- Studente -->
+      <div class="diff-block" id="pod-student">
+        <div class="diff-label diff-label-student">👤 Selezione per studenti</div>
+        <div class="resource-grid">
+          <div class="resource-card">
+            <div class="resource-card-icon">🎙️</div>
+            <div class="resource-card-type">Episodi brevi · 10–20 min</div>
+            <div class="resource-card-name">Digitalia</div>
+            <div class="resource-card-desc">Tecnologia e innovazione spiegati in italiano, senza gergo tecnico. Accessibile a tutti.</div>
+            <span class="resource-card-badge badge-it">🇮🇹 Italiano</span>
+          </div>
+          <div class="resource-card">
+            <div class="resource-card-icon">🎙️</div>
+            <div class="resource-card-type">Episodi medi · 30–45 min</div>
+            <div class="resource-card-name">Lex Fridman Podcast</div>
+            <div class="resource-card-desc">Interviste approfondite con ricercatori e protagonisti dell'IA. Richiede inglese base.</div>
+            <span class="resource-card-badge badge-en">🌐 Inglese</span>
+          </div>
+          <div class="resource-card">
+            <div class="resource-card-icon">🎙️</div>
+            <div class="resource-card-type">Episodi brevi · 5–15 min</div>
+            <div class="resource-card-name">Daily Tech Headlines</div>
+            <div class="resource-card-desc">Le notizie tech del giorno in formato veloce. Perfetto durante il tragitto casa-scuola.</div>
+            <span class="resource-card-badge badge-en">🌐 Inglese</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Docente -->
+      <div class="diff-block" id="pod-teacher" hidden>
+        <div class="diff-label diff-label-teacher">🎓 Selezione per docenti</div>
+        <div class="resource-grid">
+          <div class="resource-card">
+            <div class="resource-card-icon">🎙️</div>
+            <div class="resource-card-type">Episodi medi · 30–45 min</div>
+            <div class="resource-card-name">EdTech Insiders</div>
+            <div class="resource-card-desc">Innovazione didattica e tecnologia in classe: interviste a docenti e ricercatori internazionali.</div>
+            <span class="resource-card-badge badge-en">🌐 Inglese</span>
+          </div>
+          <div class="resource-card">
+            <div class="resource-card-icon">🎙️</div>
+            <div class="resource-card-type">Episodi brevi · 15–25 min</div>
+            <div class="resource-card-name">Futuro Prossimo</div>
+            <div class="resource-card-desc">Tecnologie emergenti e impatto sociale, con attenzione alla prospettiva italiana ed europea.</div>
+            <span class="resource-card-badge badge-it">🇮🇹 Italiano</span>
+          </div>
+          <div class="resource-card">
+            <div class="resource-card-icon">🎙️</div>
+            <div class="resource-card-type">Episodi lunghi · 45–60 min</div>
+            <div class="resource-card-name">Hard Fork (NYT)</div>
+            <div class="resource-card-desc">IA, big tech e futuro del lavoro analizzati in profondità dai giornalisti del New York Times.</div>
+            <span class="resource-card-badge badge-en">🌐 Inglese</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="pill-divider">
+
+  <!-- ══ SEZIONE 4 — Community e forum ══ -->
+  <section class="pill-section">
+    <div class="section-num">Fonte 3</div>
+    <h2 class="section-title">Community — dove si discute prima che diventi notizia</h2>
+    <div class="section-body">
+
+      <p>Newsletter e podcast ti dicono <em>cosa</em> è successo. Le community ti dicono <em>cosa significa</em> — e spesso lo fanno giorni prima che arrivi sui media tradizionali. Scegliere bene dove partecipare (o anche solo leggere) fa la differenza.</p>
+
+      <div class="resource-grid">
+
+        <!-- Studente -->
+        <div class="diff-block resource-card" id="comm-student" style="border:1.5px solid var(--blue-light);">
+          <div class="diff-label diff-label-student">👤 Per studenti</div>
+          <div class="resource-card-icon">🔶</div>
+          <div class="resource-card-type">Forum generalista</div>
+          <div class="resource-card-name">Reddit — r/technology & r/artificial</div>
+          <div class="resource-card-desc">Discussioni live su notizie tech. Ottimo per capire l'impatto reale delle novità.</div>
+          <span class="resource-card-badge badge-en">🌐 Inglese</span>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-card-icon">💬</div>
+          <div class="resource-card-type">Community italiana</div>
+          <div class="resource-card-name">DevItalia (Discord)</div>
+          <div class="resource-card-desc">Community italiana di sviluppatori e appassionati di tech. Canali tematici, risorse e discussioni.</div>
+          <span class="resource-card-badge badge-it">🇮🇹 Italiano</span>
+        </div>
+
+        <!-- Docente -->
+        <div class="diff-block resource-card" id="comm-teacher" hidden style="border:1.5px solid var(--blue-light);">
+          <div class="resource-card-icon">🏫</div>
+          <div class="resource-card-type">Community docenti</div>
+          <div class="resource-card-name">Rete eTwinning</div>
+          <div class="resource-card-desc">Piattaforma europea per docenti: progetti collaborativi, risorse e aggiornamento tra pari.</div>
+          <span class="resource-card-badge badge-it">🇮🇹 Italiano + EU</span>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-card-icon">🔗</div>
+          <div class="resource-card-type">Social professionale</div>
+          <div class="resource-card-name">LinkedIn — seguire esperti</div>
+          <div class="resource-card-desc">Non usarlo come social generico: segui 10-15 persone di riferimento nel tuo settore e basta.</div>
+          <span class="resource-card-badge badge-free">💡 Strategia</span>
+        </div>
+
+      </div>
+
+      <div class="box-info" style="margin-top:1rem;">
+        <div class="box-info-label">⚠️ Attenzione</div>
+        Le community non sostituiscono le fonti editoriali — le integrano. Un post virale su Reddit non è una notizia verificata. Prima di condividere qualcosa proveniente da una community, verifica su fonti attendibili (vedi Pillola Valutazione Fonti).
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="pill-divider">
+
+  <!-- ══ SEZIONE 5 — RSS ══ -->
+  <section class="pill-section">
+    <div class="section-num">Fonte 4</div>
+    <h2 class="section-title">Feed RSS — il tuo giornale personalizzato (senza algoritmi)</h2>
+    <div class="section-body">
+
+      <p>L'RSS è la tecnologia più sottovalutata del web. Permette di seguire qualsiasi sito — blog, riviste scientifiche, portali istituzionali — in un unico posto, <strong>senza che un algoritmo decida cosa mostrarti</strong>.</p>
+
+      <div class="diff-block" id="rss-student">
+        <p>Funziona così: ogni sito di qualità ha un feed RSS (un file che si aggiorna automaticamente con i nuovi contenuti). Un <em>aggregatore</em> raccoglie tutti i feed che scegli e li mostra come un'unica timeline pulita.</p>
+      </div>
+      <div class="diff-block" id="rss-teacher" hidden>
+        <p>L'RSS è lo strumento di aggiornamento professionale più potente e meno usato — soprattutto nel mondo scolastico. Permette di seguire riviste di ricerca, siti istituzionali (MIUR, INDIRE, JRC) e portali internazionali in un unico flusso, senza social media.</p>
+      </div>
+
+      <ul class="steps-list">
+        <li>Scegli un aggregatore RSS gratuito — <strong>Feedly</strong> (web + app) o <strong>Inoreader</strong> sono i più diffusi</li>
+        <li>Cerca il feed RSS dei siti che già leggi — di solito è l'icona arancione ☰ o l'URL finisce con <code>/feed</code> o <code>/rss</code></li>
+        <li>Aggiungi 5–8 fonti iniziali — è meglio partire pochi e crescere che partire da 50 e abbandonare</li>
+        <li>Dedica 10 minuti due volte a settimana a scorrere i titoli — non devi leggere tutto, solo selezionare</li>
+      </ul>
+
+      <div class="resource-grid" style="margin-top:1.25rem;">
+        <div class="resource-card">
+          <div class="resource-card-icon">🟢</div>
+          <div class="resource-card-type">Aggregatore gratuito</div>
+          <div class="resource-card-name">Feedly</div>
+          <div class="resource-card-desc">Interfaccia pulita, app mobile, versione gratuita con fino a 100 fonti. Il più usato.</div>
+          <span class="resource-card-badge badge-free">Gratuito</span>
+        </div>
+        <div class="resource-card">
+          <div class="resource-card-icon">🔵</div>
+          <div class="resource-card-type">Aggregatore avanzato</div>
+          <div class="resource-card-name">Inoreader</div>
+          <div class="resource-card-desc">Più potente di Feedly, con filtri e regole. La versione gratuita è già completa per uso base.</div>
+          <span class="resource-card-badge badge-free">Gratuito</span>
+        </div>
+
+        <div class="diff-block resource-card" id="rss-fonti-teacher" hidden style="border:1.5px solid var(--blue-light);">
+          <div class="resource-card-icon">🏛️</div>
+          <div class="resource-card-type">Fonti istituzionali consigliate</div>
+          <div class="resource-card-name">JRC · INDIRE · AgID</div>
+          <div class="resource-card-desc">Hanno tutte feed RSS ufficiali. Ideali per seguire aggiornamenti normativi e di ricerca.</div>
+          <span class="resource-card-badge badge-it">🇮🇹 / EU</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="pill-divider">
+
+  <!-- ══ SEZIONE 6 — Piano ══ -->
+  <section class="pill-section">
+    <div class="section-num">Piano</div>
+    <h2 class="section-title">Il tuo piano di aggiornamento settimanale</h2>
+    <div class="section-body">
+
+      <p>Un sistema funziona solo se è sostenibile. Questo piano richiede <strong>meno di 30 minuti a settimana</strong>: distribuiti in piccole dosi, non in un blocco unico.</p>
+
+      <!-- Studente -->
+      <div class="diff-block" id="piano-student">
+        <div class="piano-grid">
+          <div class="piano-card">
+            <div class="piano-day">Lunedì</div>
+            <div class="piano-action">📧 Newsletter</div>
+            <div class="piano-detail">Apri le newsletter arrivate nel weekend. Leggi solo i titoli — approfondisci uno o due articoli al massimo.</div>
+            <div class="piano-time">⏱ 10 min</div>
+          </div>
+          <div class="piano-card verde">
+            <div class="piano-day">Mercoledì o giovedì</div>
+            <div class="piano-action">🎙️ Podcast</div>
+            <div class="piano-detail">Un episodio breve durante il tragitto o mentre mangi. Non serve concentrazione totale.</div>
+            <div class="piano-time">⏱ 10–15 min</div>
+          </div>
+          <div class="piano-card blu">
+            <div class="piano-day">Venerdì o weekend</div>
+            <div class="piano-action">📰 Feed RSS</div>
+            <div class="piano-detail">Scorri i titoli accumulati nella settimana. Salva 2–3 articoli da leggere — il resto marcalo come letto.</div>
+            <div class="piano-time">⏱ 5–10 min</div>
+          </div>
+          <div class="piano-card">
+            <div class="piano-day">Mensile</div>
+            <div class="piano-action">🔄 Revisione</div>
+            <div class="piano-detail">Qual è la newsletter che non hai mai aperto? Disiscrivi. Qual è il podcast che aspetti? Aggiungi uno nuovo.</div>
+            <div class="piano-time">⏱ 5 min</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Docente -->
+      <div class="diff-block" id="piano-teacher" hidden>
+        <div class="piano-grid">
+          <div class="piano-card">
+            <div class="piano-day">Lunedì mattina</div>
+            <div class="piano-action">📧 Newsletter professionali</div>
+            <div class="piano-detail">Leggi i titoli delle newsletter arrivate. Approfondisci solo ciò che è direttamente applicabile alla tua pratica.</div>
+            <div class="piano-time">⏱ 10 min</div>
+          </div>
+          <div class="piano-card verde">
+            <div class="piano-day">Martedì / giovedì</div>
+            <div class="piano-action">🎙️ Podcast</div>
+            <div class="piano-detail">Un episodio durante lo spostamento. Preferisci episodi su metodologia didattica o strumenti IA applicati all'educazione.</div>
+            <div class="piano-time">⏱ 20–30 min</div>
+          </div>
+          <div class="piano-card blu">
+            <div class="piano-day">Mercoledì o venerdì</div>
+            <div class="piano-action">📰 Feed RSS</div>
+            <div class="piano-detail">Scorri JRC, INDIRE, EdSurge. Salva gli articoli rilevanti per la programmazione o per la formazione. Ignora il resto.</div>
+            <div class="piano-time">⏱ 10 min</div>
+          </div>
+          <div class="piano-card">
+            <div class="piano-day">Fine mese</div>
+            <div class="piano-action">📎 Portfolio</div>
+            <div class="piano-detail">Raccogli in un documento gli strumenti o approcci nuovi scoperti. Un paragrafo per ciascuno. È la base del tuo portfolio INDIRE.</div>
+            <div class="piano-time">⏱ 15 min</div>
+          </div>
+        </div>
+
+        <div class="activity-box" style="margin-top:1.5rem;">
+          <div class="activity-box-title">🏫 Attività in classe: "Rassegna digitale"</div>
+          <div class="activity-meta">
+            <span class="activity-chip">⏱ 10 minuti</span>
+            <span class="activity-chip">📅 Cadenza settimanale</span>
+            <span class="activity-chip">👥 Individuale o a turni</span>
+            <span class="activity-chip">DCEdu 6.1 · DC 5.4 · INDIRE A1 · C1</span>
+          </div>
+          <div class="activity-body">
+            <p>Ogni settimana uno studente (a rotazione) porta in classe una notizia tech trovata su una fonte affidabile e la presenta in 2 minuti: cos'è, da dove viene, perché è rilevante.</p>
+            <p>Il docente non valuta la notizia — valuta il processo: come è stata trovata la fonte, come è stata verificata (integrazione con la Pillola Valutazione Fonti), come viene comunicata. Si costruisce così un'abitudine di aggiornamento critico e sistematico.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="pill-divider">
+
+  <!-- ══ CHECKLIST INTERATTIVA ══ -->
+  <section class="pill-section">
+    <div class="section-num">Checklist</div>
+    <h2 class="section-title">Hai costruito il tuo sistema?</h2>
+    <div class="section-body">
+      <p>Spunta le azioni completate. La checklist ricorda i tuoi progressi — anche se chiudi questa pagina.</p>
+
+      <div class="checklist-wrap">
+        <div class="checklist-header">📋 Il mio sistema di aggiornamento digitale</div>
+
+        <div class="checklist-group-label">📧 Newsletter</div>
+        <div class="checklist-items">
+          <label class="checklist-item" onclick="toggleCheck(this, 0)">
+            <input type="checkbox">
+            <div class="checklist-box"></div>
+            <span class="checklist-text">Ho scelto 1–3 newsletter e mi sono iscritto</span>
+          </label>
+          <label class="checklist-item" onclick="toggleCheck(this, 1)">
+            <input type="checkbox">
+            <div class="checklist-box"></div>
+            <span class="checklist-text">Ho creato una cartella o etichetta dedicata nell'email</span>
+          </label>
+        </div>
+
+        <div class="checklist-group-label">🎙️ Podcast</div>
+        <div class="checklist-items">
+          <label class="checklist-item" onclick="toggleCheck(this, 2)">
+            <input type="checkbox">
+            <div class="checklist-box"></div>
+            <span class="checklist-text">Ho scelto almeno un podcast e l'ho aggiunto alla mia app</span>
+          </label>
+          <label class="checklist-item" onclick="toggleCheck(this, 3)">
+            <input type="checkbox">
+            <div class="checklist-box"></div>
+            <span class="checklist-text">Ho identificato un momento fisso nella settimana per ascoltarlo</span>
+          </label>
+        </div>
+
+        <div class="checklist-group-label">📰 RSS</div>
+        <div class="checklist-items">
+          <label class="checklist-item" onclick="toggleCheck(this, 4)">
+            <input type="checkbox">
+            <div class="checklist-box"></div>
+            <span class="checklist-text">Ho creato un account su Feedly o Inoreader</span>
+          </label>
+          <label class="checklist-item" onclick="toggleCheck(this, 5)">
+            <input type="checkbox">
+            <div class="checklist-box"></div>
+            <span class="checklist-text">Ho aggiunto almeno 3 fonti al mio aggregatore RSS</span>
+          </label>
+        </div>
+
+        <div class="checklist-group-label">🔄 Piano</div>
+        <div class="checklist-items">
+          <label class="checklist-item" onclick="toggleCheck(this, 6)">
+            <input type="checkbox">
+            <div class="checklist-box"></div>
+            <span class="checklist-text">Ho definito un momento fisso nella settimana per ogni fonte</span>
+          </label>
+          <label class="checklist-item" onclick="toggleCheck(this, 7)">
+            <input type="checkbox">
+            <div class="checklist-box"></div>
+            <span class="checklist-text">Ho messo un promemoria mensile per rivedere e aggiornare il mio sistema</span>
+          </label>
+        </div>
+
+        <div class="checklist-footer">
+          <div class="checklist-score" id="checklist-score">0 / 8 completati</div>
+          <button class="checklist-reset" onclick="resetChecklist()">↺ Reset</button>
+          <div class="checklist-verdict" id="checklist-verdict"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="pill-divider">
+
+  <!-- ══ SEZIONE — Andare oltre ══ -->
+  <section class="pill-section">
+    <div class="section-num">Prossimi passi</div>
+    <h2 class="section-title">Per andare oltre</h2>
+    <div class="section-body">
+
+      <div class="diff-block" id="oltre-student">
+        <div class="diff-label diff-label-student">👤 Risorse aggiuntive</div>
+        <ul class="resource-list">
+          <li><a href="https://www.wired.it" target="_blank" rel="noopener">Wired Italia — notizie tech di qualità in italiano</a></li>
+          <li><a href="https://www.corrierecomunicazioni.it" target="_blank" rel="noopener">Corriere delle Comunicazioni — digitale e telecomunicazioni</a></li>
+          <li><a href="https://feedly.com" target="_blank" rel="noopener">Feedly — inizia subito con il tuo aggregatore RSS</a></li>
+        </ul>
+        <a style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:.65rem 1rem;font-size:.85rem;color:var(--blue-dark);text-decoration:none;transition:all var(--transition);" href="/competenze-digitali/pillola-valutazione-fonti/">
+          🔗 Pillola collegata — Valutare le Fonti Online (DC 1.2) →
+        </a>
+      </div>
+
+      <div class="diff-block" id="oltre-teacher" hidden>
+        <div class="diff-label diff-label-teacher">🎓 Risorse per docenti</div>
+        <ul class="resource-list">
+          <li><a href="https://www.indire.it" target="_blank" rel="noopener">INDIRE — aggiornamento professionale e formazione</a></li>
+          <li><a href="https://joint-research-centre.ec.europa.eu/digcompedu_en" target="_blank" rel="noopener">DigCompEdu — framework ufficiale JRC</a></li>
+          <li><a href="https://education.ec.europa.eu/selfie-for-teachers" target="_blank" rel="noopener">SELFIE for Teachers — autovalutazione competenze digitali</a></li>
+          <li><a href="https://www.etwinning.net" target="_blank" rel="noopener">eTwinning — community europea di docenti</a></li>
+        </ul>
+        <a style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:.65rem 1rem;font-size:.85rem;color:var(--blue-dark);text-decoration:none;transition:all var(--transition);" href="/competenze-digitali/pillola-valutazione-fonti/">
+          🔗 Pillola collegata — Valutare le Fonti Online (DC 1.2) →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════ FOOTER PILLOLA ══════════════ -->
+<footer class="pill-footer">
+  <div class="pill-footer-inner">
+    <div class="pill-footer-title">Competenze sviluppate</div>
+    <div class="pill-footer-badges">
+      <span class="digcomp-badge dc">DC 5.4 — Identificare gap nelle competenze digitali</span>
+      <span class="digcomp-badge dcedu">DCEdu 1.4 — Aggiornamento continuo</span>
+      <span class="digcomp-badge dcedu">DCEdu 6.1 — Information literacy</span>
+      <span class="digcomp-badge level">Foundation</span>
+    </div>
+
+    <div class="pill-footer-nav">
+      <a class="footer-nav-link" href="/competenze-digitali/pillola-valutazione-fonti/">
+        ← Valutare le Fonti Online — DC 1.2
+      </a>
+      <a class="footer-nav-link primary" href="/">
+        🏠 Torna al portale →
+      </a>
+      <a class="footer-nav-link" href="/competenze-digitali/pillola-wikipedia-speedrun/">
+        Wikipedia Speedrun — DC 1.1 →
+      </a>
+    </div>
+
+    <div class="pill-footer-legal">
+      Formazione Digitale · Cristiano De Pasquale · Docente di Informatica, IIS Einaudi Chiari (BS)<br>
+      Uso libero e non commerciale ·
+      <a href="/privacy-policy.html">Privacy Policy</a> ·
+      <a href="/cookie-policy.html">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════ JAVASCRIPT ══════════════ -->
+<script>
+/* ── MODE TOGGLE ─────────────────────────────────────────── */
+const MODE_KEY = 'fd-aggiornamento-mode';
+
+function setMode(mode) {
+  localStorage.setItem(MODE_KEY, mode);
+  applyMode(mode);
+}
+
+function applyMode(mode) {
+  const isStudent = mode === 'student';
+
+  document.getElementById('btn-student').classList.toggle('active', isStudent);
+  document.getElementById('btn-teacher').classList.toggle('active', !isStudent);
+  document.getElementById('btn-student').setAttribute('aria-pressed', isStudent);
+  document.getElementById('btn-teacher').setAttribute('aria-pressed', !isStudent);
+
+  document.getElementById('hook-student').hidden = !isStudent;
+  document.getElementById('hook-teacher').hidden =  isStudent;
+
+  const studentBlocks = ['nl-student', 'pod-student', 'comm-student', 'rss-student', 'piano-student', 'oltre-student', 'hook2-teacher'];
+  const teacherBlocks = ['nl-teacher', 'pod-teacher', 'comm-teacher', 'rss-teacher', 'piano-teacher', 'oltre-teacher', 'rss-fonti-teacher'];
+
+  // hook2-teacher (box DCEdu) — visibile solo in modalità docente
+  studentBlocks.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    // hook2-teacher è un blocco docente, gestito al contrario
+    if (id === 'hook2-teacher') {
+      el.hidden = isStudent;
+    } else {
+      el.hidden = !isStudent;
+    }
+  });
+  teacherBlocks.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.hidden = isStudent;
+  });
+}
+
+const savedMode = localStorage.getItem(MODE_KEY) || 'student';
+applyMode(savedMode);
+
+/* ── CHECKLIST ───────────────────────────────────────────── */
+const CL_KEY = 'fd-aggiornamento-checklist';
+const TOTAL  = 8;
+
+function loadChecklist() {
+  try {
+    return JSON.parse(localStorage.getItem(CL_KEY)) || Array(TOTAL).fill(false);
+  } catch { return Array(TOTAL).fill(false); }
+}
+
+function saveChecklist(state) {
+  localStorage.setItem(CL_KEY, JSON.stringify(state));
+}
+
+function toggleCheck(label, index) {
+  const state = loadChecklist();
+  state[index] = !state[index];
+  saveChecklist(state);
+  label.classList.toggle('checked', state[index]);
+  updateScore(state);
+}
+
+function resetChecklist() {
+  const state = Array(TOTAL).fill(false);
+  saveChecklist(state);
+  document.querySelectorAll('.checklist-item').forEach(item => item.classList.remove('checked'));
+  updateScore(state);
+}
+
+function updateScore(state) {
+  const checked = state.filter(Boolean).length;
+  document.getElementById('checklist-score').textContent =
+    checked + ' / ' + TOTAL + ' completat' + (checked === 1 ? 'o' : 'i');
+
+  const verdict = document.getElementById('checklist-verdict');
+  verdict.className = 'checklist-verdict show';
+
+  if (checked === TOTAL) {
+    verdict.textContent = '🎉 Sistema completo! Torna tra un mese per la revisione.';
+    verdict.classList.add('verdict-ok');
+  } else if (checked >= 4) {
+    verdict.textContent = '👍 Buon inizio — completa gli ultimi passaggi per avere un sistema solido.';
+    verdict.classList.add('verdict-warn');
+  } else if (checked === 0) {
+    verdict.className = 'checklist-verdict';
+  } else {
+    verdict.textContent = '🚀 Hai iniziato — continua a costruire il tuo sistema!';
+    verdict.classList.add('verdict-warn');
+  }
+}
+
+// Init checklist dallo stato salvato
+(function initChecklist() {
+  const state = loadChecklist();
+  const items = document.querySelectorAll('.checklist-item');
+  items.forEach((item, i) => {
+    if (state[i]) item.classList.add('checked');
+  });
+  updateScore(state);
+})();
+
+/* ── BACK TO TOP ── */
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+  btt.classList.toggle('visible', window.scrollY > 300);
+});
+</script>
+
+<button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna su">↑</button>
+
+<script src="/scripts/ui.js" defer></script>
+
+</body>
+</html>
