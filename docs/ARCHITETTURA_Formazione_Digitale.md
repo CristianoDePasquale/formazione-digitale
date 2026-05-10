@@ -38,11 +38,11 @@ La root contiene i file di configurazione e i JS condivisi. Ogni risorsa vive ne
 formazione-digitale/
 |--- index.html
 |--- mappa.html
+|--- mappa-framework/                ← Pagina navigazione DigComp/DigCompEdu (in sviluppo)
 |--- 404.html
 |--- privacy-policy.html
 |--- cookie-policy.html
-|--- manifest.json           ← Catalogo risorse (fonte di verità)
-|--- manifest_digcomp.json   ← Catalogo con campi DigComp/DigCompEdu
+|--- manifest.json                   ← Catalogo risorse — unica fonte di verità
 |--- site.webmanifest
 |--- robots.txt
 |--- sitemap.xml
@@ -124,7 +124,7 @@ Ogni pagina mantiene un proprio `<style>` inline per componenti non condivisi. L
 
 # manifest.json — catalogo risorse
 
-File JSON fonte di verità per tutte le risorse del portale.
+File JSON unica fonte di verità per tutte le risorse del portale. I campi framework DigComp e DigCompEdu sono integrati direttamente in questo file — `manifest_digcomp.json` è stato eliminato (maggio 2026).
 
 | Campo | Descrizione |
 |---|---|
@@ -137,15 +137,15 @@ File JSON fonte di verità per tutte le risorse del portale.
 | `meta` | Testo secondario nella card |
 | `description` | Descrizione breve usata da Schema.org ItemList |
 | `featured` | Boolean — card in evidenza (max 1 per sezione) |
-| `active` | Boolean — `false` esclude dalla risorsa da stats e schema |
+| `active` | Boolean — `false` esclude la risorsa da stats e schema |
 | `digcomp` | Array competenze DigComp (es. `["DC 4.1", "DC 4.2"]`) |
 | `digcomp_level` | Livello DigComp: `foundation` / `intermediate` / `advanced` |
 | `digcompedu` | Array competenze DigCompEdu (es. `["DCEdu 6.4"]`) |
 | `digcomp_areas` | Array aree tematiche DigComp |
 
-Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `sitemap.xml` tramite `genera_sitemap.py`.
+Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `mappa-framework/` (navigazione per competenza), `sitemap.xml` tramite `genera_sitemap.py`.
 
-> **Regola:** quando aggiungi una risorsa, aggiorna **manifest.json** + **manifest_digcomp.json** + **index.html** (card) + rilancia `genera_sitemap.py`.
+> **Regola:** quando aggiungi una risorsa, aggiorna **manifest.json** + **index.html** (card) + aggiorna `stats.js` (`gcPagine`) + rilancia `genera_sitemap.py`.
 
 ---
 
@@ -184,7 +184,7 @@ Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `site
 | Auth in arrivo | OAuth Google |
 | Tabelle | `profiles` · `bookmarks` |
 | RLS | Attiva — ogni utente vede solo i propri dati |
-| Keep-alive | GitHub Actions (`supabase-keep-alive.yml`) |
+| Keep-alive | GitHub Actions (`supabase-keep-alive.yml`) — ogni giorno alle 08:00 UTC |
 | **Sicurezza** | **ATTENZIONE:** anon key in `supabase.js` (file pubblico). Migrazione a Vercel env variables — settembre 2026. |
 
 ## Resend (email transazionale)
@@ -210,7 +210,7 @@ Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `site
 | Campo | Valore |
 |---|---|
 | Proprietà attiva | formazione-digitale.it |
-| Proprietà precedente | formazione-digitale.github.io (cambio indirizzo pendente) |
+| Cambio indirizzo | Completato il 09/05/2026: github.io → formazione-digitale.it |
 | Sitemap inviata | https://www.formazione-digitale.it/sitemap.xml |
 
 ## Google Fonts
@@ -286,8 +286,8 @@ Il sito non utilizza cookie di profilazione. GoatCounter è privacy-first e non 
 1. Crea la cartella: `/categoria/nome-risorsa/`
 2. Crea `index.html` con link a `shared.css` e CSS specifico inline
 3. Aggiungi la voce a `manifest.json` con tutti i campi inclusi `digcomp`/`digcompedu`
-4. Aggiungi la stessa voce a `manifest_digcomp.json`
-5. Aggiungi la card in `index.html` nella sezione corretta
+4. Aggiungi la card in `index.html` nella sezione corretta
+5. Aggiorna `gcPagine` in `stats.js` con il nuovo path
 6. Lancia `scripts/genera_sitemap.py` per aggiornare `sitemap.xml`
 7. Push su GitHub — Vercel pubblica in 1-2 minuti automaticamente
 8. Verifica: card visibile, filtro funzionante, ricerca per tag, link corretto
@@ -295,6 +295,8 @@ Il sito non utilizza cookie di profilazione. GoatCounter è privacy-first e non 
 ---
 
 # Copertura DigComp / DigCompEdu / INDIRE
+
+La navigazione per competenza è disponibile nella pagina dedicata `mappa-framework/` (pagina unica con tab DigComp 2.2 / DigCompEdu, vista albero e vista matrice). I tag framework non compaiono nelle card dell'homepage.
 
 ## DigComp 2.2 — copertura attuale
 
@@ -420,95 +422,20 @@ Il dark mode è raccomandato. Il costo reale non è tecnico — è di manutenzio
 
 ---
 
-# Esercitazioni Svolte — Architettura
-
-Raccolta curata di verifiche complete con soluzione e griglia di valutazione. Destinatario primario: **docenti** che cercano un modello di riferimento validato sul campo. Destinatario secondario: studenti per auto-correzione.
-
-## Posizionamento nei framework
-
-| Framework | Competenze attivate |
-|---|---|
-| **DigComp** | DC 3.1, DC 3.2, DC 3.3 — Creazione e rielaborazione contenuti |
-| **DigCompEdu** | DCEdu 2.2·2.3 (creazione/condivisione risorse) · DCEdu 4.1·4.2 (valutazione) · DCEdu 6.2·6.3 |
-| **INDIRE** | A3 (valutazione) · A4 (inclusione, se livelli differenziati) · **B1** (collaborazione tra colleghi — impatto principale) |
-
-## Principio di selezione
-
-Solo esercitazioni di livello avanzato con pacchetto completo:
-
-- File dati/template da completare (vuoto)
-- Soluzione svolta
-- Istruzioni con griglia di valutazione
-- Eventuali file accessori (stampa unione, database)
-
-Le esercitazioni semplici non mancano sul web — il valore aggiunto è nelle verifiche integrate e strutturate.
-
-## Struttura cartelle
-
-```
-esercitazioni/
-|--- index.html                        ← pagina catalogo con card
-|--- verifica-excel-titanic/
-|    |--- index.html                   ← scheda esercitazione
-|    |--- istruzioni.pdf
-|    |--- dati-vuoti.xlsx
-|    |--- soluzione.xlsx
-|    |--- stampa-unione-vuota.docx
-|    └--- stampa-unione-svolta.docx
-|--- verifica-word-formattazione/
-|    └--- ...
-└--- verifica-access-query/
-     └--- ...
-```
-
-## Scheda esercitazione (index.html)
-
-Ogni scheda contiene:
-
-- Titolo + livello (base / intermedio / avanzato)
-- Strumenti coinvolti (Excel, Word, Access...)
-- Competenze esercitate — lista delle funzioni/tecniche
-- Tag DigComp — coerenti con il resto del portale
-- Griglia di valutazione inline
-- Pulsanti download: file vuoto, soluzione, istruzioni PDF
-
-## Convenzioni
-
-- Nomi cartelle: kebab-case descrittivo, senza riferimenti a classi o anni scolastici
-- Nomi file: `istruzioni.pdf`, `dati-vuoti.xlsx`, `soluzione.xlsx` — standardizzati
-- I file originali con nomi da registro (es. `3RIM_VERIFICA_...`) vanno rinominati prima del deploy
-- Licenza: uso libero non commerciale — come il resto del portale
-
-## Integrazione nel portale
-
-Card in `#cards-strumento` — tipo `card-green`:
-
-```
-[emoji] Esercitazioni Svolte
-Verifiche complete con soluzione e griglia di valutazione.
-Excel · Word · Access · Livello avanzato
-[link: esercitazioni/]
-```
-
-## Stato
-
-In preparazione. Prima esercitazione: Verifica Excel/Word — dataset Titanic (livello avanzato, 3a/4a superiore). File in fase di bonifica (rimozione riferimenti alla classe).
-
----
-
 # Roadmap
 
 ## Completato
 
 - [OK] Migrazione Vercel (maggio 2026)
 - [OK] Dominio formazione-digitale.it registrato su Aruba
+- [OK] GSC cambio indirizzo completato (09/05/2026): github.io → formazione-digitale.it
 - [OK] Sessione responsive mobile (08/05/2026)
 - [OK] Pillola Valutazione Fonti + Strumento Verifica Fonti (maggio 2026)
+- [OK] Unificazione manifest.json — eliminato manifest_digcomp.json (maggio 2026)
 
 ## Bassa urgenza — quando disponibile
 
-- Redirect 301 da github.io + disabilitazione GitHub Pages
-- Cambio indirizzo Google Search Console
+- Disabilitazione GitHub Pages (dopo settembre 2026 — branch redirect necessario fino ad allora)
 
 ## Prima di aprire l'auth agli utenti reali
 
@@ -528,9 +455,8 @@ Completare **in questo ordine**:
 | Priorità | Risorsa | Standard attivati |
 |---|---|---|
 | [!] 1 | Pillola netiquette / cittadinanza digitale | DC 2.2–2.4 · DCEdu 6.4 · INDIRE A4 |
-| [~] 2 | Esercitazioni svolte (vedi sezione dedicata) | DCEdu 2.2·2.3·4.1 · INDIRE A3·B1 |
-| [~] 3 | Guida/strumento collaborazione scolastica | INDIRE B1·B2 · DCEdu 1.2·2.3 |
-| [?] 4 | Risorsa valutazione digitale (rubric builder) | DCEdu 4.1·4.2·4.3 · INDIRE A3 |
+| [~] 2 | Guida/strumento collaborazione scolastica | INDIRE B1·B2 · DCEdu 1.2·2.3 |
+| [?] 3 | Risorsa valutazione digitale (rubric builder) | DCEdu 4.1·4.2·4.3 · INDIRE A3 |
 
 ## Miglioramenti continui
 
