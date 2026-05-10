@@ -337,36 +337,13 @@ main { max-width: 1040px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 
 /* ── CARD FOOTER ─────────────────────────────────────────── */
 .card-footer {
-  display: flex; align-items: center;
-  gap: .6rem;
+  display: flex; align-items: center; justify-content: space-between;
   padding: .7rem 1.2rem;
   border-top: 1px solid var(--blue-light);
   background: #FAFCFF;
   transition: background .25s ease;
 }
-.card-meta { font-size: .72rem; color: var(--gray-mid); flex: 1; text-align: right; }
-
-.card-fw-badge {
-  font-size: .62rem; font-weight: 700;
-  letter-spacing: .06em;
-  padding: .15rem .5rem;
-  border-radius: 6px;
-  background: var(--blue-pale);
-  color: var(--blue-mid);
-  border: 1px solid var(--blue-light);
-  white-space: nowrap; flex-shrink: 0;
-  text-decoration: none;
-  transition: background var(--transition);
-}
-.card-fw-badge:hover { background: var(--blue-light); }
-
-/* Badge su card-featured (sfondo scuro) */
-.card-featured .card-fw-badge {
-  background: rgba(255,255,255,.12);
-  color: var(--blue-light);
-  border-color: rgba(255,255,255,.2);
-}
-.card-featured .card-fw-badge:hover { background: rgba(255,255,255,.22); }
+.card-meta { font-size: .72rem; color: var(--gray-mid); }
 
 .card-cta {
   font-size: .78rem; font-weight: 600; color: var(--blue-mid);
@@ -901,8 +878,8 @@ body.modal-open { overflow: hidden; }
             <div class="card-desc">Stili, tabelle, indice automatico, stampa unione e molto altro. Con 61 screenshot e PDF scaricabile.</div>
           </div>
           <div class="card-footer">
-            <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
             <div class="card-meta">Con PDF · 61 screenshot · Livello base</div>
+            <div class="card-cta">Apri la guida <span class="arrow">→</span></div>
           </div>
         </a>
       </div>
@@ -923,8 +900,8 @@ body.modal-open { overflow: hidden; }
             <div class="card-desc">Guida pratica alle query in LibreOffice Base. Include database di esempio scaricabile e immagini passo per passo.</div>
           </div>
           <div class="card-footer">
-            <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
             <div class="card-meta">Con DB di esempio · Livello intermedio</div>
+            <div class="card-cta">Apri la guida <span class="arrow">→</span></div>
           </div>
         </a>
       </div>
@@ -945,8 +922,8 @@ body.modal-open { overflow: hidden; }
             <div class="card-desc">Dalle leve del marketing mix alle strategie di vendita online. Guida pratica per orientarsi nel mercato digitale.</div>
           </div>
           <div class="card-footer">
-            <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
             <div class="card-meta">Aggiornata · PPT scaricabili · Livello intermedio</div>
+            <div class="card-cta">Apri la guida <span class="arrow">→</span></div>
           </div>
         </a>
       </div>
@@ -969,8 +946,8 @@ body.modal-open { overflow: hidden; }
             <div class="card-desc">Dal prompt semplice al meta-prompt. Anatomia di un prompt efficace, tre esempi completi, template editabili e modalità presentazione per l'aula.</div>
           </div>
           <div class="card-footer">
-            <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
             <div class="card-meta">Aggiornata · Con esempi · Livello base–intermedio</div>
+            <div class="card-cta">Apri la guida <span class="arrow">→</span></div>
           </div>
         </a>
       </div>
@@ -991,8 +968,8 @@ body.modal-open { overflow: hidden; }
             <div class="card-desc">Far valutare l'output di un modello da un altro. Quale combinazione usare, come strutturare il prompt di handoff, quando evitarlo.</div>
           </div>
           <div class="card-footer">
-            <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
             <div class="card-meta">Con template pronti · Checklist interattiva · Livello base–intermedio</div>
+            <div class="card-cta">Apri la guida <span class="arrow">→</span></div>
           </div>
         </a>
       </div>
@@ -1013,7 +990,6 @@ body.modal-open { overflow: hidden; }
 			  <div class="card-desc">Phishing, 2FA, VPN, passkey e backup: percorso completo per proteggerti online. Aggiornata al 2026 con piano d'azione immediato.</div>
 			</div>
 			<div class="card-footer">
-			  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 			  <div class="card-meta">10 sezioni · Piano d'azione · Livello base · ~35 min</div>
 			</div>
 		  </a>
@@ -1048,8 +1024,8 @@ body.modal-open { overflow: hidden; }
             <div class="card-desc">Costruisci prompt strutturati passo per passo. Preset pronti, ottimizzazione per modello, libreria personale con export/import.</div>
           </div>
           <div class="card-footer">
-            <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
             <div class="card-meta">Interattivo · Salvataggio locale · Livello base</div>
+            <div class="card-cta">Apri lo strumento <span class="arrow">→</span></div>
           </div>
         </a>
       </div>
@@ -1071,8 +1047,8 @@ body.modal-open { overflow: hidden; }
             <div class="card-desc">Calcola il punto di pareggio inserendo costi fissi, costi variabili e prezzo di vendita. Grafico interattivo e analisi immediata.</div>
           </div>
           <div class="card-footer">
-            <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
             <div class="card-meta">Interattivo · Calcolo in tempo reale · Livello intermedio</div>
+            <div class="card-cta">Apri lo strumento <span class="arrow">→</span></div>
           </div>
         </a>
       </div>
@@ -1095,8 +1071,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Strumento dinamico con analisi dell'AND logico binario, calcolo range host e guida teorica integrata per la segmentazione delle reti.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">Interattivo · Calcolo in tempo reale · Report esportabile · Livello intermedio</div>
+		  <div class="card-cta">Apri lo strumento <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
@@ -1118,8 +1094,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Visualizzatore dinamico dell'algoritmo delle divisioni successive e calcolo delle potenze di 2.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">Interattivo · Step-by-step</div>
+		  <div class="card-cta">Apri lo strumento <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
@@ -1141,8 +1117,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Incolla il tag head HTML del tuo sito e ricevi un report SEO immediato: title, meta, Open Graph, Twitter Card, Schema.org e canonical.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">Interattivo · Analisi locale · Report immediato</div>
+		  <div class="card-cta">Apri lo strumento <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
@@ -1163,8 +1139,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Checklist guidata per valutare qualsiasi fonte online. CRAAP test, lateral reading e reverse image search in un unico flusso con report finale.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">Checklist guidata · Report affidabilità · Livello base</div>
+		  <div class="card-cta">Apri lo strumento <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
@@ -1200,8 +1176,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Crea un web server locale con gestione persistente. Zero installazione, interfaccia moderna e download diretto del pacchetto v3.0.8 per Windows.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">Include HFS 2 e 3 · Livello intermedio-avanzato · 15 min</div>
+		  <div class="card-cta">Apri la pillola <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
@@ -1223,8 +1199,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Cos'è la SEO, come funziona Google, fattori di ranking, Core Web Vitals e strumenti per migliorare la visibilità online.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">Con strumento integrato · Livello base–intermedio · 15 min</div>
+		  <div class="card-cta">Apri la pillola <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
@@ -1245,8 +1221,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Le 6 mosse essenziali per proteggerti online. Password, phishing, 2FA e backup: solo quello che conta davvero.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">6 mosse · Checklist · Livello base · ~5 min</div>
+		  <div class="card-cta">Apri la pillola <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
@@ -1266,8 +1242,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Naviga Wikipedia seguendo solo i link: allena lettura selettiva, filtraggio delle informazioni e comprensione della struttura del web.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">Gamification · Livello base · ~10 min</div>
+		  <div class="card-cta">Apri la pillola <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
@@ -1289,8 +1265,8 @@ body.modal-open { overflow: hidden; }
 		  <div class="card-desc">Tre metodi per valutare qualsiasi fonte online in 5 minuti: CRAAP test, lateral reading e reverse image search.</div>
 		</div>
 		<div class="card-footer">
-		  <a href="/mappa-framework.html" class="card-fw-badge">DC · DCEdu</a>
 		  <div class="card-meta">CRAAP test · Lateral reading · Livello base · ~15 min</div>
+		  <div class="card-cta">Apri la pillola <span class="arrow">→</span></div>
 		</div>
 	  </a>
 	</div>
