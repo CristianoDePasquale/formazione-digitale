@@ -343,6 +343,10 @@ body {
   font-size: .92rem; font-weight: 500; color: var(--blue-dark);
   line-height: 1.4;
 }
+.q-desc {
+  font-size: .78rem; color: var(--gray-mid);
+  line-height: 1.5; margin-top: .25rem;
+}
 
 /* Scala A1→C2 */
 .level-scale {
@@ -1025,14 +1029,18 @@ function renderQuestion() {
   // Area sidebar
   renderAreaSidebar();
 
-  // Card domanda
+// Card domanda
   const currentAnswer = answers[q.comp.id] || null;
   const wrap = document.getElementById('question-wrap');
+  const descHtml = q.comp.desc ? '<div class="q-desc">' + q.comp.desc + '</div>' : '';
   wrap.innerHTML = `
     <div class="question-card q-enter">
       <div class="question-header">
         <span class="q-id-badge">${q.comp.id}</span>
-        <div class="q-label">${q.comp.label}</div>
+        <div>
+          <div class="q-label">${q.comp.label}</div>
+          ${descHtml}
+        </div>
       </div>
       <div class="level-scale">
         ${LEVELS.map(lv => `
