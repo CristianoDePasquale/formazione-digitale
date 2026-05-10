@@ -95,20 +95,91 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 .fw-title { font-family: var(--font-display); font-size: 1rem; color: #fff; }
 .fw-sub   { font-size: .7rem; color: var(--blue-light); opacity: .8; }
 
-/* ── HERO ── */
+/* ── HERO (compresso) ── */
 .fw-hero {
   background: linear-gradient(135deg, #1A3F63 0%, var(--blue-dark) 60%, #2A6099 100%);
-  padding: 2rem 1.5rem 1.5rem;
-  text-align: center;
+  padding: .9rem 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  flex-wrap: wrap;
 }
 .fw-hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  color: #fff; margin-bottom: .4rem;
+  font-size: 1.1rem;
+  color: #fff; margin: 0;
+  white-space: nowrap;
 }
 .fw-hero p {
-  font-size: .88rem; color: rgba(255,255,255,.7);
-  max-width: 500px; margin: 0 auto;
+  font-size: .8rem; color: rgba(255,255,255,.65);
+  margin: 0;
+}
+
+/* ── BOX FRAMEWORK ── */
+.fw-info-strip {
+  background: #fff;
+  border-bottom: 1px solid var(--blue-light);
+  padding: 1rem 1.5rem;
+  display: flex; gap: 1rem;
+}
+.fw-info-box {
+  flex: 1;
+  border: 1.5px solid var(--blue-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.fw-info-box:hover { border-color: var(--blue-mid); }
+
+.fw-info-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .7rem 1rem;
+  cursor: pointer; user-select: none;
+  background: var(--blue-pale);
+  transition: background var(--transition);
+}
+.fw-info-header:hover { background: var(--blue-light); }
+.fw-info-header-left { display: flex; align-items: center; gap: .6rem; }
+.fw-info-title {
+  font-family: var(--font-display); font-size: .95rem;
+  color: var(--blue-dark);
+}
+.fw-info-subtitle {
+  font-size: .7rem; color: var(--gray-mid); margin-left: .1rem;
+}
+.fw-info-chevron {
+  font-size: .7rem; color: var(--gray-mid);
+  transition: transform var(--transition);
+}
+.fw-info-box.open .fw-info-chevron { transform: rotate(180deg); }
+
+.fw-info-body {
+  display: none;
+  padding: .85rem 1rem;
+  font-size: .82rem; color: var(--gray-dark); line-height: 1.65;
+  border-top: 1px solid var(--blue-light);
+}
+.fw-info-box.open .fw-info-body { display: block; }
+
+.fw-info-meta {
+  display: flex; gap: .5rem; flex-wrap: wrap;
+  margin-top: .65rem;
+}
+.fw-info-pill {
+  font-size: .7rem; font-weight: 600;
+  padding: .2rem .6rem; border-radius: 20px;
+  background: var(--blue-pale); color: var(--blue-mid);
+  border: 1px solid var(--blue-light);
+}
+.fw-info-link {
+  display: inline-flex; align-items: center; gap: .3rem;
+  margin-top: .65rem;
+  font-size: .75rem; color: var(--blue-mid);
+  text-decoration: none; font-weight: 600;
+}
+.fw-info-link:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .fw-info-strip { flex-direction: column; }
+  .fw-hero { flex-direction: column; gap: .2rem; text-align: center; }
 }
 
 /* ── CONTROLLI ── */
@@ -445,10 +516,59 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
   <a href="/mappa.html" class="fw-back">🗺 Mappa risorse</a>
 </header>
 
-<!-- ── HERO ── -->
+<!-- ── HERO (compresso) ── -->
 <div class="fw-hero">
   <h1>Navigazione per Competenza</h1>
-  <p>Esplora le risorse del portale organizzate per framework europeo. Identifica coperture e gap.</p>
+  <p>Esplora le risorse per framework europeo. Identifica coperture e gap.</p>
+</div>
+
+<!-- ── BOX FRAMEWORK ── -->
+<div class="fw-info-strip">
+
+  <div class="fw-info-box" id="box-digcomp">
+    <div class="fw-info-header" onclick="toggleInfoBox('box-digcomp')">
+      <div class="fw-info-header-left">
+        <span class="fw-info-title">DigComp 2.2</span>
+        <span class="fw-info-subtitle">— Competenze digitali dei cittadini</span>
+      </div>
+      <span class="fw-info-chevron">▾</span>
+    </div>
+    <div class="fw-info-body">
+      Il framework europeo <strong>DigComp</strong> definisce le competenze digitali che ogni cittadino dovrebbe possedere. Sviluppato dal Joint Research Centre della Commissione Europea, è il riferimento principale per l'alfabetizzazione digitale in Europa.
+      <div class="fw-info-meta">
+        <span class="fw-info-pill">5 aree</span>
+        <span class="fw-info-pill">21 competenze</span>
+        <span class="fw-info-pill">4 livelli di padronanza</span>
+        <span class="fw-info-pill">Versione 2.2 — 2022</span>
+      </div>
+      <a class="fw-info-link" href="https://joint-research-centre.ec.europa.eu/digcomp/digcomp-framework_en" target="_blank" rel="noopener">
+        🔗 Fonte ufficiale JRC
+      </a>
+    </div>
+  </div>
+
+  <div class="fw-info-box" id="box-digcompedu">
+    <div class="fw-info-header" onclick="toggleInfoBox('box-digcompedu')">
+      <div class="fw-info-header-left">
+        <span class="fw-info-title">DigCompEdu</span>
+        <span class="fw-info-subtitle">— Competenze digitali degli educatori</span>
+      </div>
+      <span class="fw-info-chevron">▾</span>
+    </div>
+    <div class="fw-info-body">
+      <strong>DigCompEdu</strong> è il framework europeo per le competenze digitali degli insegnanti e formatori. Descrive 22 competenze organizzate in 6 aree: dall'uso degli strumenti digitali nella didattica alla promozione delle competenze digitali degli studenti.
+      <div class="fw-info-meta">
+        <span class="fw-info-pill">6 aree</span>
+        <span class="fw-info-pill">22 competenze</span>
+        <span class="fw-info-pill">6 livelli (A1→C2)</span>
+        <span class="fw-info-pill">Versione 2017</span>
+      </div>
+      <a class="fw-info-link" href="https://joint-research-centre.ec.europa.eu/digcompedu_en" target="_blank" rel="noopener">
+        🔗 Fonte ufficiale JRC
+      </a>
+    </div>
+  </div>
+
 </div>
 
 <!-- ── CONTROLLI ── -->
@@ -456,10 +576,6 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
   <div class="fw-tabs">
     <button class="fw-tab active" onclick="switchTab('digcomp', this)">DigComp 2.2</button>
     <button class="fw-tab" onclick="switchTab('digcompedu', this)">DigCompEdu</button>
-  </div>
-  <div class="fw-toggle">
-    <button class="fw-toggle-btn active" id="btn-tree"   onclick="switchView('tree')">🌳 Albero</button>
-    <button class="fw-toggle-btn"        id="btn-matrix" onclick="switchView('matrix')">⊞ Matrice</button>
   </div>
   <div class="fw-legend">
     <div class="fw-legend-item"><div class="fw-legend-dot covered"></div> Risorsa disponibile</div>
@@ -477,8 +593,7 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
   <!-- Vista albero -->
   <div class="fw-content" id="fw-tree"></div>
 
-  <!-- Vista matrice -->
-  <div class="fw-content-matrix" id="fw-matrix" style="display:none;"></div>
+
 </div>
 
 <!-- ── BACK TO TOP ── -->
@@ -498,14 +613,13 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 
 <script>
 /* ══════════════════════════════════════════════════════════════
-   MAPPA FRAMEWORK v2 — Formazione Digitale
-   Albero collassabile + Heatmap per DigComp 2.2 / DigCompEdu
+   MAPPA FRAMEWORK v3 — Formazione Digitale
+   Lista per competenza — DigComp 2.2 / DigCompEdu
 ══════════════════════════════════════════════════════════════ */
 
-let activeTab  = 'digcomp';
-let activeView = 'tree';
-let FRAMEWORK  = null;
-let RISORSE    = null;
+let activeTab = 'digcomp';
+let FRAMEWORK = null;
+let RISORSE   = null;
 
 /* ── CARICAMENTO DATI ── */
 async function init() {
@@ -539,15 +653,7 @@ function pluraleRisorse(n) {
 function render() {
   const fwData = FRAMEWORK[activeTab];
   renderSummary(fwData);
-  if (activeView === 'tree') {
-    renderTree(fwData);
-    document.getElementById('fw-tree').style.display   = '';
-    document.getElementById('fw-matrix').style.display = 'none';
-  } else {
-    renderMatrix(fwData);
-    document.getElementById('fw-tree').style.display   = 'none';
-    document.getElementById('fw-matrix').style.display = '';
-  }
+  renderTree(fwData);
 }
 
 /* ── SUMMARY ── */
@@ -620,85 +726,6 @@ function renderTree(fwData) {
   }).join('');
 }
 
-/* ── VISTA MATRICE HEATMAP ── */
-function renderMatrix(fwData) {
-  const container = document.getElementById('fw-matrix');
-  const campo = activeTab === 'digcomp' ? 'digcomp' : 'digcompedu';
-
-  // Risorse che coprono almeno una competenza nel framework attivo
-  const risorseAttive = RISORSE.filter(r => Array.isArray(r[campo]) && r[campo].length > 0);
-
-  // Header colonne
-  const headerCols = risorseAttive.map(r => `
-    <th title="${r.label}">
-      <span class="fw-heatmap-res-emoji">${r.emoji}</span>
-      <span class="fw-heatmap-res-name">${r.short}</span>
-    </th>`).join('');
-
-  // Righe
-  const righe = fwData.areas.flatMap(area => {
-    const colspan = risorseAttive.length + 1;
-    const areaRow = `
-      <tr class="fw-heatmap-area-row">
-        <td colspan="${colspan}" style="background:${area.color}">${area.short}</td>
-      </tr>`;
-
-    const compRows = area.competences.map(comp => {
-      const celle = risorseAttive.map(r => {
-        const coperto = Array.isArray(r[campo]) && r[campo].includes(comp.id);
-        if (coperto) {
-          return `<td class="cell-${r.cat}" title="${r.label} — ${comp.id}">
-            <a href="${r.path}">${r.emoji}</a>
-          </td>`;
-        }
-        return `<td class="cell-gap"></td>`;
-      }).join('');
-
-      return `
-        <tr>
-          <td>
-            <span class="fw-heatmap-comp-id">${comp.id}</span>
-            <span class="fw-heatmap-comp-label">${comp.label}</span>
-          </td>
-          ${celle}
-        </tr>`;
-    }).join('');
-
-    return areaRow + compRows;
-  }).join('');
-
-  container.innerHTML = `
-    <div class="fw-matrix-legend">
-      <span style="font-weight:600;color:var(--gray-dark);margin-right:.25rem;">Legenda:</span>
-      <div class="fw-matrix-legend-item">
-        <div class="fw-matrix-legend-swatch" style="background:var(--blue-pale);border-color:var(--blue-light)"></div> Guide
-      </div>
-      <div class="fw-matrix-legend-item">
-        <div class="fw-matrix-legend-swatch" style="background:var(--green-light);border-color:#b2d8c0"></div> Strumenti
-      </div>
-      <div class="fw-matrix-legend-item">
-        <div class="fw-matrix-legend-swatch" style="background:var(--amber-light);border-color:#f0d990"></div> Pillole
-      </div>
-      <div class="fw-matrix-legend-item">
-        <div class="fw-matrix-legend-swatch" style="background:#FAFAFA;border-color:#ddd"></div> Gap
-      </div>
-    </div>
-    <div class="fw-matrix-mobile-msg">
-      📊 La vista matrice è disponibile solo su schermi più grandi.<br>
-      <span style="font-size:.82rem;">Usa la vista Albero su mobile.</span>
-    </div>
-    <div class="fw-heatmap-wrap">
-      <table class="fw-heatmap">
-        <thead>
-          <tr>
-            <th>Competenza</th>
-            ${headerCols}
-          </tr>
-        </thead>
-        <tbody>${righe}</tbody>
-      </table>
-    </div>`;
-}
 
 /* ── INTERAZIONI ── */
 function switchTab(tab, btn) {
@@ -709,16 +736,12 @@ function switchTab(tab, btn) {
   history.replaceState(null, '', '#' + tab);
 }
 
-function switchView(view) {
-  activeView = view;
-  document.getElementById('btn-tree').classList.toggle('active',   view === 'tree');
-  document.getElementById('btn-matrix').classList.toggle('active', view === 'matrix');
-  render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 function toggleArea(id) {
   document.getElementById(id).classList.toggle('collapsed');
+}
+
+function toggleInfoBox(id) {
+  document.getElementById(id).classList.toggle('open');
 }
 
 /* ── BACK TO TOP ── */
