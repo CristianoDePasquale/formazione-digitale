@@ -1,0 +1,149 @@
+{
+  "digcomp": {
+    "version": "2.2",
+    "label": "DigComp 2.2",
+    "description": "Framework europeo per le competenze digitali dei cittadini",
+    "source": "https://joint-research-centre.ec.europa.eu/digcomp/digcomp-framework_en",
+    "areas": [
+      {
+        "id": "DC-1",
+        "label": "Area 1 — Alfabetizzazione su dati e informazioni",
+        "short": "Informazioni",
+        "color": "#1F4E79",
+        "competences": [
+          { "id": "DC 1.1", "label": "Navigare, ricercare e filtrare dati, informazioni e contenuti digitali" },
+          { "id": "DC 1.2", "label": "Valutare dati, informazioni e contenuti digitali" },
+          { "id": "DC 1.3", "label": "Gestire dati, informazioni e contenuti digitali" }
+        ]
+      },
+      {
+        "id": "DC-2",
+        "label": "Area 2 — Comunicazione e collaborazione",
+        "short": "Comunicazione",
+        "color": "#2E75B6",
+        "competences": [
+          { "id": "DC 2.1", "label": "Interagire con le tecnologie digitali" },
+          { "id": "DC 2.2", "label": "Condividere con le tecnologie digitali" },
+          { "id": "DC 2.3", "label": "Impegnarsi nella cittadinanza con le tecnologie digitali" },
+          { "id": "DC 2.4", "label": "Collaborare con le tecnologie digitali" },
+          { "id": "DC 2.5", "label": "Netiquette" },
+          { "id": "DC 2.6", "label": "Gestire l'identità digitale" }
+        ]
+      },
+      {
+        "id": "DC-3",
+        "label": "Area 3 — Creazione di contenuti digitali",
+        "short": "Creazione",
+        "color": "#1E6B3C",
+        "competences": [
+          { "id": "DC 3.1", "label": "Sviluppare contenuti digitali" },
+          { "id": "DC 3.2", "label": "Integrare e rielaborare contenuti digitali" },
+          { "id": "DC 3.3", "label": "Copyright e licenze" },
+          { "id": "DC 3.4", "label": "Programmazione" }
+        ]
+      },
+      {
+        "id": "DC-4",
+        "label": "Area 4 — Sicurezza",
+        "short": "Sicurezza",
+        "color": "#7D4E00",
+        "competences": [
+          { "id": "DC 4.1", "label": "Proteggere i dispositivi" },
+          { "id": "DC 4.2", "label": "Proteggere i dati personali e la privacy" },
+          { "id": "DC 4.3", "label": "Proteggere la salute e il benessere" },
+          { "id": "DC 4.4", "label": "Proteggere l'ambiente" }
+        ]
+      },
+      {
+        "id": "DC-5",
+        "label": "Area 5 — Problem solving",
+        "short": "Problem solving",
+        "color": "#4A148C",
+        "competences": [
+          { "id": "DC 5.1", "label": "Risolvere problemi tecnici" },
+          { "id": "DC 5.2", "label": "Identificare i bisogni e le risposte tecnologiche" },
+          { "id": "DC 5.3", "label": "Usare creativamente le tecnologie digitali" },
+          { "id": "DC 5.4", "label": "Identificare i gap nelle competenze digitali" }
+        ]
+      }
+    ]
+  },
+  "digcompedu": {
+    "version": "2017",
+    "label": "DigCompEdu",
+    "description": "Framework europeo per le competenze digitali degli educatori",
+    "source": "https://joint-research-centre.ec.europa.eu/digcompedu_en",
+    "areas": [
+      {
+        "id": "DCEdu-1",
+        "label": "Area 1 — Coinvolgimento professionale",
+        "short": "Coinvolgimento professionale",
+        "color": "#1F4E79",
+        "competences": [
+          { "id": "DCEdu 1.1", "label": "Comunicazione organizzativa" },
+          { "id": "DCEdu 1.2", "label": "Collaborazione professionale" },
+          { "id": "DCEdu 1.3", "label": "Pratica riflessiva" },
+          { "id": "DCEdu 1.4", "label": "Aggiornamento continuo" }
+        ]
+      },
+      {
+        "id": "DCEdu-2",
+        "label": "Area 2 — Risorse digitali",
+        "short": "Risorse digitali",
+        "color": "#2E75B6",
+        "competences": [
+          { "id": "DCEdu 2.1", "label": "Selezione di risorse digitali" },
+          { "id": "DCEdu 2.2", "label": "Creazione e modifica di risorse digitali" },
+          { "id": "DCEdu 2.3", "label": "Gestione, protezione e condivisione di risorse digitali" }
+        ]
+      },
+      {
+        "id": "DCEdu-3",
+        "label": "Area 3 — Pratiche di insegnamento e apprendimento",
+        "short": "Pratiche di insegnamento",
+        "color": "#1E6B3C",
+        "competences": [
+          { "id": "DCEdu 3.1", "label": "Insegnamento" },
+          { "id": "DCEdu 3.2", "label": "Guida all'apprendimento" },
+          { "id": "DCEdu 3.3", "label": "Apprendimento collaborativo" },
+          { "id": "DCEdu 3.4", "label": "Apprendimento autoregolato" }
+        ]
+      },
+      {
+        "id": "DCEdu-4",
+        "label": "Area 4 — Valutazione e feedback",
+        "short": "Valutazione",
+        "color": "#7D4E00",
+        "competences": [
+          { "id": "DCEdu 4.1", "label": "Strategie di valutazione" },
+          { "id": "DCEdu 4.2", "label": "Analisi delle evidenze" },
+          { "id": "DCEdu 4.3", "label": "Feedback e pianificazione" }
+        ]
+      },
+      {
+        "id": "DCEdu-5",
+        "label": "Area 5 — Valorizzazione delle competenze degli studenti",
+        "short": "Valorizzazione studenti",
+        "color": "#4A148C",
+        "competences": [
+          { "id": "DCEdu 5.1", "label": "Accessibilità e inclusione" },
+          { "id": "DCEdu 5.2", "label": "Differenziazione e personalizzazione" },
+          { "id": "DCEdu 5.3", "label": "Coinvolgimento attivo degli studenti" }
+        ]
+      },
+      {
+        "id": "DCEdu-6",
+        "label": "Area 6 — Promozione delle competenze digitali degli studenti",
+        "short": "Competenze digitali studenti",
+        "color": "#B71C1C",
+        "competences": [
+          { "id": "DCEdu 6.1", "label": "Information and media literacy" },
+          { "id": "DCEdu 6.2", "label": "Comunicazione digitale" },
+          { "id": "DCEdu 6.3", "label": "Creazione di contenuti digitali" },
+          { "id": "DCEdu 6.4", "label": "Uso responsabile e benessere" },
+          { "id": "DCEdu 6.5", "label": "Problem solving digitale" }
+        ]
+      }
+    ]
+  }
+}
