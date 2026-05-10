@@ -192,7 +192,7 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 .fw-controls {
   background: #fff;
   border-bottom: 1px solid var(--blue-light);
-  padding: .75rem 1.5rem;
+  padding: .65rem 1.5rem;
   display: flex; align-items: center; justify-content: center;
   gap: 1rem; flex-wrap: wrap;
   position: sticky; top: 52px; z-index: 90;
@@ -200,42 +200,31 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 }
 .fw-tabs { display: flex; gap: .4rem; }
 .fw-tab {
-  padding: .45rem 1.1rem;
+  padding: .45rem 1.2rem;
   border-radius: 50px;
   border: 1.5px solid var(--blue-light);
   background: #fff;
-  font-family: var(--font-body); font-size: .82rem; font-weight: 600;
+  font-family: var(--font-body); font-size: .85rem; font-weight: 600;
   color: var(--gray-mid); cursor: pointer;
   transition: all var(--transition);
 }
 .fw-tab:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
 .fw-tab.active { background: var(--blue-dark); border-color: var(--blue-dark); color: #fff; }
 
-.fw-toggle { display: flex; border: 1.5px solid var(--blue-light); border-radius: 8px; overflow: hidden; }
-.fw-toggle-btn {
-  padding: .45rem .9rem;
-  border: none; background: #fff;
-  font-family: var(--font-body); font-size: .8rem; font-weight: 500;
-  color: var(--gray-mid); cursor: pointer;
-  transition: all var(--transition);
-  display: flex; align-items: center; gap: .35rem;
-}
-.fw-toggle-btn:first-child { border-right: 1px solid var(--blue-light); }
-.fw-toggle-btn:hover { background: var(--blue-pale); color: var(--blue-mid); }
-.fw-toggle-btn.active { background: var(--blue-pale); color: var(--blue-dark); font-weight: 600; }
-
 .fw-legend {
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; align-items: center; gap: .75rem;
   font-size: .72rem; color: var(--gray-mid);
+  padding: .3rem .8rem;
+  background: var(--gray-light); border-radius: 20px;
 }
 .fw-legend-item { display: flex; align-items: center; gap: .35rem; }
-.fw-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.fw-legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 .fw-legend-dot.covered { background: var(--blue-mid); }
 .fw-legend-dot.gap     { background: #ddd; border: 1.5px dashed #bbb; }
 
 /* ── CONTENUTO ALBERO ── */
 .fw-content {
-  max-width: 960px; margin: 0 auto; padding: 1.25rem 1.5rem 4rem;
+  max-width: 960px; margin: 0 auto; padding: .75rem 1.5rem 4rem;
 }
 
 /* ── CONTENUTO MATRICE (full width) ── */
@@ -246,25 +235,29 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 /* ── SUMMARY ── */
 .fw-summary {
   display: flex; gap: 1rem; flex-wrap: wrap;
-  margin-bottom: .75rem;
+  margin-bottom: .5rem;
 }
 .fw-summary-card {
   flex: 1; min-width: 140px;
   background: #fff;
   border: 1px solid var(--blue-light);
+  border-left: 4px solid var(--blue-light);
   border-radius: var(--radius);
-  padding: .9rem 1.1rem;
+  padding: .75rem 1rem;
   box-shadow: 0 1px 6px rgba(31,78,121,.06);
 }
+.fw-summary-card:nth-child(2) { border-left-color: var(--blue-mid); }
+.fw-summary-card:nth-child(4) { border-left-color: var(--green-dark); }
 .fw-summary-num {
-  font-family: var(--font-display); font-size: 1.8rem;
+  font-family: var(--font-display); font-size: 1.6rem;
   color: var(--blue-dark); line-height: 1;
 }
 .fw-summary-label {
-  font-size: .72rem; color: var(--gray-mid);
+  font-size: .7rem; color: var(--gray-mid);
   text-transform: uppercase; letter-spacing: .06em;
-  margin-top: .25rem;
+  margin-top: .2rem;
 }
+.fw-summary-card.gap-card { border-left-color: #ddd; }
 .fw-summary-card.gap-card .fw-summary-num { color: #bbb; }
 
 /* ── VISTA ALBERO ── */
@@ -285,7 +278,7 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 .fw-area-header:hover { background: var(--blue-pale); }
 .fw-area-header-left { display: flex; align-items: center; gap: .75rem; }
 .fw-area-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-.fw-area-label { font-family: var(--font-display); font-size: 1rem; color: var(--blue-dark); }
+.fw-area-label { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: var(--blue-dark); }
 .fw-area-header-right { display: flex; align-items: center; gap: .75rem; }
 .fw-area-badge {
   font-size: .7rem; font-weight: 600;
@@ -293,7 +286,11 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
   background: var(--blue-pale); color: var(--blue-mid);
 }
 .fw-area-badge.has-resources { background: var(--blue-mid); color: #fff; }
-.fw-area-chevron { font-size: .75rem; color: var(--gray-mid); transition: transform var(--transition); }
+.fw-area-chevron {
+  width: 18px; height: 18px; flex-shrink: 0;
+  color: var(--blue-mid);
+  transition: transform var(--transition);
+}
 .fw-area.collapsed .fw-area-chevron { transform: rotate(-90deg); }
 .fw-competences { border-top: 1px solid var(--blue-light); }
 .fw-area.collapsed .fw-competences { display: none; }
@@ -333,7 +330,13 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 }
 .fw-gap-label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: #ddd; }
 
-/* ── VISTA MATRICE HEATMAP ── */
+/* ── SUMMARY LABEL ── */
+.fw-summary-context {
+  font-size: .72rem; color: var(--gray-mid);
+  text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: .5rem;
+  padding-left: .1rem;
+}
 .fw-matrix-mobile-msg {
   display: none;
   padding: 2rem; text-align: center;
@@ -593,7 +596,7 @@ body { font-family: var(--font-body); color: var(--gray-dark); background: #F0F6
 <div id="fw-wrapper">
   <!-- Summary sempre visibile -->
   <div class="fw-content">
-    <div id="fw-summary" class="fw-summary"></div>
+    <div id="fw-summary"></div>
   </div>
 
   <!-- Vista albero -->
@@ -672,21 +675,24 @@ function renderSummary(fwData) {
   ).size;
 
   document.getElementById('fw-summary').innerHTML = `
-    <div class="fw-summary-card">
-      <div class="fw-summary-num">${allComps.length}</div>
-      <div class="fw-summary-label">Competenze totali</div>
-    </div>
-    <div class="fw-summary-card">
-      <div class="fw-summary-num" style="color:var(--blue-mid)">${covered.length}</div>
-      <div class="fw-summary-label">Competenze coperte</div>
-    </div>
-    <div class="fw-summary-card gap-card">
-      <div class="fw-summary-num">${gaps}</div>
-      <div class="fw-summary-label">Gap da colmare</div>
-    </div>
-    <div class="fw-summary-card">
-      <div class="fw-summary-num" style="color:var(--green-dark)">${risorse}</div>
-      <div class="fw-summary-label">Risorse mappate</div>
+    <div class="fw-summary-context">${fwData.label} — stato attuale del portale</div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;width:100%">
+      <div class="fw-summary-card">
+        <div class="fw-summary-num">${allComps.length}</div>
+        <div class="fw-summary-label">Competenze totali</div>
+      </div>
+      <div class="fw-summary-card">
+        <div class="fw-summary-num" style="color:var(--blue-mid)">${covered.length}</div>
+        <div class="fw-summary-label">Competenze coperte</div>
+      </div>
+      <div class="fw-summary-card gap-card">
+        <div class="fw-summary-num">${gaps}</div>
+        <div class="fw-summary-label">Gap da colmare</div>
+      </div>
+      <div class="fw-summary-card">
+        <div class="fw-summary-num" style="color:var(--green-dark)">${risorse}</div>
+        <div class="fw-summary-label">Risorse mappate</div>
+      </div>
     </div>`;
 }
 
@@ -724,7 +730,7 @@ function renderTree(fwData) {
           </div>
           <div class="fw-area-header-right">
             <span class="fw-area-badge${nRis > 0 ? ' has-resources' : ''}">${pluraleRisorse(nRis)}</span>
-            <span class="fw-area-chevron">▾</span>
+            <svg class="fw-area-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
         </div>
         <div class="fw-competences">${compsHtml}</div>
