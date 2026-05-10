@@ -655,11 +655,14 @@ body {
 @media print {
   .dce-header, #progress-bar, .export-bar, .btn-restart,
   .screen.active:not(#screen-report),
-  #screen-intro, #screen-quiz { display: none !important; }
+  #screen-intro, #screen-quiz,
+  .resources-section, .dce-footer { display: none !important; }
   #screen-report { display: block !important; }
-  .dce-footer { display: none; }
   body { background: #fff; }
+  .dce-wrap { padding: 1rem; }
   .report-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .radar-section, .area-breakdown,
+  .strengths-section, .gaps-section { box-shadow: none; }
 }
 
 /* ── ANIMAZIONI ENTRATA ── */
@@ -1207,7 +1210,7 @@ function levelToScore(code) {
 // ── RADAR SVG ─────────────────────────────────────────────────────
 function renderRadar(areaScores) {
   const N    = areaScores.length; // 6
-  const CX   = 200, CY = 200, R = 150;
+  const CX   = 240, CY = 240, R = 185;
   const MAX_SCORE = 6;
 
   // Angoli (partendo dall'alto, senso orario)
@@ -1269,7 +1272,7 @@ function renderRadar(areaScores) {
   });
 
   const svg = `
-    <svg viewBox="0 0 400 400" width="340" height="340" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 480 480" width="420" height="420" xmlns="http://www.w3.org/2000/svg">
       ${webs}
       ${axes}
       <polygon points="${polyData}"
