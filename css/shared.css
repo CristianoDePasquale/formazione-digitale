@@ -76,7 +76,10 @@ body {
 .header-logo {
   font-family: var(--font-display);
   font-size: 1.05rem; color: #fff; letter-spacing: .01em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  max-width: 160px;
 }
+@media(min-width:600px) { .header-logo { max-width: none; } }
 
 /* Sottotitolo (visibile da 600px) */
 .header-sub {
