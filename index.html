@@ -781,6 +781,18 @@ body.modal-open { overflow: hidden; }
   .hero-map-btn { width: 100%; justify-content: center; }
 }
 
+.pin-tooltip {
+  display: none;
+  position: absolute;
+  right: 0; bottom: calc(100% + 8px);
+  background: var(--blue-dark); color: #fff;
+  font-size: .75rem; font-family: var(--font-body);
+  padding: .4rem .75rem; border-radius: 6px;
+  white-space: nowrap; pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.pin-tooltip.visible { display: block; }
+
 </style>
 
 </head>
@@ -1356,7 +1368,9 @@ body.modal-open { overflow: hidden; }
       <h3>Nuove risorse in arrivo</h3>
       <p>Il portale è in crescita. Torna a visitarlo o salva il link tra i preferiti per trovare le prossime guide e pillole digitali.</p>
     </div>
-    <div style="font-size:2rem;">📌</div>
+    <div class="pin-bookmark" onclick="showBookmarkTip(this)" title="Salva tra i preferiti" style="font-size:2rem;cursor:pointer;position:relative;">📌
+	  <span class="pin-tooltip">Premi Ctrl+D (⌘+D su Mac) per salvare!</span>
+	</div>
   </div>
 
 </main>
@@ -1642,6 +1656,13 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAbout()
     if (el) el.classList.add(f);
   }
 })();
+
+function showBookmarkTip(el) {
+  const tip = el.querySelector('.pin-tooltip');
+  tip.classList.add('visible');
+  setTimeout(() => tip.classList.remove('visible'), 2500);
+}
+
 </script>
 
 <script src="/scripts/ui.js" defer></script>
