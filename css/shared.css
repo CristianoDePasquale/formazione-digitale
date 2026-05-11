@@ -422,6 +422,15 @@ footer a { color: var(--blue-light); text-decoration: none; }
 @media(min-width:600px) { .btn-dl-label { display: inline; } }
 
 /* ── DOWNLOAD BAR MOBILE ─────────────────────────────────────────── */
+.mode-toggle {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+  color: #fff; border-radius: 20px; padding: .35rem .9rem;
+  font-size: .78rem; font-weight: 500; font-family: var(--font-body);
+  cursor: pointer; white-space: nowrap; transition: background .2s;
+}
+.mode-toggle:hover { background: rgba(255,255,255,.22); }
+
 .header-downloads {
   display: flex; align-items: center; gap: .5rem;
 }
@@ -441,15 +450,6 @@ footer a { color: var(--blue-light); text-decoration: none; }
   .mode-toggle { display: none; }
 }
 body.aula-mode .header-downloads { display: none !important; }
-
-.mode-toggle {
-  display: inline-flex; align-items: center; gap: .4rem;
-  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
-  color: #fff; border-radius: 20px; padding: .35rem .9rem;
-  font-size: .78rem; font-weight: 500; font-family: var(--font-body);
-  cursor: pointer; white-space: nowrap; transition: background .2s;
-}
-.mode-toggle:hover { background: rgba(255,255,255,.22); }
 
 /* ── 14. NAV PART LABEL ──────────────────────────────────────────── */
 .nav-part-label {
