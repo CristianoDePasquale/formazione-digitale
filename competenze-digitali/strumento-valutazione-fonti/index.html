@@ -995,10 +995,12 @@ function updateProgress(n) {
   const steps = [0,1,2,3];
   steps.forEach(i => {
     const el = document.getElementById('prog-' + i);
-    if (i < n)       el.className = 'progress-step done';
+    if (!el) return;
+    if (i < n)        el.className = 'progress-step done';
     else if (i === n) el.className = 'progress-step active';
-    else             el.className = 'progress-step';
+    else              el.className = 'progress-step';
   });
+  
   // Step 0 = Fonte (pre-analisi), step 1-3 = blocchi di analisi, step 4 = report
   const labels = ['Fonte', '1/3 · CRAAP', '2/3 · Lateral', '3/3 · Immagini'];
   document.getElementById('progress-label').textContent =
@@ -1213,7 +1215,7 @@ function generateReport() {
     domande.forEach(d => {
       const r = analisi.risposte[d];
       if (!r) return;
-      const dotClass = { green:'dot-green', yellow:'dot-yellow', red:'dot-red', neutral:'dot-neutral' }[r.colore];
+      const dotClass = { green:'dot-green', yellow:'dot-yellow', orange:'dot-orange', red:'dot-red', neutral:'dot-neutral' }[r.colore];
       const contrib = VAL[r.colore] !== null
         ? Math.round(VAL[r.colore] * r.peso * 10) / 10
         : '—';
