@@ -15,7 +15,7 @@ linkcolor: "blue"
 
 # Panoramica del progetto
 
-**Formazione Digitale** è un portale statico di alfabetizzazione digitale che eroga guide pratiche, strumenti interattivi e pillole di contenuto. Le risorse sono libere, gratuite e senza prerequisiti.
+**Formazione Digitale** è un portale statico di alfabetizzazione digitale che eroga guide pratiche, strumenti interattivi e pillole di contenuto. Le risorse sono libere, gratuite e senza prerequisiti. Il portale è usato come riferimento didattico per studenti e docenti — portale di riferimento scolastico istituzionale (IIS Einaudi Chiari, BS).
 
 | Campo | Valore |
 |---|---|
@@ -38,7 +38,7 @@ La root contiene i file di configurazione e i JS condivisi. Ogni risorsa vive ne
 formazione-digitale/
 |--- index.html
 |--- mappa.html
-|--- mappa-framework/                ← Pagina navigazione DigComp/DigCompEdu (in sviluppo)
+|--- mappa-framework.html
 |--- 404.html
 |--- privacy-policy.html
 |--- cookie-policy.html
@@ -46,11 +46,11 @@ formazione-digitale/
 |--- site.webmanifest
 |--- robots.txt
 |--- sitemap.xml
-|--- vercel.json
 |--- sw.js
 |--- stats.js
 |--- supabase.js
 |--- auth.js
+|--- .gitignore
 |--- css/shared.css
 |--- img/
 |--- docs/
@@ -61,6 +61,7 @@ formazione-digitale/
 |   |--- aggiungi_link_footer.py
 |   |--- replace_in_files.py
 |   |--- inject_after.py
+|   |--- zip_risorse.py              ← Genera ZIP contesto per IA (esclude binari e .git)
 |   \--- struttura.bat
 |--- sicurezza/
 |   |--- pillola-cybersicurezza/
@@ -68,13 +69,27 @@ formazione-digitale/
 |--- competenze-digitali/
 |   |--- pillola-wikipedia-speedrun/
 |   |--- pillola-valutazione-fonti/
-|   \--- strumento-valutazione-fonti/
+|   |--- pillola-aggiornamento-digitale/
+|   |--- strumento-valutazione-fonti/
+|   \--- strumento-autovalutazione-digcompedu/
 |--- intelligenza-artificiale/
+|   |--- guida-prompting/
+|   |--- guida-peer-review-ia/
+|   \--- prompt-builder/
 |--- elaborazione-testi/
+|   \--- guida-word/
 |--- database/
+|   \--- guida-libreoffice-base-query/   ← Pattern CSS proprietario — NON collegare a shared.css
 |--- marketing/
+|   |--- guida-marketing/
+|   |--- pillola-seo/
+|   |--- analizzatore-seo/
+|   \--- break-even-point-tool/
 |--- networking/
+|   |--- subnet-calculator/
+|   \--- hfs-server/
 \--- sistemi/
+    \--- codifica-binaria/
 ```
 
 ---
@@ -95,6 +110,8 @@ File CSS condiviso caricato da tutte le pagine tramite path assoluto. Contiene:
 - Footer — stile base per tag `<footer>` semantico
 - Auth UI: bottone login, modal accesso, modal profilo, bottone segnalibro
 - GUIDE LAYOUT — `.guide-header`, hamburger, layout griglia
+- `.header-downloads` — barra download file allegati (desktop: inline header; mobile <600px: barra fissa sotto header)
+- `.mode-toggle` — nascosto su mobile (<600px) perché non utile
 - Responsive mobile < 640px per sottopagine standard
 - Dark mode — variabili e override componenti (pianificato)
 
@@ -104,9 +121,24 @@ File CSS condiviso caricato da tutte le pagine tramite path assoluto. Contiene:
 
 > **Nota:** incrementare `?v=N` ad ogni modifica significativa per invalidare la cache.
 
+## Pattern header-downloads (nuovo — 11/05/2026)
+
+Per pagine con file allegati scaricabili, usare `.header-downloads` come wrapper dei `.btn-download` dentro `header-right`. Su desktop appaiono nell'header. Su mobile (<600px) diventano una barra fissa sotto l'header, scrollabile orizzontalmente. Usare `body.aula-mode` per nasconderli in modalità presentazione.
+
+```html
+<div class="header-right">
+  <div class="header-downloads">
+    <a class="btn-download" href="file.pptx" download>...</a>
+  </div>
+  <button class="mode-toggle">...</button>
+</div>
+```
+
 ## CSS specifico per pagina
 
-Ogni pagina mantiene un proprio `<style>` inline per componenti non condivisi. Le pagine con design system proprietario (LibreOffice Base, Word) non usano `shared.css`.
+Ogni pagina mantiene un proprio `<style>` inline per componenti non condivisi.
+
+> **NOTA:** `database/guida-libreoffice-base-query` e le future guide LibreOffice usano un sistema CSS proprietario — palette dedicata, ~50 variabili custom. **Non collegare a shared.css.** Questo sarà il pattern base per tutte le guide LibreOffice future (1-2 in arrivo). Decidere poi se creare un secondo shared dedicato.
 
 ---
 
@@ -119,6 +151,7 @@ Ogni pagina mantiene un proprio `<style>` inline per componenti non condivisi. L
 | `supabase.js` | Client Supabase condiviso. Esporta `supabase` per import ES module. **ATTENZIONE:** contiene anon key — pianificata migrazione a variabile d'ambiente Vercel (settembre 2026). |
 | `auth.js` | Gestisce login magic link, logout, stato sessione, segnalibri. Importa `supabase.js`. |
 | `scripts/ui.js` | Gestisce `initThemeToggle()`, localStorage tema, sincronizzazione sistema operativo. |
+| `scripts/zip_risorse.py` | Genera ZIP del progetto escludendo binari, immagini e `.git`. Output nella root con timestamp. Usare per passare contesto alle IA. |
 
 ---
 
@@ -143,7 +176,7 @@ File JSON unica fonte di verità per tutte le risorse del portale. I campi frame
 | `digcompedu` | Array competenze DigCompEdu (es. `["DCEdu 6.4"]`) |
 | `digcomp_areas` | Array aree tematiche DigComp |
 
-Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `mappa-framework/` (navigazione per competenza), `sitemap.xml` tramite `genera_sitemap.py`.
+Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `mappa-framework.html` (navigazione per competenza), `sitemap.xml` tramite `genera_sitemap.py`.
 
 > **Regola:** quando aggiungi una risorsa, aggiorna **manifest.json** + **index.html** (card) + aggiorna `stats.js` (`gcPagine`) + rilancia `genera_sitemap.py`.
 
@@ -160,8 +193,9 @@ Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `mapp
 | URL produzione | https://formazione-digitale.it |
 | Deploy | Automatico da push su branch main GitHub |
 | Preview | Ogni branch genera URL preview univoco |
-| Configurazione | `vercel.json` — redirect 301, header di sicurezza |
-| Serverless Functions | Pianificate per settembre 2026 (proxy Supabase sicuro) |
+| Configurazione domini | formazione-digitale.it → Production · www → 301 redirect a non-www |
+
+> **NOTA:** Non esiste `vercel.json` nel progetto. I redirect www→non-www sono configurati direttamente nel dashboard Vercel (Settings → Domains). HTTP→HTTPS gestito automaticamente da Vercel.
 
 ## Aruba (registrar dominio)
 
@@ -211,7 +245,8 @@ Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `mapp
 |---|---|
 | Proprietà attiva | formazione-digitale.it |
 | Cambio indirizzo | Completato il 09/05/2026: github.io → formazione-digitale.it |
-| Sitemap inviata | https://www.formazione-digitale.it/sitemap.xml |
+| Sitemap inviata | https://formazione-digitale.it/sitemap.xml |
+| Stato indicizzazione | In corso — crawl completo atteso entro 2-6 settimane |
 
 ## Google Fonts
 
@@ -267,6 +302,89 @@ Il sito non utilizza cookie di profilazione. GoatCounter è privacy-first e non 
 
 ---
 
+# Audit SEO/Accessibilità — 11/05/2026
+
+## Bug urgenti da fixare
+
+### 1. `<br>` in H1 senza spazio — 4 file
+
+I browser concatenano il testo ignorando il `<br>` — screen reader e Google leggono parole attaccate. Fix: aggiungere uno spazio prima del `<br>`.
+
+| File | H1 attuale | Problema |
+|---|---|---|
+| `index.html` | `Formazione<br><em>Digitale</em>` | → "FormazioneDigitale" |
+| `sicurezza/guida-cybersicurezza/` | `Cybersicurezza<br><em>Personale</em>` | → "CybersicurezzaPersonale" |
+| `sicurezza/pillola-cybersicurezza/` | `Cybersicurezza<br><em>in 5 minuti</em>` | → "Cybersicurezzain 5 minuti" |
+| `competenze-digitali/pillola-valutazione-fonti/` | `Come fai a sapere<br><em>se è vero?</em>` | → "Come fai a saperese è vero?" |
+
+### 2. cover-title da convertire in H1 — 6 file
+
+Le pagine usano `<div class="cover-title">` invece di `<h1>`. Fix: convertire in `<h1 class="cover-title">` senza toccare il CSS.
+
+- `competenze-digitali/pillola-wikipedia-speedrun/`
+- `elaborazione-testi/guida-word/`
+- `intelligenza-artificiale/guida-peer-review-ia/`
+- `intelligenza-artificiale/guida-prompting/`
+- `marketing/analizzatore-seo/`
+- `marketing/pillola-seo/`
+
+### 3. 404.html — meta/OG/canonical mancanti
+
+Aggiungere meta description, Open Graph tags e canonical.
+
+### 4. mappa.html — footer mancante + H1 da verificare
+
+Il titolo è solo nell'header fisso, non nel contenuto — verificare se serve H1 nel body.
+
+### 5. strumento-valutazione-fonti — footer mancante + H1 da verificare
+
+Possibile titolo iniettato via JS — verificare manualmente.
+
+### 6. mappa-framework.html — ui.js mancante
+
+Manca il back-to-top button.
+
+## Debito CSS — da affrontare prima del dark mode
+
+- Variabili colori semantici ricorrenti (`#4caf80`, `#c0392b`, `#f39c12`) da variabilizzare come `--green-success`, `--red-error` in `shared.css`
+- `marketing/analizzatore-seo` — 49 proprietà hardcoded con palette Google Search Console (by design, ma da isolare)
+- `strumento-autovalutazione-digcompedu` — salta da H1 a H3, nessun H2 (struttura heading rotta)
+
+---
+
+# Broken links — run 11/05/2026
+
+Usare `blc https://formazione-digitale.it -ro | findstr "BROKEN"` per il check settimanale.
+
+## Link interni 404 — da fixare
+
+| File | Link rotto | Fix |
+|---|---|---|
+| `intelligenza-artificiale/guida-peer-review-ia/` | `Guida_Prompting.html` | → `/intelligenza-artificiale/guida-prompting/` |
+| `intelligenza-artificiale/guida-peer-review-ia/` | `prompt-builder.html` | → `/intelligenza-artificiale/prompt-builder/` |
+| `marketing/break-even-point-tool/` | `marketing/index.html` | → rimuovere o correggere |
+| `networking/hfs-server/` | `networking/index.html` | → rimuovere o correggere |
+
+## Link esterni da aggiornare
+
+| File | Link rotto | Fix |
+|---|---|---|
+| `intelligenza-artificiale/guida-prompting/` | `docs.claude.ai/en/docs/...` | → `docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview` |
+| `competenze-digitali/pillola-valutazione-fonti/` | `ilpost.it/fact-checking/` | → `open.online/fact-checking/` + `facta.news` |
+| `competenze-digitali/pillola-aggiornamento-digitale/` | `etwinning.net` | → da trovare alternativa |
+| `privacy-policy.html` | `formspree.io/legal/privacy-policy` | → aggiungere slash finale |
+
+## Falsi positivi (lasciare così)
+
+- `platform.openai.com` — HTTP 403, sito blocca crawler
+- `mediabiasfactcheck.com` — BLC_UNKNOWN, sito blocca crawler
+- `weverify.eu` — BLC_UNKNOWN, sito blocca crawler
+- `datareportal.com` — BLC_UNKNOWN, sito blocca crawler
+- `support.google.com/chrome/answer/95647` — HTTP 404 da crawler, pagina funzionante
+- `education.ec.europa.eu/selfie-for-teachers` — BLC_UNKNOWN, sito EU funzionante
+
+---
+
 # Script di manutenzione locale
 
 | Script | Funzione |
@@ -278,73 +396,7 @@ Il sito non utilizza cookie di profilazione. GoatCounter è privacy-first e non 
 | `replace_in_files.py` | Trova e sostituisce una stringa in tutti gli HTML. |
 | `inject_after.py` | Inietta una stringa dopo un'occorrenza in tutti gli HTML. Idempotente. |
 | `struttura.bat` | Genera `struttura.txt` con albero cartelle. |
-
----
-
-# Workflow — aggiungere una nuova risorsa
-
-1. Crea la cartella: `/categoria/nome-risorsa/`
-2. Crea `index.html` con link a `shared.css` e CSS specifico inline
-3. Aggiungi la voce a `manifest.json` con tutti i campi inclusi `digcomp`/`digcompedu`
-4. Aggiungi la card in `index.html` nella sezione corretta
-5. Aggiorna `gcPagine` in `stats.js` con il nuovo path
-6. Lancia `scripts/genera_sitemap.py` per aggiornare `sitemap.xml`
-7. Push su GitHub — Vercel pubblica in 1-2 minuti automaticamente
-8. Verifica: card visibile, filtro funzionante, ricerca per tag, link corretto
-
----
-
-# Copertura DigComp / DigCompEdu / INDIRE
-
-La navigazione per competenza è disponibile nella pagina dedicata `mappa-framework/` (pagina unica con tab DigComp 2.2 / DigCompEdu, vista albero e vista matrice). I tag framework non compaiono nelle card dell'homepage.
-
-## DigComp 2.2 — copertura attuale
-
-| Area | Competenze coperte | Risorse principali |
-|---|---|---|
-| **1 — Informazione** | DC 1.1, DC 1.2 | Wikipedia Speedrun, Pillola Valutazione Fonti, Strumento Verifica Fonti |
-| **2 — Comunicazione** | DC 2.1, DC 2.6 | Wikipedia Speedrun, Cybersicurezza |
-| **3 — Creazione** | DC 3.1, DC 3.2 | Word, Prompting, Peer-review IA |
-| **4 — Sicurezza** | DC 4.1, DC 4.2 | Pillola/Guida Cybersicurezza |
-| **5 — Problem solving** | DC 5.1, DC 5.2 | LibreOffice Base, BEP Tool, Subnet Calculator |
-
-**Area 1 — Informazione** è la più coperta del portale, con tre risorse dedicate a navigazione e valutazione critica.
-
-**Gap:** DC 2.2 (condivisione), DC 2.3 (collaborazione), DC 2.4 (netiquette) non ancora coperti.
-
-## DigCompEdu — copertura attuale
-
-| Area | Competenze attivate | Note |
-|---|---|---|
-| **1 — Coinvolgimento professionale** | 1.4 | Prompting IA |
-| **2 — Risorse digitali** | 2.2, 2.3 | Più guide |
-| **3 — Pratiche di insegnamento** | 3.1, 3.2 | Strumenti interattivi, pillole |
-| **4 — Valutazione** | 4.1 | BEP Tool, Strumento Verifica Fonti |
-| **5 — Valorizzazione studenti** | 5.3 | Gamification Wikipedia |
-| **6 — Competenze digitali studenti** | 6.1, 6.2, 6.3, 6.4, 6.5 | Copertura quasi completa |
-
-**DCEdu 6.1 (Information literacy)** è la competenza più presidiata — coperta da tre risorse distinte.
-
-## INDIRE — standard attivabili
-
-| Standard | Attivato da |
-|---|---|
-| **A1 — Progettazione** | Quasi tutte le risorse |
-| **A2 — Gestione aula** | Pillole con dual-mode docente, attività Caccia alla fonte |
-| **A3 — Valutazione** | Strumento Verifica Fonti, BEP Tool, checklist interattive |
-| **A4 — Inclusione** | Dual-mode studente/docente nelle pillole |
-| **C1 — Sviluppo professionale** | Guida Prompting, Peer-review IA |
-| **C2 — Identità professionale** | PDF bilingue, documentazione metodologica |
-
-**Gap:** B1 (collaborazione tra colleghi) e B2 (coinvolgimento famiglie) — nessuna risorsa li presidia.
-
-## Priorità di sviluppo contenuti (ottica INDIRE/DigComp)
-
-| Priorità | Risorsa suggerita | Standard attivati |
-|---|---|---|
-| [!] 1 | Pillola netiquette / cittadinanza digitale | DC 2.2–2.4 · DCEdu 6.4 · INDIRE A4 |
-| [~] 2 | Guida/strumento collaborazione scolastica | INDIRE B1·B2 · DCEdu 1.2·2.3 |
-| [?] 3 | Risorsa valutazione digitale (rubric builder) | DCEdu 4.1·4.2·4.3 · INDIRE A3 |
+| `zip_risorse.py` | Genera ZIP del progetto (~374KB) escludendo binari, immagini, `.git`. Output nella root con timestamp. Configurabile via `BLACKLIST_ESTENSIONI` e `BLACKLIST_CARTELLE`. Usare con `--dry-run` per anteprima. |
 
 ---
 
@@ -363,24 +415,20 @@ Usare main direttamente solo per modifiche piccole e sicure.
 
 Il CSS di `.guide-header`, hamburger, sidebar e layout griglia era duplicato inline in ogni sottopagina standard. Migrato in `shared.css` come blocco condiviso.
 
-## Classificazione header per tipo
+## Bug mobile risolti — 11/05/2026
 
-| Tipo | Classi CSS | Pagine |
-|---|---|---|
-| Homepage | `header` + `.header-brand` inline | `index.html` |
-| Sottopagine standard | `.guide-header` (ora in `shared.css`) | Guide, pillole, strumenti con sidebar |
-| Pagine custom | `nav.sticky-bar` o `#header` | Subnet, Marketing, Prompting, SEO, Wiki |
+| Bug | Stato |
+|---|---|
+| Guida Marketing — bottoni download non funzionanti su mobile | RISOLTO — pattern `.header-downloads` |
+| Guida Marketing — mode-toggle visibile su mobile (inutile) | RISOLTO — nascosto via media query |
+| LibreOffice Base Query — navbar sparisce + manca back-to-top | RISOLTO |
 
-## Bug in coda — refactor struttura
+## Bug mobile in coda
 
 | Priorità | Bug |
 |---|---|
-| [!] | Guida Marketing — header con bottoni download su mobile troppo largo |
 | [!] | Subnet Calculator — hamburger mancante, sidebar non accessibile su mobile |
 | [!] | HFS Server — nessun menu di navigazione |
-| [!] | LibreOffice Base Query — barra navigazione sparisce durante scroll, manca back-to-top |
-| [?] | Hamburger a sinistra su Pillola SEO e Wiki Speedrun — inconsistente con pagine `.guide-header` |
-| [?] | Modalità Aula Guida Prompting — verificare fix post-deploy |
 
 ---
 
@@ -391,6 +439,11 @@ Analisi prodotta in maggio 2026. Implementazione non ancora avviata.
 ## Valutazione
 
 Il dark mode è raccomandato. Il costo reale non è tecnico — è di manutenzione CSS: ogni nuovo componente deve prevedere la variante dark. Tutto centralizzato in `shared.css`, nessuna modifica ai singoli file delle guide.
+
+## Prerequisiti prima dell'implementazione
+
+1. Variabilizzare colori semantici ricorrenti (`--green-success`, `--red-error`, ecc.) in `shared.css`
+2. Risolvere i colori hardcoded nei Tier 2
 
 ## Classificazione pagine (Tier)
 
@@ -422,6 +475,42 @@ Il dark mode è raccomandato. Il costo reale non è tecnico — è di manutenzio
 
 ---
 
+# Architettura CSS LibreOffice — shared-libreoffice.css
+
+## Decisione (11/05/2026)
+
+Le guide LibreOffice (attuale: `guida-libreoffice-base-query`, in arrivo: 1-2 guide aggiuntive) usano un sistema CSS proprietario con palette scura e toni caldi, completamente diversa da `shared.css`. Il pattern scelto è un **import a cascata**:
+
+```html
+<link rel="stylesheet" href="/css/shared.css">
+<link rel="stylesheet" href="/css/shared-libreoffice.css">
+```
+
+## Cosa eredita da shared.css
+
+- Reset universale
+- Footer semantico
+- Auth UI (login modal, segnalibri)
+- Box callout (`.box-tip`, `.box-warn`, ecc.)
+- Sidebar e overlay
+- Back-to-top (`ui.js`)
+- Dark mode override (quando implementato)
+
+## Cosa sovrascrive shared-libreoffice.css
+
+- Variabili `:root` — palette (sfondo scuro, toni caldi, accent LibreOffice)
+- Header — colore e identità visiva
+- Font se diverso dal sistema
+- Componenti specifici del DB (tabelle query, syntax highlight SQL)
+
+## Beneficio
+
+Quando `shared.css` si aggiorna (dark mode, auth UI, back-to-top), le guide LibreOffice si aggiornano automaticamente senza interventi manuali.
+
+> **PROSSIMO PASSO:** prima della seconda guida LibreOffice, estrarre il CSS proprietario da `guida-libreoffice-base-query/index.html` in `/css/shared-libreoffice.css` e collegare entrambi i file.
+
+---
+
 # Roadmap
 
 ## Completato
@@ -432,10 +521,39 @@ Il dark mode è raccomandato. Il costo reale non è tecnico — è di manutenzio
 - [OK] Sessione responsive mobile (08/05/2026)
 - [OK] Pillola Valutazione Fonti + Strumento Verifica Fonti (maggio 2026)
 - [OK] Unificazione manifest.json — eliminato manifest_digcomp.json (maggio 2026)
+- [OK] Pattern `.header-downloads` per file allegati (11/05/2026)
+- [OK] `.gitignore` creato (11/05/2026)
+- [OK] `zip_risorse.py` — tool contesto per IA (11/05/2026)
+- [OK] Redirect www→non-www configurato su Vercel dashboard (11/05/2026)
+
+## Urgente — audit SEO/accessibilità (11/05/2026)
+
+1. Fix `<br>` in H1 senza spazio (4 file) — 10 minuti
+2. Convertire `cover-title` in `<h1 class="cover-title">` (6 file) — 30 minuti
+3. `404.html` — aggiungere meta/OG/canonical — 5 minuti
+4. `mappa.html` — aggiungere footer + verificare H1 — 5 minuti
+5. `strumento-valutazione-fonti` — aggiungere footer + verificare H1 — 5 minuti
+6. `mappa-framework.html` — aggiungere `ui.js` — 2 minuti
+
+## Urgente — broken links (11/05/2026)
+
+Vedere sezione "Broken links" per dettaglio completo.
+
+## Miglioramenti strutturali — luglio/agosto 2026
+
+- `role="heading" aria-level="1"` sui `cover-title` con `replace_in_files.py` (passata unica su tutto il portale — risolve futuri audit automatici)
+- Variabilizzare colori semantici ricorrenti in `shared.css`: `--color-success`, `--color-error`, `--color-warning` — prerequisito pulito per dark mode
+- Creare `shared-libreoffice.css` prima della seconda guida LibreOffice
+- Subnet Calculator — hamburger mobile
+- HFS Server — menu navigazione mobile
+- `font-display: swap` per migliorare LCP mobile (attuale 4.8s)
+- Conversione PNG → WebP
+- Migrazione JS in `/js/`
 
 ## Bassa urgenza — quando disponibile
 
 - Disabilitazione GitHub Pages (dopo settembre 2026 — branch redirect necessario fino ad allora)
+- Nuovi contenuti: Pillola PageSpeed · Pillola Triade CIA
 
 ## Prima di aprire l'auth agli utenti reali
 
@@ -457,13 +575,6 @@ Completare **in questo ordine**:
 | [!] 1 | Pillola netiquette / cittadinanza digitale | DC 2.2–2.4 · DCEdu 6.4 · INDIRE A4 |
 | [~] 2 | Guida/strumento collaborazione scolastica | INDIRE B1·B2 · DCEdu 1.2·2.3 |
 | [?] 3 | Risorsa valutazione digitale (rubric builder) | DCEdu 4.1·4.2·4.3 · INDIRE A3 |
-
-## Miglioramenti continui
-
-- `font-display: swap` per migliorare LCP mobile (attuale 4.8s)
-- Conversione PNG → WebP
-- Migrazione JS in `/js/`
-- Nuovi contenuti: Pillola PageSpeed · Pillola Triade CIA
 
 ## Settembre 2026 — badge DigComp (ordine obbligatorio)
 
