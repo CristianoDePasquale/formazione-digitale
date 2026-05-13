@@ -84,7 +84,7 @@
   --c-sec-pill:   #FFF3CD;
 }
 
-html, body { height: 100%; font-family: var(--font-body); background: #F0F6FF; color: var(--gray-dark); }
+html, body { height: 100%; overflow: hidden; font-family: var(--font-body); background: #F0F6FF; color: var(--gray-dark); }
 
 /* ── HEADER ── */
 .map-header {
@@ -826,15 +826,11 @@ init();
 
 
 <!-- ── FOOTER ── -->
-<footer class="map-footer">
-  <strong>Formazione Digitale</strong><br>
-  Guide pratiche, strumenti e pillole di alfabetizzazione digitale.<br>
-  <span style="margin-top:.4rem;display:inline-block;">
-    <a href="/">Home</a> &nbsp;·&nbsp;
-    <a href="/mappa-framework.html">Mappa framework</a> &nbsp;·&nbsp;
-    <a href="/privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
-    <a href="/cookie-policy.html">Cookie Policy</a>
-  </span>
+<footer style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+  <a href="/">Home</a>
+  <a href="/mappa-framework.html">Mappa framework</a>
+  <a href="/privacy-policy.html">Privacy Policy</a>
+  <a href="/cookie-policy.html">Cookie Policy</a>
 </footer>
 <script src="/scripts/ui.js" defer></script>
 </body>
