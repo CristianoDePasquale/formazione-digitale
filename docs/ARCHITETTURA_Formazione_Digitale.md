@@ -61,6 +61,7 @@ formazione-digitale/
 |   |--- aggiungi_link_footer.py
 |   |--- replace_in_files.py
 |   |--- inject_after.py
+|   |--- icdl_to_json.py             ← Anonimizza export Excel ICDL → JSON per dashboard
 |   |--- zip_risorse.py              ← Genera ZIP contesto per IA (esclude binari e .git)
 |   \--- struttura.bat
 |--- sicurezza/
@@ -88,8 +89,12 @@ formazione-digitale/
 |--- networking/
 |   |--- subnet-calculator/
 |   \--- hfs-server/
-\--- sistemi/
-    \--- codifica-binaria/
+|--- sistemi/
+|   \--- codifica-binaria/
+\--- icdl/                               ← Pagine istituzionali — noindex, active:false
+    |--- index.html
+    \--- statistiche/
+            index.html
 ```
 
 ---
@@ -98,7 +103,9 @@ formazione-digitale/
 
 ## shared.css
 
-File CSS condiviso caricato da tutte le pagine tramite path assoluto. Contiene:
+File CSS condiviso caricato da tutte le pagine tramite path assoluto.
+
+Contiene:
 
 - Reset universale
 - Variabili `:root` — palette colori, font, token di layout
@@ -112,6 +119,7 @@ File CSS condiviso caricato da tutte le pagine tramite path assoluto. Contiene:
 - GUIDE LAYOUT — `.guide-header`, hamburger, layout griglia
 - `.header-downloads` — barra download file allegati (desktop: inline header; mobile <600px: barra fissa sotto header)
 - `.mode-toggle` — nascosto su mobile (<600px) perché non utile
+- `.nav-menu-btn` + `.nav-dropdown` — hamburger a tendina per pagine con nav custom (subnet-calculator, hfs-server)
 - Responsive mobile < 640px per sottopagine standard
 - Dark mode — variabili e override componenti (pianificato)
 
@@ -119,7 +127,7 @@ File CSS condiviso caricato da tutte le pagine tramite path assoluto. Contiene:
 <link rel="stylesheet" href="/css/shared.css?v=N">
 ```
 
-> **Nota:** incrementare `?v=N` ad ogni modifica significativa per invalidare la cache.
+> **Nota:** incrementare `?v=N` ad ogni modifica significativa per invalidare la cache. Versione attuale: `?v=2` per subnet-calculator e hfs-server (aggiornati 13/05/2026).
 
 ## Pattern header-downloads (nuovo — 11/05/2026)
 
@@ -133,6 +141,28 @@ Per pagine con file allegati scaricabili, usare `.header-downloads` come wrapper
   <button class="mode-toggle">...</button>
 </div>
 ```
+
+## Pattern nav-dropdown (nuovo — 13/05/2026)
+
+Per pagine con `<nav>` custom (non `.guide-header`) che necessitano di menu mobile. Usato da `subnet-calculator` e `hfs-server`.
+
+```html
+<!-- Bottone hamburger nella nav -->
+<button class="nav-menu-btn" id="nav-menu-btn" onclick="toggleNavMenu()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- Dropdown sotto la nav -->
+<div class="nav-dropdown" id="nav-dropdown">
+  <div class="nav-dropdown-label">Sezioni</div>
+  <a href="#sezione1" onclick="closeNavMenu()">Testo sezione</a>
+  <div class="nav-dropdown-divider"></div>
+  <div class="nav-dropdown-label">Download</div>
+  <a href="file.zip" download onclick="closeNavMenu()">↓ File</a>
+</div>
+```
+
+JS richiesto inline nella pagina: `toggleNavMenu()`, `closeNavMenu()`, listener click esterno.
 
 ## CSS specifico per pagina
 
@@ -150,8 +180,11 @@ Ogni pagina mantiene un proprio `<style>` inline per componenti non condivisi.
 | `stats.js` | Carica statistiche da GoatCounter API. Inietta Schema.org ItemList dinamico da `manifest.json`. Non modificare per aggiungere risorse — aggiornare solo `manifest.json`. |
 | `supabase.js` | Client Supabase condiviso. Esporta `supabase` per import ES module. **ATTENZIONE:** contiene anon key — pianificata migrazione a variabile d'ambiente Vercel (settembre 2026). |
 | `auth.js` | Gestisce login magic link, logout, stato sessione, segnalibri. Importa `supabase.js`. |
-| `scripts/ui.js` | Gestisce `initThemeToggle()`, localStorage tema, sincronizzazione sistema operativo. |
+| `scripts/ui.js` | Inietta back-to-top button in tutte le pagine. Gestisce localStorage tema. Includere con `<script src="/scripts/ui.js" defer></script>` prima di `</body>` in ogni pagina HTML. |
+| `scripts/icdl_to_json.py` | Anonimizza export Excel ICDL → JSON per la dashboard statistiche. |
 | `scripts/zip_risorse.py` | Genera ZIP del progetto escludendo binari, immagini e `.git`. Output nella root con timestamp. Usare per passare contesto alle IA. |
+
+> **Regola ui.js:** ogni file HTML del portale deve includere `<script src="/scripts/ui.js" defer></script>`. Per verificare le pagine senza ui.js: `ls -r *.html | ?{ !(sls "ui.js" $_.FullName -Quiet) } | % FullName` (PowerShell dalla root).
 
 ---
 
@@ -170,7 +203,7 @@ File JSON unica fonte di verità per tutte le risorse del portale. I campi frame
 | `meta` | Testo secondario nella card |
 | `description` | Descrizione breve usata da Schema.org ItemList |
 | `featured` | Boolean — card in evidenza (max 1 per sezione) |
-| `active` | Boolean — `false` esclude la risorsa da stats e schema |
+| `active` | Boolean — `false` esclude la risorsa da stats, mappa e schema |
 | `digcomp` | Array competenze DigComp (es. `["DC 4.1", "DC 4.2"]`) |
 | `digcomp_level` | Livello DigComp: `foundation` / `intermediate` / `advanced` |
 | `digcompedu` | Array competenze DigCompEdu (es. `["DCEdu 6.4"]`) |
@@ -179,6 +212,8 @@ File JSON unica fonte di verità per tutte le risorse del portale. I campi frame
 Consumato da: `stats.js` (GoatCounter + Schema.org), `mappa.html` (grafo), `mappa-framework.html` (navigazione per competenza), `sitemap.xml` tramite `genera_sitemap.py`.
 
 > **Regola:** quando aggiungi una risorsa, aggiorna **manifest.json** + **index.html** (card) + aggiorna `stats.js` (`gcPagine`) + rilancia `genera_sitemap.py`.
+
+> **Pagine istituzionali invisibili:** `/icdl/` e `/icdl/statistiche/` hanno `"active": false` — escluse da mappa, statistiche e Schema.org. Meta robots impostato a `noindex, nofollow`. Accessibili solo via path diretto.
 
 ---
 
@@ -299,52 +334,11 @@ Il sito non utilizza cookie di profilazione. GoatCounter è privacy-first e non 
 - Schema.org LearningResource nelle sottopagine guide
 - `sitemap.xml` inviata a GSC
 - `lang="it"` su tutti gli HTML
+- `<h1>` semantico in ogni pagina (incluse pagine con layout canvas: H1 nascosto via CSS)
 
 ---
 
-# Audit SEO/Accessibilità — 11/05/2026
-
-## Bug urgenti da fixare
-
-### 1. `<br>` in H1 senza spazio — 4 file
-
-I browser concatenano il testo ignorando il `<br>` — screen reader e Google leggono parole attaccate. Fix: aggiungere uno spazio prima del `<br>`.
-
-| File | H1 attuale | Problema |
-|---|---|---|
-| `index.html` | `Formazione<br><em>Digitale</em>` | → "FormazioneDigitale" |
-| `sicurezza/guida-cybersicurezza/` | `Cybersicurezza<br><em>Personale</em>` | → "CybersicurezzaPersonale" |
-| `sicurezza/pillola-cybersicurezza/` | `Cybersicurezza<br><em>in 5 minuti</em>` | → "Cybersicurezzain 5 minuti" |
-| `competenze-digitali/pillola-valutazione-fonti/` | `Come fai a sapere<br><em>se è vero?</em>` | → "Come fai a saperese è vero?" |
-
-### 2. cover-title da convertire in H1 — 6 file
-
-Le pagine usano `<div class="cover-title">` invece di `<h1>`. Fix: convertire in `<h1 class="cover-title">` senza toccare il CSS.
-
-- `competenze-digitali/pillola-wikipedia-speedrun/`
-- `elaborazione-testi/guida-word/`
-- `intelligenza-artificiale/guida-peer-review-ia/`
-- `intelligenza-artificiale/guida-prompting/`
-- `marketing/analizzatore-seo/`
-- `marketing/pillola-seo/`
-
-### 3. 404.html — meta/OG/canonical mancanti
-
-Aggiungere meta description, Open Graph tags e canonical.
-
-### 4. mappa.html — footer mancante + H1 da verificare
-
-Il titolo è solo nell'header fisso, non nel contenuto — verificare se serve H1 nel body.
-
-### 5. strumento-valutazione-fonti — footer mancante + H1 da verificare
-
-Possibile titolo iniettato via JS — verificare manualmente.
-
-### 6. mappa-framework.html — ui.js mancante
-
-Manca il back-to-top button.
-
-## Debito CSS — da affrontare prima del dark mode
+# Debito CSS — da affrontare prima del dark mode
 
 - Variabili colori semantici ricorrenti (`#4caf80`, `#c0392b`, `#f39c12`) da variabilizzare come `--green-success`, `--red-error` in `shared.css`
 - `marketing/analizzatore-seo` — 49 proprietà hardcoded con palette Google Search Console (by design, ma da isolare)
@@ -356,23 +350,9 @@ Manca il back-to-top button.
 
 Usare `blc https://formazione-digitale.it -ro | findstr "BROKEN"` per il check settimanale.
 
-## Link interni 404 — da fixare
+## Link risolti — 13/05/2026
 
-| File | Link rotto | Fix |
-|---|---|---|
-| `intelligenza-artificiale/guida-peer-review-ia/` | `Guida_Prompting.html` | → `/intelligenza-artificiale/guida-prompting/` |
-| `intelligenza-artificiale/guida-peer-review-ia/` | `prompt-builder.html` | → `/intelligenza-artificiale/prompt-builder/` |
-| `marketing/break-even-point-tool/` | `marketing/index.html` | → rimuovere o correggere |
-| `networking/hfs-server/` | `networking/index.html` | → rimuovere o correggere |
-
-## Link esterni da aggiornare
-
-| File | Link rotto | Fix |
-|---|---|---|
-| `intelligenza-artificiale/guida-prompting/` | `docs.claude.ai/en/docs/...` | → `docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview` |
-| `competenze-digitali/pillola-valutazione-fonti/` | `ilpost.it/fact-checking/` | → `open.online/fact-checking/` + `facta.news` |
-| `competenze-digitali/pillola-aggiornamento-digitale/` | `etwinning.net` | → da trovare alternativa |
-| `privacy-policy.html` | `formspree.io/legal/privacy-policy` | → aggiungere slash finale |
+Tutti i broken link interni ed esterni rilevati al 11/05/2026 sono stati corretti.
 
 ## Falsi positivi (lasciare così)
 
@@ -395,6 +375,7 @@ Usare `blc https://formazione-digitale.it -ro | findstr "BROKEN"` per il check s
 | `aggiungi_link_footer.py` | Aggiunge link Privacy/Cookie ai footer di tutte le sottocartelle. |
 | `replace_in_files.py` | Trova e sostituisce una stringa in tutti gli HTML. |
 | `inject_after.py` | Inietta una stringa dopo un'occorrenza in tutti gli HTML. Idempotente. |
+| `icdl_to_json.py` | Anonimizza export Excel ICDL → JSON per la dashboard statistiche. |
 | `struttura.bat` | Genera `struttura.txt` con albero cartelle. |
 | `zip_risorse.py` | Genera ZIP del progetto (~374KB) escludendo binari, immagini, `.git`. Output nella root con timestamp. Configurabile via `BLACKLIST_ESTENSIONI` e `BLACKLIST_CARTELLE`. Usare con `--dry-run` per anteprima. |
 
@@ -415,20 +396,15 @@ Usare main direttamente solo per modifiche piccole e sicure.
 
 Il CSS di `.guide-header`, hamburger, sidebar e layout griglia era duplicato inline in ogni sottopagina standard. Migrato in `shared.css` come blocco condiviso.
 
-## Bug mobile risolti — 11/05/2026
+## Bug mobile risolti
 
-| Bug | Stato |
-|---|---|
-| Guida Marketing — bottoni download non funzionanti su mobile | RISOLTO — pattern `.header-downloads` |
-| Guida Marketing — mode-toggle visibile su mobile (inutile) | RISOLTO — nascosto via media query |
-| LibreOffice Base Query — navbar sparisce + manca back-to-top | RISOLTO |
-
-## Bug mobile in coda
-
-| Priorità | Bug |
-|---|---|
-| [!] | Subnet Calculator — hamburger mancante, sidebar non accessibile su mobile |
-| [!] | HFS Server — nessun menu di navigazione |
+| Bug | Data | Stato |
+|---|---|---|
+| Guida Marketing — bottoni download non funzionanti su mobile | 11/05/2026 | RISOLTO — pattern `.header-downloads` |
+| Guida Marketing — mode-toggle visibile su mobile (inutile) | 11/05/2026 | RISOLTO — nascosto via media query |
+| LibreOffice Base Query — navbar sparisce + manca back-to-top | 11/05/2026 | RISOLTO |
+| Subnet Calculator — hamburger mancante, sidebar non accessibile su mobile | 13/05/2026 | RISOLTO — pattern `.nav-menu-btn` + `.nav-dropdown` in `shared.css` |
+| HFS Server — nessun menu di navigazione mobile | 13/05/2026 | RISOLTO — pattern `.nav-menu-btn` + `.nav-dropdown` in `shared.css` |
 
 ---
 
@@ -525,27 +501,20 @@ Quando `shared.css` si aggiorna (dark mode, auth UI, back-to-top), le guide Libr
 - [OK] `.gitignore` creato (11/05/2026)
 - [OK] `zip_risorse.py` — tool contesto per IA (11/05/2026)
 - [OK] Redirect www→non-www configurato su Vercel dashboard (11/05/2026)
-
-## Urgente — audit SEO/accessibilità (11/05/2026)
-
-1. Fix `<br>` in H1 senza spazio (4 file) — 10 minuti
-2. Convertire `cover-title` in `<h1 class="cover-title">` (6 file) — 30 minuti
-3. `404.html` — aggiungere meta/OG/canonical — 5 minuti
-4. `mappa.html` — aggiungere footer + verificare H1 — 5 minuti
-5. `strumento-valutazione-fonti` — aggiungere footer + verificare H1 — 5 minuti
-6. `mappa-framework.html` — aggiungere `ui.js` — 2 minuti
-
-## Urgente — broken links (11/05/2026)
-
-Vedere sezione "Broken links" per dettaglio completo.
+- [OK] Guida ICDL + Dashboard statistiche ICDL — aggiunte al portale (maggio 2026)
+- [OK] Script `icdl_to_json.py` per anonimizzazione export Excel ICDL (maggio 2026)
+- [OK] Audit SEO completo (13/05/2026): `<br>` in H1 (4 file), `cover-title` → `<h1>` (5 file), `404.html` meta/OG, `mappa.html` footer + H1, `strumento-valutazione-fonti` footer + H1 + `ui.js`, `mappa-framework.html` `ui.js`
+- [OK] Broken links risolti — tutti i link interni ed esterni (13/05/2026)
+- [OK] Hamburger mobile Subnet Calculator e HFS Server — pattern `.nav-menu-btn` + `.nav-dropdown` in `shared.css` (13/05/2026)
+- [OK] `mappa.html` — footer visibile fisso in basso, H1 nascosto per SEO (13/05/2026)
+- [OK] Pagine ICDL — `noindex, nofollow` + `active: false` in manifest (invisibili, solo accesso diretto) (13/05/2026)
+- [OK] `mappa.html` — doppio `ui.js` fuori da `</body>` corretto (13/05/2026)
 
 ## Miglioramenti strutturali — luglio/agosto 2026
 
 - `role="heading" aria-level="1"` sui `cover-title` con `replace_in_files.py` (passata unica su tutto il portale — risolve futuri audit automatici)
 - Variabilizzare colori semantici ricorrenti in `shared.css`: `--color-success`, `--color-error`, `--color-warning` — prerequisito pulito per dark mode
 - Creare `shared-libreoffice.css` prima della seconda guida LibreOffice
-- Subnet Calculator — hamburger mobile
-- HFS Server — menu navigazione mobile
 - `font-display: swap` per migliorare LCP mobile (attuale 4.8s)
 - Conversione PNG → WebP
 - Migrazione JS in `/js/`
