@@ -1,5 +1,11 @@
 {
-  "generato_il": "2026-05-12",
+  "generato_il": "2026-05-13",
+  "certificazioni": {
+    "ICDL Essentials": 9,
+    "ICDL Base": 2,
+    "ICDL Cyber Security": 2,
+    "ICDL Full Standard": 0
+  },
   "esami": [
     {
       "certificazione": "ICDL",

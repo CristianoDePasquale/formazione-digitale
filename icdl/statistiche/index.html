@@ -140,9 +140,6 @@ header {
 }
 .hero h1 em { color: #7FB3F5; font-style: normal; }
 .hero h1 .sub-titolo { display: block; font-size: .58em; color: rgba(255,255,255,.7); margin-top: .15em; }
-
-
-.hero h1 em { color: #7FB3F5; font-style: normal; }
 .hero-sub {
   font-size: .9rem; color: rgba(255,255,255,.75);
   line-height: 1.7;
@@ -263,6 +260,18 @@ header {
   font-weight: 600;
 }
 
+/* ── CERT GRID ──────────────────────────────────────────────────── */
+.cert-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 1rem; margin-bottom: 1rem;
+}
+.cert-grid .kpi-card { flex: 1 1 200px; max-width: 260px; }
+.cert-nota {
+  font-size: .72rem; color: var(--gray-mid);
+  text-align: center; margin-bottom: 2.5rem;
+  font-family: var(--mono);
+}
+
 /* ── CHARTS GRID ────────────────────────────────────────────────── */
 .charts-grid {
   display: grid;
@@ -283,7 +292,7 @@ header {
 }
 .chart-subtitle { font-size: .78rem; color: var(--gray-mid); margin-bottom: 1.25rem; }
 .chart-wrap { position: relative; }
-.chart-wrap.radar { height:	360px; }
+.chart-wrap.radar { height: 360px; }
 .chart-wrap.donut { height: 300px; }
 .chart-wrap.bar   { height: 360px; }
 .chart-wrap.hist  { height: 360px; }
@@ -296,24 +305,24 @@ table.moduli {
 }
 table.moduli thead th {
   background: var(--icdl-blue); color: #fff;
-  padding: .6rem 1rem; text-align: left;
+  padding: .6rem 1rem; text-align: center;
   font-weight: 500; font-size: .75rem; letter-spacing: .06em;
 }
-table.moduli thead th:first-child { border-radius: 8px 0 0 0; }
-table.moduli thead th:last-child  { border-radius: 0 8px 0 0; text-align: right; }
+table.moduli thead th:first-child { border-radius: 8px 0 0 0; text-align: left; }
+table.moduli thead th:last-child  { border-radius: 0 8px 0 0; }
 table.moduli tbody tr {
   border-bottom: 1px solid var(--blue-light);
   transition: background .15s;
 }
 table.moduli tbody tr:hover { background: var(--blue-pale); }
-table.moduli tbody td { padding: .75rem 1rem; }
-table.moduli tbody td:last-child { text-align: right; }
+table.moduli tbody td { padding: .75rem 1rem; text-align: center; }
+table.moduli tbody td:first-child { text-align: left; }
 
 .bar-inline {
   display: flex; align-items: center; gap: .6rem;
 }
 .bar-track-inline {
-  flex: 1; height: 8px; background: var(--blue-light);
+  flex: 1; min-width: 160px; height: 8px; background: var(--blue-light);
   border-radius: 4px; overflow: hidden;
 }
 .bar-fill-inline {
@@ -325,6 +334,11 @@ table.moduli tbody td:last-child { text-align: right; }
   font-weight: 600; min-width: 2.8rem; text-align: right;
 }
 .badge-pass {
+  display: inline-block; font-size: .68rem; font-weight: 700;
+  padding: .15rem .5rem; border-radius: 20px;
+  background: #C8E6C9; color: #388E3C;
+}
+.badge-pass-soft {
   display: inline-block; font-size: .68rem; font-weight: 700;
   padding: .15rem .5rem; border-radius: 20px;
   background: var(--pass-light); color: var(--pass);
@@ -481,6 +495,11 @@ table.moduli tbody td:last-child { text-align: right; }
     </div>
   </div>
 
+  <!-- CERTIFICAZIONI RILASCIATE -->
+  <div class="sec-label">Certificazioni rilasciate</div>
+  <div class="cert-grid" id="cert-grid"></div>
+  <div class="cert-nota" id="cert-nota"></div>
+
   <!-- GRAFICI RIGA 1 -->
   <div class="sec-label">Distribuzione esiti e punteggi</div>
   <div class="charts-grid">
@@ -615,7 +634,7 @@ table.moduli tbody td:last-child { text-align: right; }
 <script>
 /* ══════════════════════════════════════════════════════════════════
    ICDL STATISTICHE — script principale
-   Fetcha data.json, applica filtro date con slider doppio, 
+   Fetcha data.json, applica filtro date con slider doppio,
    aggiorna KPI e grafici in tempo reale.
 ══════════════════════════════════════════════════════════════════ */
 
@@ -665,6 +684,7 @@ async function init() {
 
     initSlider();
     render();
+    renderCert(json);
   } catch(e) {
     document.getElementById('update-bar').textContent = 'Errore nel caricamento dei dati.';
     console.error(e);
@@ -755,14 +775,11 @@ function render() {
 
 // ── KPI ─────────────────────────────────────────────────────────
 function renderKPI(esami) {
-  const tot     = esami.length;
+  const tot      = esami.length;
   const superati = esami.filter(e => e.esito === 'Superato').length;
-  const nonSup  = tot - superati;
-  const media   = tot ? Math.round(esami.reduce((a,e) => a + e.punteggio, 0) / tot) : 0;
-  const pctPass = tot ? Math.round(superati / tot * 100) : 0;
-  const pctFail = tot ? 100 - pctPass : 0;
+  const media    = tot ? Math.round(esami.reduce((a,e) => a + e.punteggio, 0) / tot) : 0;
+  const pctPass  = tot ? Math.round(superati / tot * 100) : 0;
 
-  // Moduli presenti
   const moduliMap = {};
   esami.forEach(e => {
     if (!moduliMap[e.modulo]) moduliMap[e.modulo] = 0;
@@ -779,6 +796,40 @@ function renderKPI(esami) {
   document.getElementById('kpi-media').textContent   = media || '—';
   document.getElementById('kpi-moduli').textContent  = moduliArr.length;
   document.getElementById('kpi-modulo-top').textContent = `Più testato: ${modTop}`;
+}
+
+// ── CERTIFICAZIONI ───────────────────────────────────────────────
+function renderCert(json) {
+  const certs = json.certificazioni || {};
+  const icone = {
+    'ICDL Essentials':     '🎓',
+    'ICDL Base':           '📘',
+    'ICDL Cyber Security': '🔐',
+    'ICDL Full Standard':  '🏆',
+  };
+  const colori = {
+    'ICDL Essentials':     'blue',
+    'ICDL Base':           'green',
+    'ICDL Cyber Security': 'amber',
+    'ICDL Full Standard':  'blue',
+  };
+
+  const grid = document.getElementById('cert-grid');
+  grid.innerHTML = '';
+
+  Object.entries(certs)
+    .filter(([_, v]) => v > 0)
+    .forEach(([nome, valore]) => {
+      grid.innerHTML += `
+        <div class="kpi-card ${colori[nome] || 'blue'}">
+          <div class="kpi-icon">${icone[nome] || '🎓'}</div>
+          <div class="kpi-value">${valore}</div>
+          <div class="kpi-label">${nome}</div>
+        </div>`;
+    });
+
+  document.getElementById('cert-nota').textContent =
+    `Dato complessivo aggiornato al ${fmtData(json.generato_il)} — Skill Card erogate dal Test Center ALZD0001`;
 }
 
 // ── RADAR ────────────────────────────────────────────────────────
@@ -830,7 +881,7 @@ function renderRadar(esami) {
           ticks: { stepSize: 40, font: { family: 'JetBrains Mono', size: 10 } },
           pointLabels: { font: { family: 'DM Sans', size: 11, weight: '600' }, color: '#2C2C2C' },
           grid: { color: 'rgba(31,78,121,.2)' },
-		  angleLines: { color: 'rgba(31,78,121,.2)' },
+          angleLines: { color: 'rgba(31,78,121,.2)' },
         }
       },
       plugins: {
@@ -881,7 +932,6 @@ function renderDonut(esami) {
 
 // ── ISTOGRAMMA ───────────────────────────────────────────────────
 function renderHist(esami) {
-  // Fasce: 210-239, 240-269, 270-299, 300-329, 330-360
   const fasce = [
     { label: '210–239', min: 210, max: 239 },
     { label: '240–269', min: 240, max: 269 },
@@ -954,14 +1004,16 @@ function renderTabella(esami) {
   Object.entries(moduliStats)
     .sort((a,b) => b[1].n - a[1].n)
     .forEach(([modulo, s], i) => {
-      const pct  = Math.round(s.pass / s.n * 100);
+      const pct   = Math.round(s.pass / s.n * 100);
       const media = Math.round(s.sum / s.n);
       const colore = COLORI_MODULI[i % COLORI_MODULI.length];
-      const badge = pct >= 80
+      const badge = pct >= 85
         ? `<span class="badge-pass">${pct}%</span>`
-        : pct >= 60
-          ? `<span class="badge-warn">${pct}%</span>`
-          : `<span class="badge-fail">${pct}%</span>`;
+        : pct >= 70
+          ? `<span class="badge-pass-soft">${pct}%</span>`
+          : pct >= 60
+            ? `<span class="badge-warn">${pct}%</span>`
+            : `<span class="badge-fail">${pct}%</span>`;
 
       tbody.innerHTML += `
         <tr>
@@ -971,7 +1023,6 @@ function renderTabella(esami) {
               <div class="bar-track-inline">
                 <div class="bar-fill-inline" style="width:${pct}%;background:${colore};"></div>
               </div>
-              <span class="pct-label" style="color:${colore}">${pct}%</span>
             </div>
           </td>
           <td><span class="score-mono">${media}</span> <span style="font-size:.72rem;color:var(--gray-mid)">/ 360</span></td>
@@ -985,5 +1036,6 @@ function renderTabella(esami) {
 document.addEventListener('DOMContentLoaded', init);
 </script>
 
+<script src="/scripts/ui.js" defer></script>
 </body>
 </html>
