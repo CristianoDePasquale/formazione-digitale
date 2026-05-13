@@ -86,6 +86,23 @@
 
 html, body { height: 100%; overflow: hidden; font-family: var(--font-body); background: #F0F6FF; color: var(--gray-dark); }
 
+/* Azzera lo stile generico footer{} ereditato da shared.css */
+footer { all: unset; }
+
+/* ── FOOTER fisso in basso ── */
+.fw-footer {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: var(--blue-dark);
+  color: rgba(255,255,255,.6);
+  text-align: center; padding: .55rem 1.5rem;
+  font-size: .75rem; line-height: 1.6;
+  box-shadow: 0 -2px 10px rgba(0,0,0,.15);
+  display: block;
+}
+.fw-footer strong { color: rgba(255,255,255,.9); }
+.fw-footer a { color: var(--blue-light); text-decoration: none; }
+.fw-footer a:hover { color: #fff; }
+
 /* ── HEADER ── */
 .map-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
@@ -149,7 +166,7 @@ html, body { height: 100%; overflow: hidden; font-family: var(--font-body); back
 
 /* ── CANVAS ── */
 #map-canvas {
-  position: fixed; top: 52px; left: 0; right: 0; bottom: 0;
+  position: fixed; top: 52px; left: 0; right: 0; bottom: 52px;
   overflow: hidden; cursor: grab;
 }
 #map-canvas.dragging { cursor: grabbing; }
@@ -369,10 +386,6 @@ html, body { height: 100%; overflow: hidden; font-family: var(--font-body); back
   <div class="map-hint"  style="font-size:.75rem;color:rgba(255,255,255,.5);position:absolute;left:50%;transform:translateX(-50%);">Trascina · Scorri per zoomare · Clicca per dettagli</div>
   <div style="display:flex;align-items:center;gap:1.25rem;flex-shrink:0;">
     <a href="/mappa-framework.html" style="font-size:.8rem;color:rgba(255,255,255,.7);text-decoration:none;">🧭 Mappa framework</a>
-    <div class="map-legal" style="font-size:.72rem;color:rgba(255,255,255,.4);gap:.75rem;flex-shrink:0;">
-      <a href="/privacy-policy.html" style="color:rgba(255,255,255,.4);text-decoration:none;">Privacy Policy</a>
-      <a href="/cookie-policy.html" style="color:rgba(255,255,255,.4);text-decoration:none;">Cookie Policy</a>
-    </div>
   </div>
 </header>
 
@@ -413,13 +426,7 @@ html, body { height: 100%; overflow: hidden; font-family: var(--font-body); back
   <button class="zoom-btn" onclick="fitView()" title="Adatta" style="font-size:.75rem;">⊡</button>
 </div>
 
-<!-- LEGEND -->
-<div class="map-legend">
-  <div class="legend-item"><div class="legend-dot ld-guide"></div>Guida</div>
-  <div class="legend-item"><div class="legend-dot ld-tool"></div>Strumento</div>
-  <div class="legend-item"><div class="legend-dot ld-pill"></div>Pillola</div>
-  <div class="legend-item"><div class="legend-dot ld-feat"></div>In evidenza</div>
-</div>
+
 
 
 <!-- ── BACK TO TOP ── -->
@@ -826,11 +833,15 @@ init();
 
 
 <!-- ── FOOTER ── -->
-<footer style="display:none !important;" aria-hidden="true">
-  <a href="/">Home</a>
-  <a href="/mappa-framework.html">Mappa framework</a>
-  <a href="/privacy-policy.html">Privacy Policy</a>
-  <a href="/cookie-policy.html">Cookie Policy</a>
+<footer class="fw-footer">
+  <strong>Formazione Digitale</strong><br>
+  Guide pratiche, strumenti e pillole di alfabetizzazione digitale.<br>
+  <span style="margin-top:.4rem;display:inline-block;">
+    <a href="/">Home</a> &nbsp;·&nbsp;
+    <a href="/mappa-framework.html">Mappa framework</a> &nbsp;·&nbsp;
+    <a href="/privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="/cookie-policy.html">Cookie Policy</a>
+  </span>
 </footer>
 <script src="/scripts/ui.js" defer></script>
 </body>
