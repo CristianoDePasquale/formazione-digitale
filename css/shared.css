@@ -664,4 +664,49 @@ body.aula-mode .header-downloads { display: none !important; }
   border-color: var(--blue-mid);
   color: #fff;
 }
+
 .footer-nav-link.primary:hover { background: #3d88cc; }
+
+/* ── NAV DROPDOWN — hamburger a tendina (subnet-calculator, hfs-server) ── */
+.nav-menu-btn {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 36px; height: 36px; padding: 6px;
+  background: none; border: none; cursor: pointer;
+  border-radius: 6px; transition: background var(--transition);
+  flex-shrink: 0;
+}
+.nav-menu-btn:hover { background: rgba(255,255,255,.12); }
+.nav-menu-btn span  { display: block; height: 2px; background: #fff; border-radius: 2px; transition: all var(--transition); }
+.nav-menu-btn.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-menu-btn.is-open span:nth-child(2) { opacity: 0; }
+.nav-menu-btn.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media(max-width:600px) { .nav-menu-btn { display: flex; } }
+
+.nav-dropdown {
+  display: none;
+  position: fixed; top: 58px; left: 0; right: 0; z-index: 190;
+  background: var(--blue-dark);
+  border-top: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  padding: .5rem 0;
+}
+.nav-dropdown.is-open { display: block; }
+.nav-dropdown a {
+  display: block;
+  padding: .7rem 1.5rem;
+  font-size: .88rem; color: rgba(255,255,255,.8);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+  border-left: 3px solid transparent;
+}
+.nav-dropdown a:hover { background: rgba(255,255,255,.08); color: #fff; border-left-color: var(--blue-light); }
+.nav-dropdown .nav-dropdown-divider {
+  border: none; border-top: 1px solid rgba(255,255,255,.1);
+  margin: .35rem 0;
+}
+.nav-dropdown .nav-dropdown-label {
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.35);
+  padding: .5rem 1.5rem .2rem;
+}
