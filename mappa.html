@@ -84,7 +84,7 @@
   --c-sec-pill:   #FFF3CD;
 }
 
-html, body { height: 100%; overflow: hidden; font-family: var(--font-body); background: #F0F6FF; color: var(--gray-dark); }
+html, body { height: 100%; font-family: var(--font-body); background: #F0F6FF; color: var(--gray-dark); }
 
 /* ── HEADER ── */
 .map-header {
@@ -323,6 +323,12 @@ html, body { height: 100%; overflow: hidden; font-family: var(--font-body); back
   white-space: nowrap;
 }
 #tooltip.visible { opacity: 1; }
+
+/* ── FOOTER ── */
+.map-footer { background: var(--blue-dark); color: rgba(255,255,255,.6); text-align: center; padding: 1.5rem; font-size: .78rem; line-height: 1.7; position: relative; z-index: 1; }
+.map-footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+.map-footer a:hover { color: #fff; }
+.map-footer strong { color: rgba(255,255,255,.85); }
 
 @media(max-width: 768px) {
   .map-hint,
@@ -819,6 +825,18 @@ init();
 </script>
 
 
+<!-- ── FOOTER ── -->
+<footer class="map-footer">
+  <strong>Formazione Digitale</strong><br>
+  Guide pratiche, strumenti e pillole di alfabetizzazione digitale.<br>
+  <span style="margin-top:.4rem;display:inline-block;">
+    <a href="/">Home</a> &nbsp;·&nbsp;
+    <a href="/mappa-framework.html">Mappa framework</a> &nbsp;·&nbsp;
+    <a href="/privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="/cookie-policy.html">Cookie Policy</a>
+  </span>
+</footer>
 <script src="/scripts/ui.js" defer></script>
 </body>
+
 </html>
