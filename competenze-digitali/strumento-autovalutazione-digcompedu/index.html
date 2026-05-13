@@ -484,7 +484,7 @@ body {
   margin-bottom: 1.25rem;
   box-shadow: 0 1px 8px rgba(31,78,121,.06);
 }
-.radar-section h3 {
+.radar-section h2 {
   font-family: var(--font-display); font-size: 1rem;
   color: var(--blue-dark); margin-bottom: 1rem;
 }
@@ -499,7 +499,7 @@ body {
   margin-bottom: 1.25rem;
   box-shadow: 0 1px 8px rgba(31,78,121,.06);
 }
-.area-breakdown h3 {
+.area-breakdown h2 {
   font-family: var(--font-display); font-size: 1rem;
   color: var(--blue-dark); margin-bottom: 1rem;
 }
@@ -552,7 +552,7 @@ body {
   margin-bottom: 1.25rem;
   box-shadow: 0 1px 8px rgba(31,78,121,.06);
 }
-.resources-section h3 {
+.resources-section h2 {
   font-family: var(--font-display); font-size: 1rem;
   color: var(--blue-dark); margin-bottom: .25rem;
   display: flex; align-items: center; gap: .5rem;
@@ -588,7 +588,7 @@ body {
   gap: 1rem; flex-wrap: wrap;
   margin-bottom: 1.5rem;
 }
-.export-bar-text h3 {
+.export-bar-text h2 {
   font-family: var(--font-display); font-size: 1rem;
   color: var(--blue-dark); margin-bottom: .2rem;
 }
@@ -757,7 +757,7 @@ body {
     </div>
 
     <div class="levels-preview">
-      <h3>La scala di autovalutazione — 6 livelli ufficiali DigCompEdu</h3>
+      <h2>La scala di autovalutazione — 6 livelli ufficiali DigCompEdu</h2>
       <div class="levels-grid">
         <div class="level-chip lc-a1">
           <div class="lc-code">A1</div>
@@ -869,35 +869,35 @@ body {
 
     <!-- Radar -->
     <div class="radar-section">
-      <h3>📊 Profilo per area</h3>
+      <h2>📊 Profilo per area</h2>
       <div id="radar-svg-wrap"></div>
     </div>
 
     <!-- Breakdown per area -->
     <div class="area-breakdown" id="area-breakdown">
-      <h3>📋 Dettaglio per area</h3>
+      <h2>📋 Dettaglio per area</h2>
     </div>
 
     <!-- Punti di forza -->
     <div class="strengths-section" id="strengths-section">
-      <h3>✅ Punti di forza</h3>
+      <h2>✅ Punti di forza</h2>
     </div>
 
     <!-- Gap -->
     <div class="gaps-section" id="gaps-section">
-      <h3>📌 Gap da colmare</h3>
+      <h2>📌 Gap da colmare</h2>
     </div>
 
     <!-- Risorse consigliate -->
     <div class="resources-section" id="resources-section">
-      <h3>🔗 Risorse del portale consigliate</h3>
+      <h2>🔗 Risorse del portale consigliate</h2>
       <p class="rs-sub">Selezionate in base ai gap rilevati — collegate alle competenze DigCompEdu che puoi sviluppare.</p>
     </div>
 
     <!-- Export -->
     <div class="export-bar">
       <div class="export-bar-text">
-        <h3>Salva il tuo report</h3>
+        <h2>Salva il tuo report</h2>
         <p>Stampa o copia un riepilogo testuale da incollare nel portfolio INDIRE.</p>
       </div>
       <div class="export-btns">
@@ -994,7 +994,7 @@ function nextQuestion() {
   if (currentIdx >= allQuestions.length - 1) {
     const unanswered = allQuestions.filter(q => !answers[q.comp.id]).length;
 	const warning = document.getElementById('unanswered-warning');
-	if (unanswered > 0 && warning.style.display === 'none' || warning.style.display === '') {
+	if (unanswered > 0 && (warning.style.display === 'none' || warning.style.display === '')) {
 	  warning.style.display = 'block';
 	} else {
 	  generateReport();
@@ -1297,7 +1297,7 @@ function renderRadar(areaScores) {
 // ── BREAKDOWN PER AREA ────────────────────────────────────────────
 function renderBreakdown(areaScores) {
   const container = document.getElementById('area-breakdown');
-  container.innerHTML = '<h3>📋 Dettaglio per area</h3>';
+  container.innerHTML = '<h2>📋 Dettaglio per area</h2>';
   areaScores.forEach(as => {
     const level = scoreToLevel(as.avg);
     const pct   = (as.avg / 6) * 100;
@@ -1322,8 +1322,8 @@ function renderStrengthsAndGaps() {
   const strengths = document.getElementById('strengths-section');
   const gaps      = document.getElementById('gaps-section');
 
-  strengths.innerHTML = '<h3>✅ Punti di forza (livello B2 o superiore)</h3>';
-  gaps.innerHTML      = '<h3>📌 Gap da colmare (livello A2 o inferiore)</h3>';
+  strengths.innerHTML = '<h2>✅ Punti di forza (livello B2 o superiore)</h2>';
+  gaps.innerHTML      = '<h2>📌 Gap da colmare (livello A2 o inferiore)</h2>';
 
   let hasStrengths = false, hasGaps = false;
 
@@ -1355,7 +1355,7 @@ function renderStrengthsAndGaps() {
 function renderResources() {
   const container = document.getElementById('resources-section');
   container.innerHTML = `
-    <h3>🔗 Risorse del portale consigliate</h3>
+    <h2>🔗 Risorse del portale consigliate</h2>
     <p class="rs-sub">Selezionate in base ai gap rilevati — collegate alle competenze DigCompEdu che puoi sviluppare.</p>
   `;
 
@@ -1444,8 +1444,8 @@ function copyReport() {
 
 // ── UTILITÀ ───────────────────────────────────────────────────────
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.screen').forEach(s => { s.classList.remove('active'); s.classList.remove('report-enter'); });
+ document.getElementById(id).classList.add('active');
   if (id === 'screen-report') {
     document.getElementById(id).classList.add('report-enter');
   }
