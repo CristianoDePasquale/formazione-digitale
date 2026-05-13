@@ -81,6 +81,7 @@
   --fail-light:   #FDECEA;
 }
 
+/* ── BASE ───────────────────────────────────────────────────────── */
 body { background: #F0F5FF; }
 
 /* ── HEADER ─────────────────────────────────────────────────────── */
@@ -92,128 +93,312 @@ header {
   position: sticky; top: 0; z-index: 200;
 }
 .header-left { display: flex; align-items: center; gap: .75rem; }
-.header-back { font-size: .78rem; color: rgba(255,255,255,.65); text-decoration: none; display: flex; align-items: center; gap: .3rem; transition: color .2s; }
+.header-back {
+  font-size: .78rem; color: rgba(255,255,255,.65);
+  text-decoration: none; display: flex; align-items: center; gap: .3rem;
+  transition: color .2s;
+}
 .header-back:hover { color: #fff; }
 .header-sep { width: 1px; height: 20px; background: rgba(255,255,255,.2); }
 .header-logo { font-family: var(--font-display); font-size: 1.05rem; color: #fff; }
-.header-badge { font-size: .65rem; font-weight: 700; letter-spacing: .08em; background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.25); border-radius: 20px; padding: .2rem .65rem; text-transform: uppercase; }
+.header-badge {
+  font-size: .65rem; font-weight: 700; letter-spacing: .08em;
+  background: rgba(255,255,255,.15); color: rgba(255,255,255,.9);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 20px;
+  padding: .2rem .65rem; text-transform: uppercase;
+}
 
 /* ── HERO ───────────────────────────────────────────────────────── */
-.hero { background: linear-gradient(160deg, var(--icdl-blue) 0%, #1a3a6e 50%, #1F4E79 100%); padding: 3rem 2rem 4rem; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(0,102,204,.3) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(255,255,255,.05) 0%, transparent 50%); }
-.hero::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 60px; background: #F0F5FF; clip-path: ellipse(55% 100% at 50% 100%); }
-.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr auto; gap: 2.5rem; align-items: center; }
-.hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); color: #fff; line-height: 1.2; margin-bottom: 0; }
+.hero {
+  background: linear-gradient(160deg, var(--icdl-blue) 0%, #1a3a6e 50%, #1F4E79 100%);
+  padding: 3rem 2rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(0,102,204,.3) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(255,255,255,.05) 0%, transparent 50%);
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 0; right: 0; height: 60px;
+  background: #F0F5FF;
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2.5rem; align-items: center;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #fff; line-height: 1.2; margin-bottom: 0;
+}
 .hero h1 em { color: #7FB3F5; font-style: normal; }
 .hero h1 .sub-titolo { display: block; font-size: .58em; color: rgba(255,255,255,.7); margin-top: .15em; }
-.hero-sub { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.7; }
-.hero-meta { display: flex; flex-direction: column; gap: .75rem; border-left: 1px solid rgba(255,255,255,.2); padding-left: 2rem; }
-.hero-meta-item { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: rgba(255,255,255,.6); white-space: nowrap; }
+.hero-sub {
+  font-size: .9rem; color: rgba(255,255,255,.75);
+  line-height: 1.7;
+}
+.hero-meta {
+  display: flex; flex-direction: column; gap: .75rem;
+  border-left: 1px solid rgba(255,255,255,.2);
+  padding-left: 2rem;
+}
+.hero-meta-item {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .82rem; color: rgba(255,255,255,.6);
+  white-space: nowrap;
+}
 .hero-meta-item strong { color: rgba(255,255,255,.95); font-weight: 600; }
 @media(max-width: 860px) {
   .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
   .hero-meta { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.2); padding-top: 1.25rem; flex-direction: row; flex-wrap: wrap; gap: 1rem; }
 }
 
-/* ── MAIN ───────────────────────────────────────────────────────── */
+/* ── MAIN LAYOUT ────────────────────────────────────────────────── */
 #main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-/* ── SEC LABEL ──────────────────────────────────────────────────── */
-.sec-label { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--icdl-accent); display: flex; align-items: center; gap: .5rem; margin-bottom: 1.25rem; }
-.sec-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--blue-light), transparent); }
+/* ── SEZIONE LABEL ──────────────────────────────────────────────── */
+.sec-label {
+  font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--icdl-accent);
+  display: flex; align-items: center; gap: .5rem;
+  margin-bottom: 1.25rem;
+}
+.sec-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--blue-light), transparent);
+}
 
 /* ── FILTRO DATE ────────────────────────────────────────────────── */
-.filter-bar { background: #fff; border: 1px solid var(--blue-light); border-radius: 14px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; box-shadow: 0 2px 12px rgba(31,78,121,.07); }
-.filter-bar-label { font-size: .78rem; font-weight: 600; color: var(--gray-dark); white-space: nowrap; }
+.filter-bar {
+  background: #fff; border: 1px solid var(--blue-light);
+  border-radius: 14px; padding: 1.25rem 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(31,78,121,.07);
+}
+.filter-bar-label {
+  font-size: .78rem; font-weight: 600; color: var(--gray-dark);
+  white-space: nowrap;
+}
 .date-range-wrap { flex: 1; min-width: 260px; }
-.date-range-track { position: relative; height: 6px; background: var(--blue-light); border-radius: 3px; margin: .75rem 0; }
-.date-range-fill { position: absolute; height: 100%; background: linear-gradient(90deg, var(--icdl-accent), #003087); border-radius: 3px; pointer-events: none; }
-.thumb { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 18px; height: 18px; border-radius: 50%; background: var(--icdl-accent); border: 3px solid #fff; box-shadow: 0 1px 6px rgba(0,0,0,.2); cursor: grab; transition: transform .15s, box-shadow .15s; }
+.date-range-track {
+  position: relative; height: 6px;
+  background: var(--blue-light); border-radius: 3px;
+  margin: .75rem 0;
+}
+.date-range-fill {
+  position: absolute; height: 100%;
+  background: linear-gradient(90deg, var(--icdl-accent), #003087);
+  border-radius: 3px; pointer-events: none;
+}
+.range-input {
+  position: absolute; width: 100%; height: 100%;
+  top: 0; left: 0; opacity: 0; cursor: pointer;
+  pointer-events: none;
+}
+.thumb {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--icdl-accent); border: 3px solid #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,.2);
+  cursor: grab; transition: transform .15s, box-shadow .15s;
+}
 .thumb:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 2px 10px rgba(0,102,204,.4); }
-.date-labels { display: flex; justify-content: space-between; font-family: var(--mono); font-size: .72rem; color: var(--gray-mid); }
+.date-labels {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: .72rem; color: var(--gray-mid);
+}
 .date-labels strong { color: var(--icdl-accent); font-weight: 600; }
-.filter-reset { font-family: var(--font-body); font-size: .78rem; font-weight: 600; color: var(--gray-mid); background: var(--gray-light); border: 1px solid #ddd; border-radius: 8px; padding: .4rem .9rem; cursor: pointer; transition: all .2s; white-space: nowrap; }
+.filter-reset {
+  font-family: var(--font-body); font-size: .78rem; font-weight: 600;
+  color: var(--gray-mid); background: var(--gray-light);
+  border: 1px solid #ddd; border-radius: 8px;
+  padding: .4rem .9rem; cursor: pointer;
+  transition: all .2s; white-space: nowrap;
+}
 .filter-reset:hover { background: #e8e8e8; color: var(--gray-dark); }
 
-/* ── KPI ────────────────────────────────────────────────────────── */
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
-.kpi-card { background: #fff; border: 1px solid var(--blue-light); border-radius: 14px; padding: 1.25rem 1.5rem; box-shadow: 0 2px 12px rgba(31,78,121,.07); position: relative; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+/* ── KPI GRID ───────────────────────────────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; margin-bottom: 2.5rem;
+}
+.kpi-card {
+  background: #fff; border: 1px solid var(--blue-light);
+  border-radius: 14px; padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 12px rgba(31,78,121,.07);
+  position: relative; overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
 .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(31,78,121,.12); }
-.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.kpi-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+}
 .kpi-card.blue::before  { background: linear-gradient(90deg, var(--icdl-blue), var(--icdl-accent)); }
 .kpi-card.green::before { background: linear-gradient(90deg, #1E6B3C, #2ecc71); }
 .kpi-card.amber::before { background: linear-gradient(90deg, #7D4E00, #f39c12); }
 .kpi-card.red::before   { background: linear-gradient(90deg, #8B1A1A, #e74c3c); }
 .kpi-icon { font-size: 1.4rem; margin-bottom: .5rem; }
-.kpi-value { font-family: var(--font-display); font-size: 2.2rem; line-height: 1; color: var(--blue-dark); margin-bottom: .25rem; }
+.kpi-value {
+  font-family: var(--font-display); font-size: 2.2rem;
+  line-height: 1; color: var(--blue-dark); margin-bottom: .25rem;
+}
 .kpi-value span { font-size: 1.1rem; color: var(--gray-mid); }
 .kpi-label { font-size: .78rem; color: var(--gray-mid); line-height: 1.4; }
-.kpi-sub { font-family: var(--mono); font-size: .68rem; color: var(--icdl-accent); margin-top: .4rem; font-weight: 600; }
+.kpi-sub {
+  font-family: var(--mono); font-size: .68rem;
+  color: var(--icdl-accent); margin-top: .4rem;
+  font-weight: 600;
+}
 
 /* ── CERT GRID ──────────────────────────────────────────────────── */
-.cert-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+.cert-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 1rem; margin-bottom: 1rem;
+}
 .cert-grid .kpi-card { flex: 1 1 200px; max-width: 260px; }
-.cert-nota { font-size: .72rem; color: var(--gray-mid); text-align: center; margin-bottom: 2.5rem; font-family: var(--mono); }
+.cert-nota {
+  font-size: .72rem; color: var(--gray-mid);
+  text-align: center; margin-bottom: 2.5rem;
+  font-family: var(--mono);
+}
 
-/* ── CHARTS ─────────────────────────────────────────────────────── */
-.charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+/* ── CHARTS GRID ────────────────────────────────────────────────── */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin-bottom: 2rem;
+}
 @media(max-width: 768px) { .charts-grid { grid-template-columns: 1fr; } }
-.chart-card { background: #fff; border: 1px solid var(--blue-light); border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(31,78,121,.07); }
+
+.chart-card {
+  background: #fff; border: 1px solid var(--blue-light);
+  border-radius: 14px; padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(31,78,121,.07);
+}
 .chart-card.full { grid-column: 1 / -1; }
-.chart-title { font-family: var(--font-display); font-size: 1rem; color: var(--blue-dark); margin-bottom: .25rem; }
+.chart-title {
+  font-family: var(--font-display); font-size: 1rem;
+  color: var(--blue-dark); margin-bottom: .25rem;
+}
 .chart-subtitle { font-size: .78rem; color: var(--gray-mid); margin-bottom: 1.25rem; }
 .chart-wrap { position: relative; }
 .chart-wrap.radar { height: 360px; }
 .chart-wrap.donut { height: 300px; }
+.chart-wrap.bar   { height: 360px; }
 .chart-wrap.hist  { height: 360px; }
 
 /* ── TABELLA MODULI ─────────────────────────────────────────────── */
 .moduli-table-wrap { overflow-x: auto; }
-table.moduli { width: 100%; border-collapse: collapse; font-size: .83rem; }
+table.moduli {
+  width: 100%; border-collapse: collapse;
+  font-size: .83rem;
+}
 table.moduli thead th {
   background: var(--icdl-blue); color: #fff;
   padding: .6rem 1rem; text-align: center;
   font-weight: 500; font-size: .75rem; letter-spacing: .06em;
-  user-select: none;
 }
 table.moduli thead th:first-child { border-radius: 8px 0 0 0; text-align: left; }
 table.moduli thead th:last-child  { border-radius: 0 8px 0 0; }
-table.moduli thead th.sortable { cursor: pointer; transition: background .15s; }
-table.moduli thead th.sortable:hover { background: #004aad; }
-table.moduli thead th.sortable::after { content: ' ⇅'; font-size: .65rem; opacity: .5; }
-table.moduli thead th.sort-asc::after  { content: ' ↑'; opacity: 1; }
-table.moduli thead th.sort-desc::after { content: ' ↓'; opacity: 1; }
-table.moduli tbody tr { border-bottom: 1px solid var(--blue-light); transition: background .15s; }
+table.moduli tbody tr {
+  border-bottom: 1px solid var(--blue-light);
+  transition: background .15s;
+}
 table.moduli tbody tr:hover { background: var(--blue-pale); }
 table.moduli tbody td { padding: .75rem 1rem; text-align: center; }
 table.moduli tbody td:first-child { text-align: left; }
 
-.bar-inline { display: flex; align-items: center; gap: .6rem; }
-.bar-track-inline { flex: 1; min-width: 160px; height: 8px; background: var(--blue-light); border-radius: 4px; overflow: hidden; }
-.bar-fill-inline { height: 100%; border-radius: 4px; transition: width .8s cubic-bezier(.4,0,.2,1); }
-.badge-pass      { display: inline-block; font-size: .68rem; font-weight: 700; padding: .15rem .5rem; border-radius: 20px; background: #C8E6C9; color: #388E3C; }
-.badge-pass-soft { display: inline-block; font-size: .68rem; font-weight: 700; padding: .15rem .5rem; border-radius: 20px; background: var(--pass-light); color: var(--pass); }
-.badge-warn      { display: inline-block; font-size: .68rem; font-weight: 700; padding: .15rem .5rem; border-radius: 20px; background: var(--amber-light); color: var(--amber-dark); }
-.badge-fail      { display: inline-block; font-size: .68rem; font-weight: 700; padding: .15rem .5rem; border-radius: 20px; background: var(--fail-light); color: var(--fail); }
-.score-mono { font-family: var(--mono); font-weight: 600; font-size: .85rem; color: var(--blue-dark); }
+.bar-inline {
+  display: flex; align-items: center; gap: .6rem;
+}
+.bar-track-inline {
+  flex: 1; min-width: 160px; height: 8px; background: var(--blue-light);
+  border-radius: 4px; overflow: hidden;
+}
+.bar-fill-inline {
+  height: 100%; border-radius: 4px;
+  transition: width .8s cubic-bezier(.4,0,.2,1);
+}
+.pct-label {
+  font-family: var(--mono); font-size: .75rem;
+  font-weight: 600; min-width: 2.8rem; text-align: right;
+}
+.badge-pass {
+  display: inline-block; font-size: .68rem; font-weight: 700;
+  padding: .15rem .5rem; border-radius: 20px;
+  background: #C8E6C9; color: #388E3C;
+}
+.badge-pass-soft {
+  display: inline-block; font-size: .68rem; font-weight: 700;
+  padding: .15rem .5rem; border-radius: 20px;
+  background: var(--pass-light); color: var(--pass);
+}
+.badge-warn {
+  display: inline-block; font-size: .68rem; font-weight: 700;
+  padding: .15rem .5rem; border-radius: 20px;
+  background: var(--amber-light); color: var(--amber-dark);
+}
+.badge-fail {
+  display: inline-block; font-size: .68rem; font-weight: 700;
+  padding: .15rem .5rem; border-radius: 20px;
+  background: var(--fail-light); color: var(--fail);
+}
+.score-mono {
+  font-family: var(--mono); font-weight: 600;
+  font-size: .85rem; color: var(--blue-dark);
+}
 
 /* ── DIGCOMP BOX ────────────────────────────────────────────────── */
-.digcomp-box { background: linear-gradient(135deg, #F3E5F5, #EDE7F6); border: 1px solid #CE93D8; border-radius: 14px; padding: 1.5rem; margin-top: 2.5rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+.digcomp-box {
+  background: linear-gradient(135deg, #F3E5F5, #EDE7F6);
+  border: 1px solid #CE93D8; border-radius: 14px;
+  padding: 1.5rem; margin-top: 2.5rem;
+  display: flex; gap: 1.25rem; align-items: flex-start;
+}
 .digcomp-icon { font-size: 2rem; flex-shrink: 0; }
-.digcomp-title { font-family: var(--font-display); font-size: 1.05rem; color: var(--purple-dark); margin-bottom: .4rem; }
+.digcomp-title {
+  font-family: var(--font-display); font-size: 1.05rem;
+  color: var(--purple-dark); margin-bottom: .4rem;
+}
 .digcomp-text { font-size: .85rem; color: #4A148C; line-height: 1.65; }
-.digcomp-badge { display: inline-block; font-size: .7rem; font-weight: 700; padding: .2rem .65rem; border-radius: 20px; background: var(--purple-dark); color: #fff; margin-top: .6rem; }
+.digcomp-badge {
+  display: inline-block; font-size: .7rem; font-weight: 700;
+  padding: .2rem .65rem; border-radius: 20px;
+  background: var(--purple-dark); color: #fff;
+  margin-top: .6rem;
+}
 
 /* ── AGGIORNATO IL ──────────────────────────────────────────────── */
-.update-bar { text-align: center; font-size: .75rem; color: var(--gray-mid); margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--blue-light); font-family: var(--mono); }
+.update-bar {
+  text-align: center; font-size: .75rem; color: var(--gray-mid);
+  margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--blue-light);
+  font-family: var(--mono);
+}
 .update-bar strong { color: var(--icdl-accent); }
 
 /* ── NO DATA ────────────────────────────────────────────────────── */
-.no-data { text-align: center; padding: 3rem; color: var(--gray-mid); font-size: .9rem; }
+.no-data {
+  text-align: center; padding: 3rem;
+  color: var(--gray-mid); font-size: .9rem;
+}
 
 /* ── ANIMAZIONI ─────────────────────────────────────────────────── */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-.kpi-card { animation: fadeUp .4s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.kpi-card  { animation: fadeUp .4s ease both; }
 .kpi-card:nth-child(1) { animation-delay: .05s; }
 .kpi-card:nth-child(2) { animation-delay: .10s; }
 .kpi-card:nth-child(3) { animation-delay: .15s; }
@@ -315,40 +500,53 @@ table.moduli tbody td:first-child { text-align: left; }
   <div class="cert-grid" id="cert-grid"></div>
   <div class="cert-nota" id="cert-nota"></div>
 
-  <!-- GRAFICI -->
+  <!-- GRAFICI RIGA 1 -->
   <div class="sec-label">Distribuzione esiti e punteggi</div>
   <div class="charts-grid">
+
+    <!-- RADAR -->
     <div class="chart-card">
       <div class="chart-title">Distribuzione per modulo</div>
       <div class="chart-subtitle">Punteggio medio per modulo vs soglia minima (270)</div>
-      <div class="chart-wrap radar"><canvas id="chartRadar"></canvas></div>
+      <div class="chart-wrap radar">
+        <canvas id="chartRadar"></canvas>
+      </div>
     </div>
+
+    <!-- DONUT -->
     <div class="chart-card">
       <div class="chart-title">Esiti globali</div>
       <div class="chart-subtitle">Distribuzione superati / non superati</div>
-      <div class="chart-wrap donut"><canvas id="chartDonut"></canvas></div>
+      <div class="chart-wrap donut">
+        <canvas id="chartDonut"></canvas>
+      </div>
     </div>
+
+    <!-- ISTOGRAMMA PUNTEGGI -->
     <div class="chart-card full">
       <div class="chart-title">Distribuzione punteggi</div>
       <div class="chart-subtitle">Numero di esami per fascia di punteggio · linea rossa = soglia minima (270)</div>
-      <div class="chart-wrap hist"><canvas id="chartHist"></canvas></div>
+      <div class="chart-wrap hist">
+        <canvas id="chartHist"></canvas>
+      </div>
     </div>
+
   </div>
 
   <!-- TABELLA MODULI -->
   <div class="sec-label">Dettaglio per modulo</div>
   <div class="chart-card" style="margin-bottom:2rem;">
     <div class="chart-title">Moduli ICDL</div>
-    <div class="chart-subtitle">Clicca su un'intestazione per ordinare · tasto ripetuto inverte l'ordine</div>
+    <div class="chart-subtitle">Tasso di superamento, punteggio medio e numero di esami per modulo</div>
     <div class="moduli-table-wrap">
       <table class="moduli">
         <thead>
           <tr>
-            <th class="sortable" data-col="modulo">Modulo</th>
-            <th class="sortable" data-col="pct">Superamento</th>
-            <th class="sortable" data-col="media">Punteggio medio</th>
-            <th class="sortable sort-desc" data-col="n">Esami</th>
-            <th class="sortable" data-col="pct">Esito</th>
+            <th>Modulo</th>
+            <th>Superamento</th>
+            <th>Punteggio medio</th>
+            <th>Esami</th>
+            <th style="text-align:right">Esito</th>
           </tr>
         </thead>
         <tbody id="moduli-tbody"></tbody>
@@ -374,22 +572,50 @@ table.moduli tbody td:first-child { text-align: left; }
   </div>
 
   <!-- TEST CENTER INFO -->
-  <div style="background:#fff;border:1px solid var(--blue-light);border-radius:14px;padding:1.5rem 1.75rem;margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.5rem 2rem;align-items:start;">
+  <div class="tc-info-box" style="background:#fff;border:1px solid var(--blue-light);border-radius:14px;padding:1.5rem 1.75rem;margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.5rem 2rem;align-items:start;">
     <div style="grid-column:1/-1;font-family:var(--font-display);font-size:1.05rem;color:var(--icdl-blue);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;">
       🏫 IIS L. Einaudi — Chiari (BS)
     </div>
-    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;"><span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Codice Test Center:</span><span style="font-weight:600;color:var(--gray-dark);">ALZD0001</span></div>
-    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;"><span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Istituto:</span><span style="font-weight:500;color:var(--gray-dark);">IIS "L. Einaudi"</span></div>
-    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;"><span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Città:</span><span style="font-weight:500;color:var(--gray-dark);">Chiari (BS)</span></div>
-    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;"><span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Referente:</span><span style="font-weight:500;color:var(--gray-dark);">Prof. Cristiano De Pasquale</span></div>
-    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;"><span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Ruolo:</span><span style="font-weight:500;color:var(--gray-dark);">F.S. Innovazione Digitale</span></div>
-    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;"><span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Email:</span><span style="font-weight:500;"><a href="mailto:fsinnovazionedigitale@iisleinaudi.edu.it" style="color:var(--icdl-accent);text-decoration:none;">fsinnovazionedigitale@iisleinaudi.edu.it</a></span></div>
-    <div style="grid-column:1/-1;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--blue-light);font-size:.83rem;color:var(--gray-mid);">Per informazioni sulle date degli esami o sull'acquisto della Skills Card, contatta il referente via email.</div>
+    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;">
+      <span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Codice Test Center:</span>
+      <span style="font-weight:600;color:var(--gray-dark);">ALZD0001</span>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;">
+      <span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Istituto:</span>
+      <span style="font-weight:500;color:var(--gray-dark);">IIS "L. Einaudi"</span>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;">
+      <span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Città:</span>
+      <span style="font-weight:500;color:var(--gray-dark);">Chiari (BS)</span>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;">
+      <span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Referente:</span>
+      <span style="font-weight:500;color:var(--gray-dark);">Prof. Cristiano De Pasquale</span>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;">
+      <span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Ruolo:</span>
+      <span style="font-weight:500;color:var(--gray-dark);">F.S. Innovazione Digitale</span>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:baseline;font-size:.85rem;">
+      <span style="color:var(--gray-mid);font-size:.78rem;white-space:nowrap;">Email:</span>
+      <span style="font-weight:500;"><a href="mailto:fsinnovazionedigitale@iisleinaudi.edu.it" style="color:var(--icdl-accent);text-decoration:none;">fsinnovazionedigitale@iisleinaudi.edu.it</a></span>
+    </div>
+    <div style="grid-column:1/-1;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--blue-light);font-size:.83rem;color:var(--gray-mid);">
+      Per informazioni sulle date degli esami o sull'acquisto della Skills Card, contatta il referente via email.
+    </div>
   </div>
 
   <!-- LINK GUIDA ICDL -->
   <div style="margin-top:1.5rem;text-align:center;">
-    <a href="../" style="display:inline-flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,var(--icdl-blue),var(--icdl-accent));color:#fff;font-family:var(--font-body);font-weight:700;font-size:.95rem;padding:.8rem 2rem;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(0,48,135,.25);transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,48,135,.35)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(0,48,135,.25)'">
+    <a href="../" style="
+      display:inline-flex;align-items:center;gap:.6rem;
+      background:linear-gradient(135deg,var(--icdl-blue),var(--icdl-accent));
+      color:#fff;font-family:var(--font-body);font-weight:700;font-size:.95rem;
+      padding:.8rem 2rem;border-radius:10px;text-decoration:none;
+      box-shadow:0 4px 16px rgba(0,48,135,.25);
+      transition:transform .2s,box-shadow .2s;
+    " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,48,135,.35)'"
+       onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(0,48,135,.25)'">
       📘 Scopri tutto sulla certificazione ICDL →
     </a>
   </div>
@@ -408,22 +634,22 @@ table.moduli tbody td:first-child { text-align: left; }
 <script>
 /* ══════════════════════════════════════════════════════════════════
    ICDL STATISTICHE — script principale
-   v2.0 — tabella sortable aggiunta (maggio 2026)
+   Fetcha data.json, applica filtro date con slider doppio,
+   aggiorna KPI e grafici in tempo reale.
 ══════════════════════════════════════════════════════════════════ */
 
 // ── Stato globale ────────────────────────────────────────────────
-let TUTTI       = [];
-let DATE_UNICHE = [];
-let idxFrom     = 0;
-let idxTo       = 0;
-let charts      = {};
-
-// ── Stato sort tabella ───────────────────────────────────────────
-let sortCol = 'n';       // 'modulo' | 'pct' | 'media' | 'n'
-let sortDir = 'desc';    // 'asc' | 'desc'
+let TUTTI = [];           // tutti gli esami (solo ICDL)
+let DATE_UNICHE = [];     // date ordinate
+let idxFrom = 0;
+let idxTo = 0;
+let charts = {};          // istanze Chart.js
 
 // ── Colori moduli ────────────────────────────────────────────────
-const COLORI_MODULI = ['#003087','#0066CC','#1E6B3C','#7D4E00','#4A148C','#8B1A1A','#006064','#1a237e'];
+const COLORI_MODULI = [
+  '#003087','#0066CC','#1E6B3C','#7D4E00',
+  '#4A148C','#8B1A1A','#006064','#1a237e'
+];
 
 // ── Formatter date ───────────────────────────────────────────────
 function fmtData(iso) {
@@ -443,16 +669,20 @@ async function init() {
     if (!res.ok) throw new Error('Fetch fallito');
     const json = await res.json();
 
+    // Solo ICDL, escludi DigComp
     TUTTI = json.esami.filter(e => e.certificazione === 'ICDL');
+
+    // Date uniche ordinate
     DATE_UNICHE = [...new Set(TUTTI.map(e => e.data))].sort();
     idxFrom = 0;
     idxTo   = DATE_UNICHE.length - 1;
 
+    // Aggiorna label aggiornamento
     document.getElementById('update-bar').innerHTML =
-      `Dati aggiornati al <strong>${fmtData(json.generato_il)}</strong> · fonte: export ICDL Test Center ALZD0001`;
+      `Dati aggiornati al <strong>${fmtData(json.generato_il)}</strong> · 
+       fonte: export ICDL Test Center ALZD0001`;
 
     initSlider();
-    initSortHeaders();
     render();
     renderCert(json);
   } catch(e) {
@@ -480,17 +710,21 @@ function initSlider() {
   const track  = document.getElementById('range-track');
   const tLeft  = document.getElementById('thumb-left');
   const tRight = document.getElementById('thumb-right');
+
   aggiornaSlider();
 
   function startDrag(e, isLeft) {
     e.preventDefault();
     const onMove = (ev) => {
-      const rect   = track.getBoundingClientRect();
+      const rect  = track.getBoundingClientRect();
       const clientX = ev.touches ? ev.touches[0].clientX : ev.clientX;
       let pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
       let idx = Math.round(pct * (DATE_UNICHE.length - 1));
-      if (isLeft) { idxFrom = Math.min(idx, idxTo); }
-      else        { idxTo   = Math.max(idx, idxFrom); }
+      if (isLeft) {
+        idxFrom = Math.min(idx, idxTo);
+      } else {
+        idxTo = Math.max(idx, idxFrom);
+      }
       aggiornaSlider();
       render();
     };
@@ -517,34 +751,16 @@ function aggiornaSlider() {
   const n      = DATE_UNICHE.length - 1;
   const pLeft  = (idxFrom / n) * 100;
   const pRight = (idxTo   / n) * 100;
+
   document.getElementById('thumb-left').style.left  = pLeft  + '%';
   document.getElementById('thumb-right').style.left = pRight + '%';
   document.getElementById('range-fill').style.left  = pLeft  + '%';
   document.getElementById('range-fill').style.width = (pRight - pLeft) + '%';
-  document.getElementById('label-from').innerHTML = `<strong>${fmtDataBreve(DATE_UNICHE[idxFrom])}</strong>`;
-  document.getElementById('label-to').innerHTML   = `<strong>${fmtDataBreve(DATE_UNICHE[idxTo])}</strong>`;
-}
 
-// ── SORT HEADERS ─────────────────────────────────────────────────
-function initSortHeaders() {
-  document.querySelectorAll('table.moduli thead th.sortable').forEach(th => {
-    th.addEventListener('click', () => {
-      const col = th.dataset.col;
-      // Stessa colonna → inverte; nuova colonna → default desc (asc per modulo)
-      if (sortCol === col) {
-        sortDir = sortDir === 'asc' ? 'desc' : 'asc';
-      } else {
-        sortCol = col;
-        sortDir = col === 'modulo' ? 'asc' : 'desc';
-      }
-      // Aggiorna indicatori visivi
-      document.querySelectorAll('table.moduli thead th.sortable').forEach(h => {
-        h.classList.remove('sort-asc', 'sort-desc');
-      });
-      th.classList.add(sortDir === 'asc' ? 'sort-asc' : 'sort-desc');
-      renderTabella(esamilFiltrati());
-    });
-  });
+  document.getElementById('label-from').innerHTML =
+    `<strong>${fmtDataBreve(DATE_UNICHE[idxFrom])}</strong>`;
+  document.getElementById('label-to').innerHTML =
+    `<strong>${fmtDataBreve(DATE_UNICHE[idxTo])}</strong>`;
 }
 
 // ── RENDER PRINCIPALE ────────────────────────────────────────────
@@ -565,26 +781,42 @@ function renderKPI(esami) {
   const pctPass  = tot ? Math.round(superati / tot * 100) : 0;
 
   const moduliMap = {};
-  esami.forEach(e => { if (!moduliMap[e.modulo]) moduliMap[e.modulo] = 0; moduliMap[e.modulo]++; });
+  esami.forEach(e => {
+    if (!moduliMap[e.modulo]) moduliMap[e.modulo] = 0;
+    moduliMap[e.modulo]++;
+  });
   const moduliArr = Object.entries(moduliMap).sort((a,b) => b[1]-a[1]);
+  const modTop = moduliArr[0] ? moduliArr[0][0] : '—';
 
-  document.getElementById('kpi-totale').textContent   = tot;
-  document.getElementById('kpi-periodo').textContent  = `${fmtDataBreve(DATE_UNICHE[idxFrom])} → ${fmtDataBreve(DATE_UNICHE[idxTo])}`;
-  document.getElementById('kpi-pass').innerHTML       = `${pctPass}<span>%</span>`;
+  document.getElementById('kpi-totale').textContent  = tot;
+  document.getElementById('kpi-periodo').textContent =
+    `${fmtDataBreve(DATE_UNICHE[idxFrom])} → ${fmtDataBreve(DATE_UNICHE[idxTo])}`;
+  document.getElementById('kpi-pass').innerHTML      = `${pctPass}<span>%</span>`;
   document.getElementById('kpi-pass-abs').textContent = `${superati} su ${tot} esami`;
-  document.getElementById('kpi-media').textContent    = media || '—';
-  document.getElementById('kpi-moduli').textContent   = moduliArr.length;
-  document.getElementById('kpi-modulo-top').textContent = `Più testato: ${moduliArr[0] ? moduliArr[0][0] : '—'}`;
+  document.getElementById('kpi-media').textContent   = media || '—';
+  document.getElementById('kpi-moduli').textContent  = moduliArr.length;
+  document.getElementById('kpi-modulo-top').textContent = `Più testato: ${modTop}`;
 }
 
 // ── CERTIFICAZIONI ───────────────────────────────────────────────
 function renderCert(json) {
-  const certs  = json.certificazioni || {};
-  const icone  = { 'ICDL Essentials':'🎓', 'ICDL Base':'📘', 'ICDL Cyber Security':'🔐', 'ICDL Full Standard':'🏆' };
-  const colori = { 'ICDL Essentials':'blue', 'ICDL Base':'green', 'ICDL Cyber Security':'amber', 'ICDL Full Standard':'blue' };
+  const certs = json.certificazioni || {};
+  const icone = {
+    'ICDL Essentials':     '🎓',
+    'ICDL Base':           '📘',
+    'ICDL Cyber Security': '🔐',
+    'ICDL Full Standard':  '🏆',
+  };
+  const colori = {
+    'ICDL Essentials':     'blue',
+    'ICDL Base':           'green',
+    'ICDL Cyber Security': 'amber',
+    'ICDL Full Standard':  'blue',
+  };
 
   const grid = document.getElementById('cert-grid');
   grid.innerHTML = '';
+
   Object.entries(certs)
     .filter(([_, v]) => v > 0)
     .forEach(([nome, valore]) => {
@@ -595,6 +827,7 @@ function renderCert(json) {
           <div class="kpi-label">${nome}</div>
         </div>`;
     });
+
   document.getElementById('cert-nota').textContent =
     `Dato complessivo aggiornato al ${fmtData(json.generato_il)} — Skill Card erogate dal Test Center ALZD0001`;
 }
@@ -617,14 +850,43 @@ function renderRadar(esami) {
 
   charts.radar = new Chart(ctx, {
     type: 'radar',
-    data: { labels, datasets: [
-      { label: 'Punteggio medio', data: valori, backgroundColor: 'rgba(0,102,204,.15)', borderColor: '#0066CC', borderWidth: 2, pointBackgroundColor: '#0066CC', pointRadius: 4 },
-      { label: 'Soglia minima (270)', data: soglia, backgroundColor: 'rgba(139,26,26,.08)', borderColor: 'rgba(139,26,26,.6)', borderWidth: 1.5, borderDash: [5,4], pointRadius: 0 }
-    ]},
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Punteggio medio',
+          data: valori,
+          backgroundColor: 'rgba(0,102,204,.15)',
+          borderColor: '#0066CC',
+          borderWidth: 2,
+          pointBackgroundColor: '#0066CC',
+          pointRadius: 4,
+        },
+        {
+          label: 'Soglia minima (270)',
+          data: soglia,
+          backgroundColor: 'rgba(139,26,26,.08)',
+          borderColor: 'rgba(139,26,26,.6)',
+          borderWidth: 1.5,
+          borderDash: [5,4],
+          pointRadius: 0,
+        }
+      ]
+    },
     options: {
       responsive: true, maintainAspectRatio: false,
-      scales: { r: { min: 180, max: 360, ticks: { stepSize: 40, font: { family: 'JetBrains Mono', size: 10 } }, pointLabels: { font: { family: 'DM Sans', size: 11, weight: '600' }, color: '#2C2C2C' }, grid: { color: 'rgba(31,78,121,.2)' }, angleLines: { color: 'rgba(31,78,121,.2)' } } },
-      plugins: { legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 12 }, boxWidth: 14 } } }
+      scales: {
+        r: {
+          min: 180, max: 360,
+          ticks: { stepSize: 40, font: { family: 'JetBrains Mono', size: 10 } },
+          pointLabels: { font: { family: 'DM Sans', size: 11, weight: '600' }, color: '#2C2C2C' },
+          grid: { color: 'rgba(31,78,121,.2)' },
+          angleLines: { color: 'rgba(31,78,121,.2)' },
+        }
+      },
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 12 }, boxWidth: 14 } }
+      }
     }
   });
 }
@@ -633,16 +895,36 @@ function renderRadar(esami) {
 function renderDonut(esami) {
   const superati = esami.filter(e => e.esito === 'Superato').length;
   const nonSup   = esami.filter(e => e.esito === 'Non superato').length;
+
   const ctx = document.getElementById('chartDonut');
   if (charts.donut) charts.donut.destroy();
+
   charts.donut = new Chart(ctx, {
     type: 'doughnut',
-    data: { labels: ['Superato', 'Non superato'], datasets: [{ data: [superati, nonSup], backgroundColor: ['#1E6B3C', '#8B1A1A'], borderColor: '#fff', borderWidth: 3, hoverOffset: 8 }] },
+    data: {
+      labels: ['Superato', 'Non superato'],
+      datasets: [{
+        data: [superati, nonSup],
+        backgroundColor: ['#1E6B3C', '#8B1A1A'],
+        borderColor: '#fff',
+        borderWidth: 3,
+        hoverOffset: 8,
+      }]
+    },
     options: {
-      responsive: true, maintainAspectRatio: false, cutout: '68%',
+      responsive: true, maintainAspectRatio: false,
+      cutout: '68%',
       plugins: {
         legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 13 }, boxWidth: 14, padding: 16 } },
-        tooltip: { callbacks: { label: (ctx) => { const tot = ctx.dataset.data.reduce((a,b) => a+b, 0); return ` ${ctx.parsed} esami (${Math.round(ctx.parsed / tot * 100)}%)`; } } }
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const tot = ctx.dataset.data.reduce((a,b) => a+b, 0);
+              const pct = Math.round(ctx.parsed / tot * 100);
+              return ` ${ctx.parsed} esami (${pct}%)`;
+            }
+          }
+        }
       }
     }
   });
@@ -657,30 +939,56 @@ function renderHist(esami) {
     { label: '300–329', min: 300, max: 329 },
     { label: '330–360', min: 330, max: 360 },
   ];
-  const conteggi = fasce.map(f => esami.filter(e => e.punteggio >= f.min && e.punteggio <= f.max).length);
-  const colori   = fasce.map(f => f.max < 270 ? '#8B1A1A' : '#1E6B3C');
+  const conteggi = fasce.map(f =>
+    esami.filter(e => e.punteggio >= f.min && e.punteggio <= f.max).length
+  );
+  const colori = fasce.map(f => f.max < 270 ? '#8B1A1A' : '#1E6B3C');
+
   const ctx = document.getElementById('chartHist');
   if (charts.hist) charts.hist.destroy();
+
   charts.hist = new Chart(ctx, {
     type: 'bar',
-    data: { labels: fasce.map(f => f.label), datasets: [{ label: 'Esami', data: conteggi, backgroundColor: colori, borderRadius: 6, borderSkipped: false }] },
+    data: {
+      labels: fasce.map(f => f.label),
+      datasets: [{
+        label: 'Esami',
+        data: conteggi,
+        backgroundColor: colori,
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false }, annotation: {}, tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} esami` } } },
+      plugins: {
+        legend: { display: false },
+        annotation: {},
+        tooltip: {
+          callbacks: { label: ctx => ` ${ctx.parsed.y} esami` }
+        }
+      },
       scales: {
-        x: { grid: { display: false }, ticks: { font: { family: 'JetBrains Mono', size: 11 } } },
-        y: { beginAtZero: true, ticks: { stepSize: 1, font: { family: 'JetBrains Mono', size: 11 } }, grid: { color: 'rgba(31,78,121,.08)' } }
+        x: {
+          grid: { display: false },
+          ticks: { font: { family: 'JetBrains Mono', size: 11 } }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: { stepSize: 1, font: { family: 'JetBrains Mono', size: 11 } },
+          grid: { color: 'rgba(31,78,121,.08)' }
+        }
       }
     }
   });
 }
 
-// ── TABELLA MODULI (sortable) ────────────────────────────────────
+// ── TABELLA MODULI ───────────────────────────────────────────────
 function renderTabella(esami) {
   const moduliStats = {};
   esami.forEach(e => {
     if (!moduliStats[e.modulo]) moduliStats[e.modulo] = { sum: 0, n: 0, pass: 0 };
-    moduliStats[e.modulo].sum += e.punteggio;
+    moduliStats[e.modulo].sum  += e.punteggio;
     moduliStats[e.modulo].n++;
     if (e.esito === 'Superato') moduliStats[e.modulo].pass++;
   });
@@ -693,48 +1001,35 @@ function renderTabella(esami) {
     return;
   }
 
-  // Costruisce array con valori numerici per il sort
-  let righe = Object.entries(moduliStats).map(([modulo, s], i) => ({
-    modulo,
-    pct:    Math.round(s.pass / s.n * 100),
-    media:  Math.round(s.sum / s.n),
-    n:      s.n,
-    colore: COLORI_MODULI[i % COLORI_MODULI.length],
-  }));
+  Object.entries(moduliStats)
+    .sort((a,b) => b[1].n - a[1].n)
+    .forEach(([modulo, s], i) => {
+      const pct   = Math.round(s.pass / s.n * 100);
+      const media = Math.round(s.sum / s.n);
+      const colore = COLORI_MODULI[i % COLORI_MODULI.length];
+      const badge = pct >= 85
+        ? `<span class="badge-pass">${pct}%</span>`
+        : pct >= 70
+          ? `<span class="badge-pass-soft">${pct}%</span>`
+          : pct >= 60
+            ? `<span class="badge-warn">${pct}%</span>`
+            : `<span class="badge-fail">${pct}%</span>`;
 
-  // Ordina
-  righe.sort((a, b) => {
-    if (sortCol === 'modulo') {
-      const va = a.modulo.toLowerCase(), vb = b.modulo.toLowerCase();
-      return sortDir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
-    }
-    return sortDir === 'asc' ? a[sortCol] - b[sortCol] : b[sortCol] - a[sortCol];
-  });
-
-  righe.forEach(r => {
-    const badge = r.pct >= 85
-      ? `<span class="badge-pass">${r.pct}%</span>`
-      : r.pct >= 70
-        ? `<span class="badge-pass-soft">${r.pct}%</span>`
-        : r.pct >= 60
-          ? `<span class="badge-warn">${r.pct}%</span>`
-          : `<span class="badge-fail">${r.pct}%</span>`;
-
-    tbody.innerHTML += `
-      <tr>
-        <td><strong>${r.modulo}</strong></td>
-        <td>
-          <div class="bar-inline">
-            <div class="bar-track-inline">
-              <div class="bar-fill-inline" style="width:${r.pct}%;background:${r.colore};"></div>
+      tbody.innerHTML += `
+        <tr>
+          <td><strong>${modulo}</strong></td>
+          <td>
+            <div class="bar-inline">
+              <div class="bar-track-inline">
+                <div class="bar-fill-inline" style="width:${pct}%;background:${colore};"></div>
+              </div>
             </div>
-          </div>
-        </td>
-        <td><span class="score-mono">${r.media}</span> <span style="font-size:.72rem;color:var(--gray-mid)">/ 360</span></td>
-        <td style="font-family:var(--mono);font-size:.82rem">${r.n}</td>
-        <td>${badge}</td>
-      </tr>`;
-  });
+          </td>
+          <td><span class="score-mono">${media}</span> <span style="font-size:.72rem;color:var(--gray-mid)">/ 360</span></td>
+          <td style="font-family:var(--mono);font-size:.82rem">${s.n}</td>
+          <td>${badge}</td>
+        </tr>`;
+    });
 }
 
 // ── AVVIO ────────────────────────────────────────────────────────
