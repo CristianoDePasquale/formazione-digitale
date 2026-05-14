@@ -13,8 +13,8 @@ Lo script è idempotente: se TROVA non è presente ma SOSTITUISCI sì, salta il 
 import os
 
 # ── CONFIGURAZIONE ────────────────────────────────────────────────
-TROVA       = '<link rel="preconnect" href="https://fonts.gstatic.com">'
-SOSTITUISCI = '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+TROVA       = '#f39c12'
+SOSTITUISCI = 'var(--amber-mid)'
 
 # Cartelle da escludere dall'esplorazione
 EXCLUDE_DIRS = {'.git', 'node_modules', '.github', '.cache', 'docs'}

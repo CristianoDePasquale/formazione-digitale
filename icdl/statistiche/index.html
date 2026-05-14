@@ -141,9 +141,9 @@ header {
 .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(31,78,121,.12); }
 .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
 .kpi-card.blue::before  { background: linear-gradient(90deg, var(--icdl-blue), var(--icdl-accent)); }
-.kpi-card.green::before { background: linear-gradient(90deg, #1E6B3C, #2ecc71); }
-.kpi-card.amber::before { background: linear-gradient(90deg, #7D4E00, #f39c12); }
-.kpi-card.red::before   { background: linear-gradient(90deg, #8B1A1A, #e74c3c); }
+.kpi-card.green::before { background: linear-gradient(90deg, #1E6B3C, var(--green-accent)); }
+.kpi-card.amber::before { background: linear-gradient(90deg, #7D4E00, var(--amber-mid)); }
+.kpi-card.red::before   { background: linear-gradient(90deg, #8B1A1A, var(--red-accent)); }
 .kpi-icon { font-size: 1.4rem; margin-bottom: .5rem; }
 .kpi-value { font-family: var(--font-display); font-size: 2.2rem; line-height: 1; color: var(--blue-dark); margin-bottom: .25rem; }
 .kpi-value span { font-size: 1.1rem; color: var(--gray-mid); }

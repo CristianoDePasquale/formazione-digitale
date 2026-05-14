@@ -189,7 +189,7 @@ code { font-family: 'Courier New', monospace; font-size: .88em; background: var(
 .box-info  { background: var(--blue-pale);   border-left: 4px solid var(--blue-mid); color: #1a3a5c; }
 .box-tip   { background: var(--green-light); border-left: 4px solid var(--green-dark); color: #14472a; }
 .box-warn  { background: var(--amber-light); border-left: 4px solid var(--amber-dark); color: #5a3500; }
-.box-red   { background: #FDECEA; border-left: 4px solid #C0392B; color: #7a1e15; }
+.box-red   { background: #FDECEA; border-left: 4px solid var(--red-mid); color: #7a1e15; }
 
 /* Highlight grid */
 .highlight-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: .85rem; margin: 1.25rem 0; }
@@ -207,7 +207,7 @@ code { font-family: 'Courier New', monospace; font-size: .88em; background: var(
 .do-col, .dont-col { border-radius: var(--radius); overflow: hidden; }
 .do-col-head { background: var(--green-dark); color: #fff; padding: .6rem 1rem; font-weight: 600; font-size: .85rem; }
 .do-col-body { background: var(--green-light); padding: 1rem; }
-.dont-col-head { background: #C0392B; color: #fff; padding: .6rem 1rem; font-weight: 600; font-size: .85rem; }
+.dont-col-head { background: var(--red-mid); color: #fff; padding: .6rem 1rem; font-weight: 600; font-size: .85rem; }
 .dont-col-body { background: #fff8f7; padding: 1rem; }
 .do-col-body ul, .dont-col-body ul { padding-left: 1.2rem; }
 .do-col-body li, .dont-col-body li { font-size: .84rem; margin-bottom: .4rem; line-height: 1.5; }
@@ -264,24 +264,24 @@ code { font-family: 'Courier New', monospace; font-size: .88em; background: var(
 .pwd-bar { height: 8px; border-radius: 4px; width: 120px; background: var(--gray-light); overflow: hidden; }
 .pwd-bar-fill { height: 100%; border-radius: 4px; }
 .pwd-label { font-size: .75rem; font-weight: 600; min-width: 50px; }
-.bar-weak   .pwd-bar-fill { background: #C0392B; width: 20%; }
+.bar-weak   .pwd-bar-fill { background: var(--red-mid); width: 20%; }
 .bar-fair   .pwd-bar-fill { background: var(--amber-dark); width: 50%; }
 .bar-good   .pwd-bar-fill { background: var(--blue-mid); width: 75%; }
 .bar-strong .pwd-bar-fill { background: var(--green-dark); width: 100%; }
-.label-weak   { color: #C0392B; }
+.label-weak   { color: var(--red-mid); }
 .label-fair   { color: var(--amber-dark); }
 .label-good   { color: var(--blue-mid); }
 .label-strong { color: var(--green-dark); }
 
 /* Phishing card */
 .phishing-card {
-  background: var(--white); border: 2px solid #C0392B;
+  background: var(--white); border: 2px solid var(--red-mid);
   border-radius: var(--radius); padding: 1.25rem 1.5rem;
   margin: 1.25rem 0; position: relative;
 }
 .phishing-card-label {
   position: absolute; top: -12px; left: 1rem;
-  background: #C0392B; color: #fff;
+  background: var(--red-mid); color: #fff;
   font-size: .7rem; font-weight: 700; letter-spacing: .08em;
   text-transform: uppercase; padding: .2rem .7rem; border-radius: 20px;
 }
@@ -291,11 +291,11 @@ code { font-family: 'Courier New', monospace; font-size: .88em; background: var(
   border-radius: 6px; padding: .75rem 1rem;
   line-height: 1.9; margin-bottom: .75rem; color: var(--gray-dark);
 }
-.phishing-email .flag { background: #FDECEA; border-bottom: 2px solid #C0392B; cursor: default; }
+.phishing-email .flag { background: #FDECEA; border-bottom: 2px solid var(--red-mid); cursor: default; }
 .phishing-flags { display: flex; flex-wrap: wrap; gap: .5rem; }
 .phishing-flag-item {
   display: flex; align-items: flex-start; gap: .4rem;
-  font-size: .78rem; color: #C0392B; line-height: 1.5;
+  font-size: .78rem; color: var(--red-mid); line-height: 1.5;
   background: #FDECEA; border-radius: 6px; padding: .3rem .65rem;
 }
 .phishing-flag-item::before { content: '⚑'; flex-shrink: 0; }
