@@ -37,16 +37,21 @@
    Usare sempre le variabili — mai hardcodare i colori nelle pagine.
    ══════════════════════════════════════════════════════════════ */
 :root {
-  /* Palette principale */
+/* Palette principale */
   --blue-dark:    #1F4E79;
   --blue-mid:     #2E75B6;
   --blue-light:   #D6E8F7;
   --blue-pale:    #EBF3FC;
   --green-dark:   #1E6B3C;
+  --green-mid:    #4CAF50;
   --green-light:  #E8F5EE;
+  --green-accent: #2ecc71;
   --amber-dark:   #7D4E00;
+  --amber-mid:    #f39c12;
   --amber-light:  #FFF3CD;
   --red-dark:     #8B1A1A;
+  --red-mid:      #C0392B;
+  --red-accent:   #e74c3c;
   --red-light:    #FDECEA;
   --purple-dark:  #4A148C;
   --purple-light: #F3E5F5;
