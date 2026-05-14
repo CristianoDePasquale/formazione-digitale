@@ -166,6 +166,27 @@ def main():
         print("  python scripts/find_orphan_png.py --delete")
     print("═" * 60)
 
+    # ── Salva report TXT nella root del progetto ──
+    if not delete:
+        report_path = Path(ROOT) / "orfani-png.txt"
+        with open(report_path, "w", encoding="utf-8") as f:
+            for cfg in CARTELLE:
+                dir_path = Path(ROOT) / cfg["dir"]
+                img_dir  = dir_path / "img"
+                if not img_dir.exists(): continue
+                tutti = {fn.name for fn in img_dir.iterdir() if fn.suffix.lower() in IMG_EXTENSIONS}
+                if cfg["csv"]:
+                    csv_path = dir_path / cfg["csv"]
+                    refs = get_referenced_from_csv(csv_path) | get_referenced_images_from_html(dir_path / "index.html") if csv_path.exists() else get_referenced_images_from_html(dir_path / "index.html")
+                else:
+                    refs = get_referenced_images_from_html(dir_path / "index.html")
+                orfani = sorted(tutti - refs)
+                if orfani:
+                    f.write(f"\n# {cfg['dir']}\n")
+                    for nome in orfani:
+                        f.write(f"{(img_dir / nome).as_posix().replace(ROOT.replace(os.sep, '/'), '')}\n")
+        print(f"\n  Report salvato in: orfani-png.txt")
+
 
 if __name__ == "__main__":
     main()

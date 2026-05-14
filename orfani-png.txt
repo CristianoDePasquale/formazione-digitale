@@ -1,0 +1,18 @@
+
+# database/guida-libreoffice-base-query
+/database/guida-libreoffice-base-query/img/1777056578375_image.png
+/database/guida-libreoffice-base-query/img/1777057018152_image.png
+/database/guida-libreoffice-base-query/img/1777057180615_image.png
+/database/guida-libreoffice-base-query/img/1777057222282_image.png
+/database/guida-libreoffice-base-query/img/1777057354021_image.png
+/database/guida-libreoffice-base-query/img/1777058464659_image.png
+/database/guida-libreoffice-base-query/img/1777058623433_image.png
+/database/guida-libreoffice-base-query/img/1777058677103_image.png
+/database/guida-libreoffice-base-query/img/1777058903166_image.png
+/database/guida-libreoffice-base-query/img/1777059003240_image.png
+/database/guida-libreoffice-base-query/img/1777059031404_image.png
+/database/guida-libreoffice-base-query/img/2026-04-27_10h15_57.png
+/database/guida-libreoffice-base-query/img/2026-04-27_10h17_15.png
+/database/guida-libreoffice-base-query/img/2026-04-27_10h17_43.png
+/database/guida-libreoffice-base-query/img/2026-04-27_10h18_10.png
+/database/guida-libreoffice-base-query/img/2026-04-27_10h18_29.png
