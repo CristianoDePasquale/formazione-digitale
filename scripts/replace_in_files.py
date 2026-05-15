@@ -13,8 +13,8 @@ Lo script è idempotente: se TROVA non è presente ma SOSTITUISCI sì, salta il 
 import os
 
 # ── CONFIGURAZIONE ────────────────────────────────────────────────
-TROVA       = '#f39c12'
-SOSTITUISCI = 'var(--amber-mid)'
+TROVA       = '<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">'
+SOSTITUISCI = '<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" as="style">\n<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">'
 
 # Cartelle da escludere dall'esplorazione
 EXCLUDE_DIRS = {'.git', 'node_modules', '.github', '.cache', 'docs'}
