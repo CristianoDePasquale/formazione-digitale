@@ -186,6 +186,54 @@ footer { background: var(--blue-dark); color: rgba(255,255,255,.6); text-align: 
 footer strong { color: rgba(255,255,255,.9); }
 @media(min-width:900px){ footer { margin-left: var(--nav-w); } }
 body.aula-mode footer { display: none; }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--blue-light);
+  box-shadow: var(--shadow);
+}
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .88rem;
+}
+.table-wrap thead tr {
+  background: var(--blue-dark);
+  color: #fff;
+}
+.table-wrap th {
+  padding: .7rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.table-wrap tbody tr:nth-child(even) {
+  background: var(--blue-pale);
+}
+.table-wrap tbody tr:hover {
+  background: var(--blue-light);
+  transition: background .18s ease;
+}
+.table-wrap td {
+  padding: .65rem 1rem;
+  border-bottom: 1px solid var(--blue-light);
+  vertical-align: top;
+  line-height: 1.55;
+  color: #3a3a3a;
+}
+.table-wrap tbody tr:last-child td {
+  border-bottom: none;
+}
+.table-wrap td:first-child {
+  white-space: nowrap;
+  color: var(--blue-dark);
+  min-width: 160px;
+}
 </style>
 
 
