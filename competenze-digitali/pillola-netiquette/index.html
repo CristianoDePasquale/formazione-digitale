@@ -99,7 +99,7 @@
 /* Reading bar */
 #reading-bar {
   position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
-  background: var(--amber-mid); width: 0; transition: width .1s linear;
+  background: var(--amber-dark); width: 0; transition: width .1s linear;
 }
 
 /* Wrapper principale */
@@ -155,7 +155,7 @@
 .regola:hover {
   box-shadow: 0 6px 22px rgba(31,78,121,.14);
   transform: translateY(-2px);
-  border-color: var(--amber-mid);
+  border-color: var(--amber-dark);
 }
 .regola-num {
   display: inline-flex; align-items: center; justify-content: center;
@@ -216,7 +216,7 @@
 }
 .checklist li:last-child { border-bottom: none; }
 .checklist li::before {
-  content: '☐'; font-size: 1.1rem; color: var(--amber-mid);
+  content: '☐'; font-size: 1.1rem; color: var(--amber-dark);
   flex-shrink: 0; margin-top: -.05rem;
 }
 .checklist li strong { color: var(--blue-dark); }
@@ -280,7 +280,7 @@
 
 /* Focus visibile per tastiera */
 a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--amber-mid);
+  outline: 2px solid var(--amber-dark);
   outline-offset: 2px;
 }
 
@@ -290,7 +290,7 @@ a:focus-visible, button:focus-visible {
   text-align: center; padding: 1.75rem 1rem;
   font-size: .8rem; line-height: 1.8; margin-top: 3rem;
 }
-.pill-footer a { color: rgba(255,255,255,.4); }
+.pill-footer a { color: rgba(255,255,255,.65); }
 
 @media(max-width:480px) {
   .pill-header-title { display: none; }
@@ -311,7 +311,7 @@ a:focus-visible, button:focus-visible {
     Portale
   </a>
   <div class="pill-header-title">Netiquette</div>
-  <div class="pill-header-badge" aria-hidden="true">⏱ 7 min</div>
+  <div class="pill-header-badge" aria-hidden="true">⏱ 10 min</div>
 </header>
 
 <main id="main-content" class="pill-wrap">
@@ -321,7 +321,7 @@ a:focus-visible, button:focus-visible {
     <p class="pill-hero-sub">Le regole non scritte della comunicazione digitale. Cinque situazioni quotidiane, cinque principi pratici.</p>
     <div class="pill-hero-badges" aria-label="Caratteristiche della pillola">
       <span class="hero-badge">💬 Comunicazione</span>
-      <span class="hero-badge">⏱ 7 minuti</span>
+      <span class="hero-badge">⏱ 10 minuti</span>
       <span class="hero-badge">🎓 DC 2.2 · 2.3 · 2.4</span>
       <span class="hero-badge">💡 Livello base</span>
     </div>
@@ -345,6 +345,7 @@ a:focus-visible, button:focus-visible {
         </h3>
         <div class="regola-text">
           Il testo elimina l'ironia, l'intonazione e la mimica. Quello che a voce suona come una battuta, per scritto può sembrare un attacco. Prima di inviare, rileggi il messaggio immaginando di riceverlo da uno sconosciuto.<br><br>
+          <strong>Attenzione alle emoji:</strong> modificano il tono ma in modo ambiguo tra generazioni e culture. Una 💀 per molti giovani significa "sto morendo dalle risate", per un adulto può suonare aggressiva o fuori luogo. Non dare per scontato che il destinatario interpreti le emoji come te.<br><br>
           <strong>Errori tipici:</strong> SCRIVERE IN MAIUSCOLO (equivale a urlare), usare punteggiatura aggressiva (!!!), inserire sarcasmo senza segnalarlo, mandare messaggi di testo asciutti su temi delicati che andrebbero affrontati a voce.
         </div>
         <div class="regola-do">
@@ -399,7 +400,8 @@ Mario Bianchi — Classe 3ª A</div>
           <strong>Orari:</strong> nei contesti scolastici e professionali, evita di inviare messaggi tra le 22:00 e le 8:00 salvo emergenza reale.
         </div>
         <div class="regola-warn">
-          ⚠️ <strong>Da evitare:</strong> messaggi vocali lunghissimi senza contesto, serie di messaggi spezzettati invece di uno solo completo, usare "?" come risposta a un silenzio, aggiungere persone a gruppi senza chiedere prima.
+          ⚠️ <strong>Da evitare:</strong> messaggi vocali lunghissimi senza contesto, serie di messaggi spezzettati invece di uno solo completo, usare "?" come risposta a un silenzio, aggiungere persone a gruppi senza chiedere prima.<br><br>
+          ⚠️ <strong>Spunte blu e risposta immediata:</strong> vedere che il messaggio è stato letto non dà diritto a una risposta immediata. Chi legge potrebbe essere occupato, in classe, o aver bisogno di tempo per rispondere bene. Pretendere risposta immediata è una delle principali cause di conflitto digitale tra studenti.
         </div>
       </div>
     </article>
@@ -434,9 +436,13 @@ Mario Bianchi — Classe 3ª A</div>
         </h3>
         <div class="regola-text">
           Forum, gruppi, thread di classe su Teams: sono spazi condivisi con regole implicite. Chi entra in uno spazio digitale già avviato dovrebbe prima osservare, poi partecipare.<br><br>
-          <strong>Regole fondamentali:</strong> cerca prima di chiedere (la risposta potrebbe essere già lì), cita sempre il messaggio a cui rispondi per dare contesto, non pubblicare lo stesso contenuto in più gruppi o thread (cross-posting), non andare fuori tema con messaggi non pertinenti (off-topic), non rispondere alle provocazioni dei disturbatori (trolling) — ignorare è quasi sempre la scelta migliore.        </div>
+          <strong>Regole fondamentali:</strong> cerca prima di chiedere (la risposta potrebbe essere già lì), cita sempre il messaggio a cui rispondi per dare contesto, non pubblicare lo stesso contenuto in più gruppi o thread (cross-posting), non andare fuori tema con messaggi non pertinenti (off-topic), non rispondere alle provocazioni dei disturbatori (trolling) — ignorare è quasi sempre la scelta migliore.
+        </div>
         <div class="regola-do">
           ✅ <strong>Citare bene:</strong> quando riporti le parole di qualcuno, indica sempre la fonte e non decontestualizzare. Vale online esattamente come nella vita reale.
+        </div>
+        <div class="regola-warn">
+          ⚠️ <strong>Cyberbullismo:</strong> gruppi e forum scolastici sono purtroppo anche luoghi in cui può emergere il cyberbullismo — insulti, esclusione deliberata, condivisione di contenuti imbarazzanti. Non è trolling: è un comportamento illegale. Se lo vedi, non restare in silenzio. → <a href="/sicurezza/pillola-cybersicurezza/" style="color:inherit;font-weight:700;">Pillola Cybersicurezza</a>
         </div>
       </div>
     </article>
@@ -450,7 +456,7 @@ Mario Bianchi — Classe 3ª A</div>
       <li><strong>Rileggo il messaggio</strong> prima di inviarlo, immaginando di riceverlo da qualcuno che non mi conosce</li>
       <li><strong>Le email hanno sempre</strong> oggetto chiaro, saluto adeguato e firma</li>
       <li><strong>Non scrivo messaggi</strong> fuori orario senza reale urgenza</li>
-      <li><strong>Prima di pubblicare sui social</strong> mi chiedo se tra dieci anni potrei pentirsene</li>
+      <li><strong>Prima di pubblicare sui social</strong> mi chiedo se tra dieci anni me ne potrei pentire</li>
       <li><strong>Nei gruppi cerco prima</strong> di chiedere, e cito sempre la fonte quando riporto le parole di altri</li>
       <li><strong>Verifico sempre</strong> le fonti prima di condividere contenuti sui social o nei gruppi</li>
     </ul>
@@ -461,7 +467,7 @@ Mario Bianchi — Classe 3ª A</div>
     <strong>📋 Contesto normativo</strong>
     La comunicazione digitale si inserisce in un quadro europeo e nazionale ben definito:
     il <a href="https://publications.jrc.ec.europa.eu/repository/handle/JRC128415" target="_blank" rel="noopener">DigComp 2.2</a> definisce le competenze di comunicazione e collaborazione online,
-    il <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32016R0679" target="_blank" rel="noopener">GDPR (Reg. UE 2016/679)</a> tutela i dati personali nelle interazioni digitali,
+    il <a href="https://www.garanteprivacy.it/regolamentoue" target="_blank" rel="noopener">GDPR (Reg. UE 2016/679)</a> tutela i dati personali nelle interazioni digitali,
     il <a href="https://www.istruzione.it/scuola_digitale/index.shtml" target="_blank" rel="noopener">Piano Nazionale Scuola Digitale (PNSD)</a> promuove la cittadinanza digitale nelle scuole italiane.
   </div>
 
