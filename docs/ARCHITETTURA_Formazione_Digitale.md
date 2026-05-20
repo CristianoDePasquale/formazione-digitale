@@ -51,7 +51,9 @@ formazione-digitale/
 |--- supabase.js
 |--- auth.js
 |--- .gitignore
-|--- css/shared.css
+|--- css/
+|   |--- shared.css
+|   \--- shared-extended.css         <- CSS proprietario per guide con layout custom
 |--- img/
 |--- docs/
 |--- scripts/
@@ -66,6 +68,7 @@ formazione-digitale/
 |   |--- delete_converted_png.py
 |   |--- find_orphan_png.py
 |   |--- zip_risorse.py
+|   |--- ui.js
 |   \--- struttura.bat
 |--- sicurezza/
 |   |--- pillola-cybersicurezza/
@@ -74,6 +77,7 @@ formazione-digitale/
 |   |--- pillola-wikipedia-speedrun/
 |   |--- pillola-valutazione-fonti/
 |   |--- pillola-aggiornamento-digitale/
+|   |--- pillola-netiquette/
 |   |--- strumento-valutazione-fonti/
 |   \--- strumento-autovalutazione-digcompedu/
 |--- intelligenza-artificiale/
@@ -83,7 +87,7 @@ formazione-digitale/
 |--- elaborazione-testi/
 |   \--- guida-word/
 |--- database/
-|   \--- guida-libreoffice-base-query/   <- Pattern CSS proprietario — NON collegare a shared.css
+|   \--- guida-libreoffice-base-query/   <- Usa shared-extended.css — NON shared.css
 |--- marketing/
 |   |--- guida-marketing/
 |   |--- pillola-seo/
@@ -147,6 +151,20 @@ Contiene 17 sezioni numerate e commentate:
 
 > **Regola:** usare sempre le variabili — mai hardcodare i colori nelle pagine.
 
+## shared-extended.css
+
+CSS per guide con layout proprietario, completamente scollegato da `shared.css`. Non è un'estensione di shared — è un sistema autonomo con palette, reset e componenti propri. Va caricato **al posto** di `shared.css`, non dopo.
+
+```html
+<link rel="stylesheet" href="/css/shared-extended.css?v=1">
+```
+
+Prima risorsa che lo usa: `database/guida-libreoffice-base-query/` (20/05/2026).
+
+Il nome è volutamente generico — non è legato a LibreOffice. Qualsiasi guida con layout molto custom (es. simulatori UI, guide tecniche con palette propria) può usarlo come base.
+
+> **Regola:** NON caricare `shared.css` nelle pagine che usano `shared-extended.css` — i due sistemi non sono compatibili (reset `body`, `h2`, `h3` e `.section-num` in conflitto).
+
 ## Pattern header-downloads
 
 Per pagine con file allegati scaricabili. Su desktop: inline nell'header. Su mobile (<600px): barra fissa sotto l'header, scrollabile orizzontalmente. Usare `body.aula-mode` per nasconderla in modalità presentazione.
@@ -159,8 +177,6 @@ Per pagine con nav custom (subnet-calculator, hfs-server). Hamburger a tendina m
 
 Ogni pagina mantiene un `<style>` inline per componenti non condivisi.
 
-> **NOTA:** `guida-libreoffice-base-query` usa un sistema CSS proprietario con ~50 variabili custom. NON collegare a `shared.css`.
-
 ---
 
 # JavaScript — file e responsabilità
@@ -171,7 +187,7 @@ Ogni pagina mantiene un `<style>` inline per componenti non condivisi.
 | `stats.js` | Carica statistiche da GoatCounter API. Inietta Schema.org ItemList dinamico da `manifest.json`. Non modificare per aggiungere risorse — aggiornare solo `manifest.json`. |
 | `supabase.js` | Client Supabase condiviso. Esporta `supabase` per import ES module. **ATTENZIONE:** contiene anon key — pianificata migrazione a variabile d'ambiente Vercel (settembre 2026). |
 | `auth.js` | Gestisce login magic link, logout, stato sessione, segnalibri. Importa `supabase.js`. |
-| `scripts/ui.js` | Inietta back-to-top button in tutte le pagine. Includere con `<script src="/scripts/ui.js" defer></script>` prima di `</body>` in ogni pagina HTML. |
+| `scripts/ui.js` | Inietta back-to-top button e gestisce theme toggle in tutte le pagine. Includere con `<script src="/scripts/ui.js" defer></script>` prima di `</body>` in ogni pagina HTML. Migrazione in `/js/` pianificata luglio/agosto 2026. |
 
 > **Regola ui.js:** ogni file HTML del portale deve includere `<script src="/scripts/ui.js" defer></script>`. Verifica pagine mancanti (PowerShell dalla root): `ls -r *.html | ?{ !(sls "ui.js" $_.FullName -Quiet) } | % FullName`
 
@@ -352,7 +368,7 @@ Conversione PNG → WebP completata (14/05/2026) su 3 cartelle principali:
 
 | Script | Funzione |
 |---|---|
-| `genera_sitemap.py` | Genera `sitemap.xml` da `manifest.json`. Lanciare dopo ogni nuova risorsa. |
+| `genera_sitemap.py` | Genera `sitemap.xml` da `manifest.json`. La data `<lastmod>` viene letta dall'ultimo commit Git del file — non usa la data odierna. Lanciare dopo ogni nuova risorsa. |
 | `aggiorna_dominio.py` | Sostituisce un dominio in tutti i file HTML e XML. |
 | `aggiungi_footer_index.py` | Aggiunge `<footer>` con link legali ai file della root. |
 | `aggiungi_link_footer.py` | Aggiunge link Privacy/Cookie ai footer di tutte le sottocartelle. |
@@ -390,7 +406,7 @@ Conversione PNG → WebP completata (14/05/2026) su 3 cartelle principali:
 
 # Dark Mode — Analisi Architetturale
 
-Analisi prodotta in maggio 2026. Implementazione pianificata luglio/agosto 2026.
+Analisi prodotta in maggio 2026. Implementazione pianificata luglio/agosto 2026. Documento completo: `docs/DARK_MODE_architettura.md`.
 
 ## Valutazione
 
@@ -407,7 +423,7 @@ Il dark mode è raccomandato. Il costo reale non è tecnico — è di manutenzio
 |---|---|---|
 | **Tier 1 — Risposta automatica** | index.html, mappa.html, guide IA, Subnet, BEP | Variabili dark in `shared.css` |
 | **Tier 2 — Intervento mirato** | guida-marketing, hfs-server, codifica-binaria | Revisione colori hardcoded inline |
-| **Tier 3 — Valutare caso per caso** | guida-libreoffice-base-query, guida-word | Escludere con `data-theme-lock="true"` |
+| **Tier 3 — Escludere** | guida-libreoffice-base-query (usa `shared-extended.css`), guida-word | `data-theme-lock="true"` — il bottone toggle non appare |
 
 ## Pattern scelto
 
@@ -426,20 +442,20 @@ Il dark mode è raccomandato. Il costo reale non è tecnico — è di manutenzio
 
 ---
 
-# Architettura CSS LibreOffice — shared-libreoffice.css
+# Architettura CSS estesa — shared-extended.css
 
-Le guide LibreOffice usano un sistema CSS proprietario completamente diverso da `shared.css`. Il pattern scelto è un import a cascata:
+CSS per guide con layout proprietario completamente diverso da `shared.css`. Il file è **autonomo** — non va caricato insieme a `shared.css` perché i due sistemi hanno conflitti su `body`, `h2`, `h3`, `.section-num`.
 
 ```html
-<link rel="stylesheet" href="/css/shared.css">
-<link rel="stylesheet" href="/css/shared-libreoffice.css">
+<!-- Solo questo — NON aggiungere shared.css -->
+<link rel="stylesheet" href="/css/shared-extended.css?v=1">
 ```
 
-`shared-libreoffice.css` sovrascrive: variabili `:root` (palette scura e toni caldi), header, componenti specifici del DB.
+`shared-extended.css` definisce una palette propria (toni scuri e caldi: `--ink`, `--bg`, `--accent`, `--lo-blue` ecc.) e componenti specifici per guide tecniche (mock UI, tab, schema DB, callout, step list, field pill).
 
-Eredita da `shared.css`: reset, footer, auth UI, box callout, sidebar, back-to-top, dark mode.
+Il nome è generico per design — può essere usato da qualsiasi guida con identità visiva custom, non solo LibreOffice.
 
-> **PROSSIMO PASSO:** prima della seconda guida LibreOffice, estrarre il CSS proprietario da `guida-libreoffice-base-query/index.html` in `/css/shared-libreoffice.css`.
+**Prima risorsa:** `database/guida-libreoffice-base-query/` (estratto 20/05/2026).
 
 ---
 
@@ -479,6 +495,10 @@ Eredita da `shared.css`: reset, footer, auth UI, box callout, sidebar, back-to-t
 - [OK] `preconnect fonts.gstatic.com crossorigin` — aggiunto in 19 file (14/05/2026)
 - [OK] Variabili colori semantici in `shared.css`: `--red-mid`, `--red-accent`, `--green-mid`, `--green-accent`, `--amber-mid` (14/05/2026)
 - [OK] 14 sostituzioni colori hardcoded → variabili CSS con `replace_in_files.py` (14/05/2026)
+- [OK] `cover-title` → `<h1>` in `guida-marketing` (19/05/2026)
+- [OK] Pillola Netiquette — DC 2.2–2.4 · DCEdu 6.4 · INDIRE A4 (20/05/2026)
+- [OK] `genera_sitemap.py` — `<lastmod>` da Git invece della data odierna (20/05/2026)
+- [OK] `shared-extended.css` — CSS proprietario estratto da `guida-libreoffice-base-query`, nome generico (20/05/2026)
 
 ---
 
@@ -493,9 +513,8 @@ Eredita da `shared.css`: reset, footer, auth UI, box callout, sidebar, back-to-t
 ## Miglioramenti strutturali — luglio/agosto 2026
 
 - **Dark mode** — prerequisiti completati; implementazione rimandata a luglio/agosto (vedere `docs/DARK_MODE_architettura.md`)
-- **`shared-libreoffice.css`** — estrarre CSS proprietario da `guida-libreoffice-base-query` prima della seconda guida LibreOffice
 - **`font-display: swap`** — da aggiungere al tag Google Fonts per migliorare LCP mobile (attuale 4.8s); fare con `replace_in_files.py`
-- **Migrazione JS in `/js/`** — centralizzare i JS inline condivisi in file separati (stima 3-4 ore)
+- **Migrazione JS in `/js/`** — spostare `scripts/ui.js`, `stats.js`, `auth.js`, `supabase.js` in `/js/`; aggiornare 27+ riferimenti HTML con `replace_in_files.py` (stima 3-4 ore)
 - **`icdl/statistiche/`** — valutare migrazione su WordPress scolastico (standalone già pronto)
 
 ---
@@ -527,9 +546,9 @@ Completare **in questo ordine**:
 
 | Priorità | Risorsa | Standard attivati |
 |---|---|---|
-| [!] 1 | Pillola netiquette / cittadinanza digitale | DC 2.2–2.4 · DCEdu 6.4 · INDIRE A4 |
-| [~] 2 | Guida/strumento collaborazione scolastica | INDIRE B1·B2 · DCEdu 1.2·2.3 |
-| [?] 3 | Risorsa valutazione digitale (rubric builder) | DCEdu 4.1·4.2·4.3 · INDIRE A3 |
+| [OK] | Pillola netiquette / cittadinanza digitale | DC 2.2–2.4 · DCEdu 6.4 · INDIRE A4 |
+| [~] 1 | Guida/strumento collaborazione scolastica | INDIRE B1·B2 · DCEdu 1.2·2.3 |
+| [?] 2 | Risorsa valutazione digitale (rubric builder) | DCEdu 4.1·4.2·4.3 · INDIRE A3 |
 
 ---
 

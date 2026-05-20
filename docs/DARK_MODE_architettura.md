@@ -40,12 +40,12 @@ Pagine con `<style>` inline esteso che usa variabili proprie o colori hardcoded.
 | `networking/hfs-server/` | Stile molto custom |
 | `sistemi/codifica-binaria/` | Componenti interattivi con colori fissi |
 
-### Tier 3 — Valutare caso per caso
+### Tier 3 — Escludere con data-theme-lock
 Pagine con design system proprietario, parzialmente o totalmente scollegato da `shared.css`.
 
-| Pagina | Situazione | Strategia consigliata |
-|--------|------------|----------------------|
-| `database/guida-libreoffice-base-query/` | Già prevalentemente scura | Escludere dal toggle (`data-theme-lock`) |
+| Pagina | Situazione | Strategia |
+|--------|------------|-----------|
+| `database/guida-libreoffice-base-query/` | Usa `shared-extended.css` — sistema completamente autonomo, già prevalentemente scuro | Escludere con `data-theme-lock="true"` |
 | `elaborazione-testi/guida-word/` | Identità cromatica Microsoft (blu #0078D4) | Valutare se il toggle ha senso — potrebbe rompersi |
 
 > **Esclusione onesta:** aggiungere `data-theme-lock="true"` sull'`<html>` delle pagine Tier 3 e ignorarle nel JS del toggle. L'utente non vede il bottone su quelle pagine. Comportamento trasparente, zero rework.
@@ -99,7 +99,7 @@ Va inserito in `<head>` **prima di qualsiasi `<link>` o `<style>`**, inline, in 
 
 ### 4.2 Variabili dark in `shared.css`
 
-Aggiungere in fondo a `shared.css`, dopo tutte le regole esistenti.
+Aggiungere in fondo a `shared.css`, dopo tutte le regole esistenti (sezione 17 — attualmente placeholder).
 
 ```css
 /* ════════════════════════════════════════════════════════════════
@@ -193,9 +193,13 @@ Aggiungere in fondo a `shared.css`, dopo tutte le regole esistenti.
 
 ---
 
-### 4.3 `ui.js` — file JS condiviso
+### 4.3 `scripts/ui.js` — file JS condiviso
 
-Creare `/ui.js` in root, accanto a `auth.js` e `stats.js`.
+> **Nota sul path:** il file è attualmente in `/scripts/ui.js`. La migrazione in `/js/ui.js` è pianificata per luglio/agosto 2026 insieme agli altri JS condivisi. Aggiornare i riferimenti qui sotto quando avviene la migrazione.
+
+Il file gestisce:
+- Theme toggle (dark/light mode)
+- Back-to-top button
 
 ```javascript
 /* ════════════════════════════════════════════════════════════════
@@ -204,6 +208,7 @@ Creare `/ui.js` in root, accanto a `auth.js` e `stats.js`.
    
    Responsabilità:
    - Theme toggle (dark/light mode)
+   - Back-to-top button
    - Espandibile con altri comportamenti UI futuri
    
    Non modificare per aggiungere logica di contenuto.
@@ -291,7 +296,7 @@ In ogni pagina, dentro l'`<header>`, aggiungere il bottone toggle. La classe `.m
 E prima di `</body>` in ogni pagina:
 
 ```html
-<script src="/ui.js" defer></script>
+<script src="/scripts/ui.js" defer></script>
 ```
 
 > `defer` è corretto qui — `ui.js` può aspettare il DOM. Solo l'anti-flash in `<head>` deve essere sincrono.
@@ -322,7 +327,7 @@ Il JS di `ui.js` controlla questo attributo e non inizializza il toggle. Il bott
 Per ogni pagina che aggiungi al sistema dark mode:
 
 - [ ] Script anti-flash aggiunto in `<head>` prima dei CSS
-- [ ] `<script src="/ui.js" defer></script>` aggiunto prima di `</body>`
+- [ ] `<script src="/scripts/ui.js" defer></script>` aggiunto prima di `</body>`
 - [ ] Bottone `#theme-toggle` aggiunto nell'header
 - [ ] Testato in dark mode su desktop Chrome
 - [ ] Testato in dark mode su mobile (Safari iOS + Chrome Android)
@@ -341,6 +346,7 @@ Per ogni pagina che aggiungi al sistema dark mode:
 | Variabili dark duplicate in ogni pagina | Impossibile da mantenere — tutto in `shared.css` |
 | Salvare il tema su Supabase | Richiede login, latenza di rete, attrito inutile per una preferenza visuale |
 | Invertire semplicemente i colori | I ruoli semantici cambiano in dark mode — non è una semplice inversione |
+| Applicare dark mode a pagine con `shared-extended.css` | Sistema CSS autonomo — escludere con `data-theme-lock` |
 
 ---
 
@@ -350,7 +356,7 @@ Per ogni pagina che aggiungi al sistema dark mode:
 |---|---|
 | Variabili dark in `shared.css` + override componenti | 1–2 ore |
 | `ui.js` + bottone nell'header di index e mappa | 30 min |
-| Anti-flash in tutte le pagine (con replace_in_files.py) | 15 min |
+| Anti-flash in tutte le pagine (con `replace_in_files.py`) | 15 min |
 | Test Tier 1 (index, mappa, guide IA) | 1–2 ore |
 | Revisione Tier 2 (pagine con CSS inline custom) | 2–4 ore |
 | Decisione e lock Tier 3 (LibreOffice, Word) | 30 min |
@@ -360,4 +366,4 @@ La parte più lunga non è il codice — è verificare che ogni componente speci
 
 ---
 
-*Documento generato in sessione · Formazione Digitale · Maggio 2026*
+*Documento aggiornato 20/05/2026 · Formazione Digitale*
