@@ -645,6 +645,8 @@ footer {
   font-family: 'Space Mono', monospace;
 }
 footer span { color: var(--accent); }
+footer a { color: #888; text-decoration: none; }
+footer a:hover { color: var(--accent); }
 
 /* ── ANIMAZIONI ── */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
