@@ -724,5 +724,37 @@
     "digcompedu": [
       "DCEdu 1.4"
     ]
+  },{
+    "path": "/competenze-digitali/pillola-netiquette/",
+    "label": "Netiquette — Comunicare bene online",
+    "short": "Netiquette",
+    "cat": "pillola",
+    "emoji": "💬",
+    "tags": [
+      "netiquette",
+      "comunicazione digitale",
+      "email",
+      "messaggistica",
+      "social network",
+      "forum",
+      "cittadinanza digitale",
+      "competenze digitali"
+    ],
+    "meta": "5 regole · Checklist · Livello base · ~7 min",
+    "description": "Le 5 regole fondamentali della comunicazione digitale: email, messaggistica, social, forum e gruppi.",
+    "featured": false,
+    "active": true,
+    "digcomp": [
+      "DC 2.2",
+      "DC 2.3",
+      "DC 2.4"
+    ],
+    "digcomp_level": "foundation",
+    "digcomp_areas": [
+      "comunicazione"
+    ],
+    "digcompedu": [
+      "DCEdu 6.4"
+    ]
   }
 ]

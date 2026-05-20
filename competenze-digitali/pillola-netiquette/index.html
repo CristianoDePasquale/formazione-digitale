@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netiquette: le 5 regole per comunicare bene online | Formazione Digitale</title>
+<meta name="description" content="Le 5 regole fondamentali della comunicazione digitale: email, messaggistica, social, forum. Cosa fare (e non fare) online.">
+<meta name="keywords" content="netiquette, comunicazione digitale, email, messaggistica, social network, forum, cittadinanza digitale, competenze digitali, DigComp">
+<meta name="author" content="Cristiano De Pasquale">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1F4E79">
+<link rel="canonical" href="https://formazione-digitale.it/competenze-digitali/pillola-netiquette/">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="//gc.zgo.at">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<meta property="og:title" content="Netiquette — Comunicare bene online · Formazione Digitale">
+<meta property="og:description" content="Le 5 regole fondamentali della comunicazione digitale: email, messaggistica, social, forum.">
+<meta property="og:url" content="https://formazione-digitale.it/competenze-digitali/pillola-netiquette/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://formazione-digitale.it/img/formazione-digitale-logo.png">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Formazione Digitale">
+<meta property="og:article:published_time" content="2026-05-20T00:00:00+02:00">
+<meta property="og:article:author" content="Cristiano De Pasquale">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Netiquette — Comunicare bene online · Formazione Digitale">
+<meta name="twitter:description" content="Le 5 regole fondamentali della comunicazione digitale.">
+<meta name="twitter:image" content="https://formazione-digitale.it/img/formazione-digitale-logo.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Netiquette — Comunicare bene online",
+  "description": "Le 5 regole fondamentali della comunicazione digitale: email, messaggistica, social, forum e gruppi.",
+  "url": "https://formazione-digitale.it/competenze-digitali/pillola-netiquette/",
+  "inLanguage": "it",
+  "educationalLevel": "Foundation",
+  "author": {
+    "@type": "Person",
+    "name": "Cristiano De Pasquale",
+    "jobTitle": "Docente di Informatica"
+  },
+  "provider": {
+    "@type": "WebSite",
+    "name": "Formazione Digitale",
+    "url": "https://formazione-digitale.it"
+  },
+  "keywords": "netiquette, comunicazione digitale, email, messaggistica, social network, forum, cittadinanza digitale, competenze digitali"
+}
+</script>
+
+<script data-goatcounter="https://formazionedigitale.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="/css/shared.css?v=2">
+<style>
+/* ════════════════════════════════════════
+   PILLOLA NETIQUETTE — Layout verticale
+   5 regole, una card per regola
+════════════════════════════════════════ */
+
+/* Skip link accessibilità */
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--blue-dark); color: #fff;
+  padding: .5rem 1rem; z-index: 1000;
+  text-decoration: none; font-size: .85rem;
+}
+.skip-link:focus { left: 0; }
+
+/* Header fisso */
+.pill-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 52px; background: var(--blue-dark);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.25rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,.18);
+}
+.pill-header-back {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .78rem; color: rgba(255,255,255,.65);
+  text-decoration: none; transition: color .2s;
+}
+.pill-header-back svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; }
+.pill-header-back:hover { color: #fff; }
+.pill-header-title {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  font-size: .83rem; color: rgba(255,255,255,.85); font-weight: 500;
+  white-space: nowrap;
+}
+.pill-header-badge {
+  font-size: .7rem; color: rgba(255,255,255,.5);
+  background: rgba(255,255,255,.1); border-radius: 20px;
+  padding: .2rem .65rem; white-space: nowrap;
+}
+
+/* Reading bar */
+#reading-bar {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+  background: var(--amber-mid); width: 0; transition: width .1s linear;
+}
+
+/* Wrapper principale */
+.pill-wrap {
+  max-width: 680px;
+  margin: 52px auto 0;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Hero */
+.pill-hero {
+  background: linear-gradient(135deg, #7D4E00 0%, #a86500 100%);
+  border-radius: 12px;
+  padding: 2rem 1.75rem 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 24px rgba(125,78,0,.22);
+}
+.pill-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  color: #fff; line-height: 1.1; margin-bottom: .5rem;
+}
+.pill-hero-title em { font-style: italic; color: var(--amber-light); }
+.pill-hero-sub {
+  font-size: .9rem; color: rgba(255,255,255,.8); line-height: 1.6;
+}
+.pill-hero-badges { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1.1rem; }
+.hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.9); font-size: .68rem; font-weight: 500;
+  padding: .22rem .65rem; border-radius: 20px;
+}
+
+/* Intro */
+.pill-intro {
+  font-size: .95rem; color: var(--gray-mid); line-height: 1.7;
+  margin-bottom: 1.75rem; padding: 0 .25rem;
+}
+.pill-intro strong { color: var(--blue-dark); }
+
+/* Regola card */
+.regola {
+  background: var(--white);
+  border: 1px solid var(--blue-light);
+  border-radius: 12px;
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px rgba(31,78,121,.07);
+  display: flex; gap: 1rem; align-items: flex-start;
+  transition: box-shadow .22s, transform .22s, border-color .22s;
+}
+.regola:hover {
+  box-shadow: 0 6px 22px rgba(31,78,121,.14);
+  transform: translateY(-2px);
+  border-color: var(--amber-mid);
+}
+.regola-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 38px; height: 38px; flex-shrink: 0;
+  background: #7D4E00; color: #fff;
+  border-radius: 8px; font-size: 1rem; font-weight: 700;
+}
+.regola-body { flex: 1; min-width: 0; }
+.regola-title {
+  font-weight: 700; font-size: 1rem; color: var(--blue-dark);
+  margin: 0 0 .35rem 0; display: flex; align-items: center; gap: .45rem;
+  flex-wrap: wrap;
+}
+.regola-title .emoji { font-size: 1.15rem; }
+.regola-text { font-size: .88rem; color: var(--gray-dark); line-height: 1.7; }
+
+/* Tag livello */
+.regola-tag {
+  display: inline-block; font-size: .68rem; font-weight: 600;
+  padding: .15rem .55rem; border-radius: 20px; margin-left: .35rem;
+  vertical-align: middle;
+}
+.tag-amber { background: var(--amber-light); color: var(--amber-dark); }
+.tag-red   { background: #FDECEA; color: #8B1A1A; }
+.tag-blue  { background: var(--blue-pale); color: var(--blue-dark); }
+
+/* Box do/warn */
+.regola-do {
+  margin-top: .75rem;
+  background: var(--green-light);
+  border-left: 3px solid var(--green-dark);
+  border-radius: 0 6px 6px 0;
+  padding: .55rem .85rem;
+  font-size: .82rem; color: #14472a; line-height: 1.55;
+}
+.regola-warn {
+  margin-top: .75rem;
+  background: var(--amber-light);
+  border-left: 3px solid var(--amber-dark);
+  border-radius: 0 6px 6px 0;
+  padding: .55rem .85rem;
+  font-size: .82rem; color: #5a3500; line-height: 1.55;
+}
+
+/* Checklist finale */
+.checklist-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem; color: var(--blue-dark);
+  margin: 2.5rem 0 1rem;
+}
+.checklist {
+  list-style: none; padding: 0; margin: 0;
+}
+.checklist li {
+  display: flex; gap: .75rem; align-items: flex-start;
+  padding: .6rem 0; border-bottom: 1px solid var(--blue-light);
+  font-size: .88rem; color: var(--gray-dark); line-height: 1.5;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before {
+  content: '☐'; font-size: 1.1rem; color: var(--amber-mid);
+  flex-shrink: 0; margin-top: -.05rem;
+}
+.checklist li strong { color: var(--blue-dark); }
+
+/* Box normativo */
+.norm-box {
+  margin-top: 2rem;
+  background: var(--gray-light);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  font-size: .82rem; color: var(--gray-mid); line-height: 1.7;
+}
+.norm-box strong { color: var(--gray-dark); display: block; margin-bottom: .4rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .07em; }
+.norm-box a { color: var(--blue-mid); text-decoration: none; }
+.norm-box a:hover { text-decoration: underline; }
+
+/* CTA mappa framework */
+.pill-cta {
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-light);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  display: flex; gap: 1rem; align-items: center;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.pill-cta:hover { background: var(--blue-light); border-color: var(--blue-mid); }
+.pill-cta-icon { font-size: 1.8rem; flex-shrink: 0; }
+.pill-cta-text { flex: 1; }
+.pill-cta-label { font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; color: var(--blue-mid); margin-bottom: .2rem; }
+.pill-cta-title { font-weight: 700; color: var(--blue-dark); font-size: .95rem; }
+.pill-cta-desc { font-size: .82rem; color: var(--gray-mid); margin-top: .15rem; }
+.pill-cta-arrow { color: var(--blue-mid); font-size: 1.2rem; flex-shrink: 0; transition: transform .2s; }
+.pill-cta:hover .pill-cta-arrow { transform: translateX(4px); }
+
+/* Link esterni — avviso nuova scheda */
+.external-note { font-size: .7rem; color: var(--gray-mid); }
+
+/* Template email */
+.email-template {
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-light);
+  border-radius: 6px;
+  padding: .65rem .9rem;
+  font-family: 'Courier New', monospace;
+  font-size: .78rem;
+  color: var(--gray-dark);
+  line-height: 1.7;
+  margin-top: .5rem;
+  white-space: pre-wrap;
+}
+.email-template .em-label {
+  font-family: var(--font-body);
+  font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--blue-mid); margin-bottom: .3rem;
+  display: block;
+}
+
+/* Focus visibile per tastiera */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--amber-mid);
+  outline-offset: 2px;
+}
+
+/* Footer */
+.pill-footer {
+  background: var(--blue-dark); color: rgba(255,255,255,.6);
+  text-align: center; padding: 1.75rem 1rem;
+  font-size: .8rem; line-height: 1.8; margin-top: 3rem;
+}
+.pill-footer a { color: rgba(255,255,255,.4); }
+
+@media(max-width:480px) {
+  .pill-header-title { display: none; }
+  .pill-header { padding: 0 .75rem; }
+  .pill-wrap { padding: 2rem 1rem 4rem; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+
+<div id="reading-bar" aria-hidden="true"></div>
+
+<header class="pill-header" aria-label="Navigazione pillola">
+  <a class="pill-header-back" href="/index.html" aria-label="Torna al portale">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    Portale
+  </a>
+  <div class="pill-header-title">Netiquette</div>
+  <div class="pill-header-badge" aria-hidden="true">⏱ 7 min</div>
+</header>
+
+<main id="main-content" class="pill-wrap">
+
+  <div class="pill-hero">
+    <h1 class="pill-hero-title">Netiquette — <br><em>comunicare bene online</em></h1>
+    <p class="pill-hero-sub">Le regole non scritte della comunicazione digitale. Cinque situazioni quotidiane, cinque principi pratici.</p>
+    <div class="pill-hero-badges" aria-label="Caratteristiche della pillola">
+      <span class="hero-badge">💬 Comunicazione</span>
+      <span class="hero-badge">⏱ 7 minuti</span>
+      <span class="hero-badge">🎓 DC 2.2 · 2.3 · 2.4</span>
+      <span class="hero-badge">💡 Livello base</span>
+    </div>
+  </div>
+
+  <p class="pill-intro">
+    La <strong>netiquette</strong> (contrazione di <em>network etiquette</em>) è l'insieme delle regole di comportamento che favoriscono una comunicazione digitale rispettosa, efficace e inclusiva. Quando comunichiamo online manca tutto quello che nella conversazione reale è implicito: tono di voce, espressioni, contesto. Una frase neutra può sembrare scortese. Un messaggio urgente può disturbare nel momento sbagliato. La netiquette non è un galateo rigido — è <strong>buon senso applicato al digitale</strong>.
+  </p>
+
+  <section aria-labelledby="regole-heading">
+    <h2 id="regole-heading" class="visually-hidden">Le 5 regole della netiquette</h2>
+
+    <!-- Regola 1 -->
+    <article class="regola">
+      <div class="regola-num" aria-hidden="true">1</div>
+      <div class="regola-body">
+        <h3 class="regola-title">
+          <span class="emoji" aria-hidden="true">✍️</span>
+          Tono e contesto: scritto ≠ parlato
+          <span class="regola-tag tag-amber">Fondamentale</span>
+        </h3>
+        <div class="regola-text">
+          Il testo elimina l'ironia, l'intonazione e la mimica. Quello che a voce suona come una battuta, per scritto può sembrare un attacco. Prima di inviare, rileggi il messaggio immaginando di riceverlo da uno sconosciuto.<br><br>
+          <strong>Errori tipici:</strong> SCRIVERE IN MAIUSCOLO (equivale a urlare), usare punteggiatura aggressiva (!!!), inserire sarcasmo senza segnalarlo, mandare messaggi di testo asciutti su temi delicati che andrebbero affrontati a voce.
+        </div>
+        <div class="regola-do">
+          ✅ <strong>Regola pratica:</strong> se hai dubbi sul tono, aspetta 5 minuti prima di inviare. Spesso bastano per accorgersi che il messaggio suona male.
+        </div>
+      </div>
+    </article>
+
+    <!-- Regola 2 -->
+    <article class="regola">
+      <div class="regola-num" aria-hidden="true">2</div>
+      <div class="regola-body">
+        <h3 class="regola-title">
+          <span class="emoji" aria-hidden="true">📧</span>
+          Email: oggetto, saluto, lunghezza
+          <span class="regola-tag tag-blue">Formale</span>
+        </h3>
+        <div class="regola-text">
+          L'email è ancora il canale formale per eccellenza, soprattutto in ambito scolastico e lavorativo. Un'email senza oggetto è invisibile. Un'email senza saluto è scortese. Un'email di 800 parole per chiedere un'informazione semplice è un abuso del tempo altrui.<br><br>
+          <strong>Struttura minima:</strong> oggetto chiaro e specifico → saluto adeguato al destinatario → corpo conciso → congedo → firma.
+        </div>
+        <div class="regola-warn">
+          ⚠️ <strong>Errori comuni:</strong> oggetto generico ("domanda", "aiuto", "urgent"), rispondere a tutti quando basta rispondere a uno solo, allegare file enormi senza avviso, scrivere alle 23 aspettandosi risposta immediata.
+        </div>
+        <div class="regola-do">
+          ✅ <strong>Struttura tipo:</strong>
+          <div class="email-template"><span class="em-label">Esempio</span>Oggetto: Richiesta di chiarimento — Compito del 22 maggio
+
+Gentile professoressa Rossi,
+le scrivo per chiedere un chiarimento sulla consegna
+del prossimo compito: [domanda specifica].
+
+Grazie per la disponibilità.
+Cordiali saluti,
+Mario Bianchi — Classe 3ª A</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Regola 3 -->
+    <article class="regola">
+      <div class="regola-num" aria-hidden="true">3</div>
+      <div class="regola-body">
+        <h3 class="regola-title">
+          <span class="emoji" aria-hidden="true">💬</span>
+          Messaggistica: quando scrivere, quando chiamare
+          <span class="regola-tag tag-amber">Quotidiano</span>
+        </h3>
+        <div class="regola-text">
+          WhatsApp, Teams, Telegram hanno azzerato la distanza — ma anche i confini. Un messaggio alle 23 non è neutro: anche se il destinatario non risponde, il ping c'è stato e la notifica è arrivata.<br><br>
+          <strong>Regola del canale:</strong> urgente e complesso → chiama. Urgente e semplice → scrivi. Non urgente → scrivi e aspetta. Non urgente e lungo → email.<br><br>
+          <strong>Orari:</strong> nei contesti scolastici e professionali, evita di inviare messaggi tra le 22:00 e le 8:00 salvo emergenza reale.
+        </div>
+        <div class="regola-warn">
+          ⚠️ <strong>Da evitare:</strong> messaggi vocali lunghissimi senza contesto, serie di messaggi spezzettati invece di uno solo completo, usare "?" come risposta a un silenzio, aggiungere persone a gruppi senza chiedere prima.
+        </div>
+      </div>
+    </article>
+
+    <!-- Regola 4 -->
+    <article class="regola">
+      <div class="regola-num" aria-hidden="true">4</div>
+      <div class="regola-body">
+        <h3 class="regola-title">
+          <span class="emoji" aria-hidden="true">🌐</span>
+          Social: pubblico è pubblico per sempre
+          <span class="regola-tag tag-red">Attenzione</span>
+        </h3>
+        <div class="regola-text">
+          Tutto quello che pubblichi online — anche su un profilo impostato come "privato" — può essere salvato, condiviso o ritrovato anni dopo. Il contesto cambia: quello che sembra appropriato in un gruppo di amici può risultare fuori luogo agli occhi di un futuro datore di lavoro, di un professore, o semplicemente di chi non conosce il tuo tono.<br><br>
+          <strong>Tre domande prima di pubblicare:</strong> sarei a mio agio se lo vedesse la mia famiglia? E il mio preside o capo? Tra dieci anni vorrei che esistesse ancora?
+        </div>
+        <div class="regola-warn">
+          ⚠️ <strong>Attenzione a:</strong> taggare qualcuno in una foto senza chiedere il permesso, condividere contenuti altrui senza citare la fonte, partecipare a shitstorm collettivi anche quando "lo fanno tutti" — la responsabilità individuale non scompare.
+        </div>
+      </div>
+    </article>
+
+    <!-- Regola 5 -->
+    <article class="regola">
+      <div class="regola-num" aria-hidden="true">5</div>
+      <div class="regola-body">
+        <h3 class="regola-title">
+          <span class="emoji" aria-hidden="true">🗣️</span>
+          Forum e gruppi: non fare spam, citare bene
+          <span class="regola-tag tag-blue">Community</span>
+        </h3>
+        <div class="regola-text">
+          Forum, gruppi, thread di classe su Teams: sono spazi condivisi con regole implicite. Chi entra in uno spazio digitale già avviato dovrebbe prima osservare, poi partecipare.<br><br>
+          <strong>Regole fondamentali:</strong> cerca prima di chiedere (la risposta potrebbe essere già lì), cita sempre il messaggio a cui rispondi per dare contesto, non pubblicare lo stesso contenuto in più thread (cross-posting), non andare fuori tema (off-topic), non rispondere alle provocazioni (trolling) — ignorare è quasi sempre la scelta migliore.
+        </div>
+        <div class="regola-do">
+          ✅ <strong>Citare bene:</strong> quando riporti le parole di qualcuno, indica sempre la fonte e non decontestualizzare. Vale online esattamente come nella vita reale.
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- Checklist -->
+  <section aria-labelledby="checklist-title">
+    <h2 id="checklist-title" class="checklist-title">✅ La tua checklist</h2>
+    <ul class="checklist">
+      <li><strong>Rileggo il messaggio</strong> prima di inviarlo, immaginando di riceverlo da qualcuno che non mi conosce</li>
+      <li><strong>Le email hanno sempre</strong> oggetto chiaro, saluto adeguato e firma</li>
+      <li><strong>Non scrivo messaggi</strong> fuori orario senza reale urgenza</li>
+      <li><strong>Prima di pubblicare sui social</strong> mi chiedo se tra dieci anni potrei pentirsene</li>
+      <li><strong>Nei gruppi cerco prima</strong> di chiedere, e cito sempre la fonte quando riporto le parole di altri</li>
+      <li><strong>Verifico sempre</strong> le fonti prima di condividere contenuti sui social o nei gruppi</li>
+    </ul>
+  </section>
+
+  <!-- Box normativo -->
+  <div class="norm-box">
+    <strong>📋 Contesto normativo</strong>
+    La comunicazione digitale si inserisce in un quadro europeo e nazionale ben definito:
+    il <a href="https://publications.jrc.ec.europa.eu/repository/handle/JRC128415" target="_blank" rel="noopener">DigComp 2.2 <span class="external-note">(nuova scheda)</span></a> definisce le competenze di comunicazione e collaborazione online,
+    il <a href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32016R0679" target="_blank" rel="noopener">GDPR (Reg. UE 2016/679) <span class="external-note">(nuova scheda)</span></a> tutela i dati personali nelle interazioni digitali,
+    il <a href="https://www.istruzione.it/scuola_digitale/index.shtml" target="_blank" rel="noopener">Piano Nazionale Scuola Digitale (PNSD) <span class="external-note">(nuova scheda)</span></a> promuove la cittadinanza digitale nelle scuole italiane.
+  </div>
+
+  <!-- CTA mappa framework -->
+  <a class="pill-cta" href="/mappa-framework.html">
+    <div class="pill-cta-icon" aria-hidden="true">🗺️</div>
+    <div class="pill-cta-text">
+      <div class="pill-cta-label">Esplora le competenze</div>
+      <div class="pill-cta-title">Mappa dei framework digitali</div>
+      <div class="pill-cta-desc">Scopri come questa pillola si collega a DigComp 2.2–2.4 e alle altre competenze digitali del portale.</div>
+    </div>
+    <div class="pill-cta-arrow" aria-hidden="true">→</div>
+  </a>
+
+</main>
+
+<footer class="pill-footer">
+  <strong>Formazione Digitale</strong> · <a href="/">Torna alla home</a><br>
+  Risorse di alfabetizzazione digitale libere e gratuite.<br>
+  Tutti i contenuti sono rilasciati per uso libero e non commerciale.<br>
+  <p style="margin-top:.5rem;font-size:.78rem;">
+    <a href="/privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/cookie-policy.html">Cookie Policy</a>
+  </p>
+</footer>
+
+<script>
+(function() {
+  const bar = document.getElementById('reading-bar');
+  if (!bar) return;
+  function updateBar() {
+    const s = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? Math.min(100, (s / h) * 100) : 0) + '%';
+  }
+  window.addEventListener('scroll', updateBar, { passive: true });
+  window.addEventListener('resize', updateBar);
+  updateBar();
+})();
+</script>
+
+<!-- Classe utility per heading nascosti ma accessibili agli screen reader -->
+<style>.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }</style>
+
+<script src="/scripts/ui.js" defer></script>
+</body>
+</html>
