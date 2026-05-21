@@ -337,15 +337,11 @@ p { margin-bottom: .85rem; font-size: .95rem; line-height: 1.75; color: #3a3a3a;
     <span class="guide-header-sep"></span>
     <span class="guide-header-center">Basi di Dati</span>
   </div>
-    <div class="guide-header-right">
-      <div class="header-downloads">
-        <a class="btn-download" href="download/database_intro.pdf" download>⬇ PDF</a>
-        <a class="btn-download" href="download/dbms_modelli_relazionali.pptx" download>⬇ PPTX</a>
-      </div>
-      <button class="hamburger" id="hamburger-btn" onclick="toggleSidebar()" aria-label="Menu sezioni">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+  <div class="guide-header-right">
+    <button class="hamburger" id="hamburger-btn" onclick="toggleSidebar()" aria-label="Menu sezioni">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
 <div class="guide-layout">
@@ -643,9 +639,38 @@ p { margin-bottom: .85rem; font-size: .95rem; line-height: 1.75; color: #3a3a3a;
         <li style="font-size:.92rem;line-height:1.8;margin-bottom:.3rem;"><strong>Persistenza e consistenza</strong> dei dati nel tempo.</li>
         <li style="font-size:.92rem;line-height:1.8;margin-bottom:.3rem;"><strong>Sicurezza e privacy</strong>: chi può accedere a cosa e con quali permessi.</li>
         <li style="font-size:.92rem;line-height:1.8;margin-bottom:.3rem;"><strong>Controllo dell'integrità</strong>: le operazioni rispettano sempre i vincoli definiti.</li>
-        <li style="font-size:.92rem;line-height:1.8;margin-bottom:.3rem;"><strong>Gestione delle transazioni</strong>: sequenze di operazioni eseguite completamente o per nulla (<em>principio dell'atomicità</em>).</li>
+        <li style="font-size:.92rem;line-height:1.8;margin-bottom:.3rem;"><strong>Gestione delle transazioni</strong>: sequenze di operazioni eseguite completamente o per nulla, garantendo le proprietà ACID (vedi sotto).</li>
         <li style="font-size:.92rem;line-height:1.8;margin-bottom:.3rem;"><strong>Interrogazione (query)</strong>: estrazione mirata di dati tramite un linguaggio specifico (SQL).</li>
       </ul>
+
+      <p class="sub-title">Le proprietà ACID</p>
+      <p>Una <strong>transazione</strong> è un insieme di operazioni che devono essere trattate come un'unica unità indivisibile — o vanno tutte a buon fine, o nessuna viene applicata. Il DBMS garantisce che ogni transazione rispetti quattro proprietà fondamentali, dette <strong>ACID</strong>.</p>
+
+      <table class="guide-table">
+        <thead><tr><th>Proprietà</th><th>Significato</th><th>Esempio concreto</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>A — Atomicità</strong></td>
+            <td>La transazione è indivisibile: o tutte le operazioni vengono eseguite, o nessuna.</td>
+            <td>Un bonifico scala 500 € dal conto A e li accredita sul conto B. Se l'accredito fallisce, anche il prelievo viene annullato. Il denaro non sparisce nel nulla.</td>
+          </tr>
+          <tr>
+            <td><strong>C — Coerenza</strong></td>
+            <td>La transazione porta il database da uno stato valido a un altro stato valido, rispettando tutti i vincoli definiti.</td>
+            <td>Un ordine non può essere registrato con un codice cliente inesistente. Il DBMS blocca l'operazione prima che violi l'integrità referenziale.</td>
+          </tr>
+          <tr>
+            <td><strong>I — Isolamento</strong></td>
+            <td>Le transazioni concorrenti non si interferiscono: ciascuna vede i dati come se fosse l'unica in esecuzione.</td>
+            <td>Due cassieri che vendono contemporaneamente l'ultimo articolo in magazzino non possono entrambi "prenotarlo": uno dei due riceverà un errore di disponibilità.</td>
+          </tr>
+          <tr>
+            <td><strong>D — Durabilità</strong></td>
+            <td>Una volta confermata (commit), la transazione è permanente anche in caso di guasto hardware o interruzione di corrente.</td>
+            <td>Se il sistema si spegne dopo la conferma di una fattura, al riavvio la fattura è ancora lì. I dati non vengono persi.</td>
+          </tr>
+        </tbody>
+      </table>
 
       <div class="box box-tip">
         <div class="box-icon">🔍</div>
