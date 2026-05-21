@@ -59,12 +59,11 @@
    Solo componenti non presenti in shared.css
 ═══════════════════════════════════════════ */
 
-/* Layout a griglia */
+/* Layout a griglia — full-width, sidebar ancorata al bordo sinistro */
 .guide-layout {
   display: grid;
   grid-template-columns: 260px 1fr;
-  max-width: 1200px;
-  margin: 56px auto 0;
+  margin-top: 56px;
   min-height: calc(100vh - 56px);
 }
 @media(max-width:900px) {
@@ -750,6 +749,12 @@ p { margin-bottom: .85rem; font-size: .95rem; line-height: 1.75; color: #3a3a3a;
         <div class="box-icon">ℹ️</div>
         <div>In questo corso ci concentreremo sulla <strong>progettazione concettuale</strong> (modello E-R) e sulla <strong>progettazione logica</strong> (schema relazionale). La fase fisica è demandata al DBMS e alle sue impostazioni avanzate.</div>
       </div>
+
+      <!-- Immagine: pipeline completa requisiti → concettuale → logico -->
+      <figure style="margin:1.5rem 0;">
+        <img src="img/database006.webp" alt="Schema che mostra il flusso dai requisiti aziendali al modello concettuale E-R e poi al modello logico con tabelle" style="width:100%;border-radius:var(--radius);border:1px solid var(--blue-light);box-shadow:var(--shadow);">
+        <figcaption style="font-size:.78rem;color:var(--gray-mid);text-align:center;margin-top:.5rem;font-style:italic;">Il modello concettuale risponde al COSA (quali entità e relazioni), il modello logico risponde al COME (quali tabelle, chiavi e colonne). I requisiti reali — fatture, ordini, archivi — sono il punto di partenza.</figcaption>
+      </figure>
     </section>
 
     <!-- ══════════════════════════════════════════════════════
@@ -822,6 +827,12 @@ p { margin-bottom: .85rem; font-size: .95rem; line-height: 1.75; color: #3a3a3a;
         <div class="box-icon">💡</div>
         <div>Le chiavi artificiali sono spesso preferite per motivi di performance e semplicità: un numero intero è più veloce da confrontare di una stringa come il codice fiscale, e non cambia mai nel tempo. La chiave naturale invece può cambiare (es. una persona cambia cognome).</div>
       </div>
+
+      <!-- Immagine: PK semplice vs composta nella notazione E-R -->
+      <figure style="margin:1.5rem 0;">
+        <img src="img/database002.webp" alt="Confronto tra chiave primaria semplice (un pallino pieno) e chiave primaria composta (più pallini pieni collegati)" style="width:100%;border-radius:var(--radius);border:1px solid var(--blue-light);box-shadow:var(--shadow);">
+        <figcaption style="font-size:.78rem;color:var(--gray-mid);text-align:center;margin-top:.5rem;font-style:italic;">Nel diagramma E-R: un solo pallino pieno = chiave primaria semplice (es. Matricola). Più pallini pieni collegati = chiave primaria composta (es. Nome + Cognome + DataNascita).</figcaption>
+      </figure>
     </section>
 
     <!-- ══════════════════════════════════════════════════════
@@ -838,54 +849,78 @@ p { margin-bottom: .85rem; font-size: .95rem; line-height: 1.75; color: #3a3a3a;
 
       <p>Il diagramma E-R usa <strong>simboli grafici standardizzati</strong> per rappresentare i vari elementi. Conoscerli è indispensabile per leggere e costruire un modello concettuale.</p>
 
-      <!-- SVG Simbologia E-R -->
+      <!-- SVG Simbologia E-R — layout 2x2, nessun troncamento -->
       <div class="svg-wrap">
-        <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto;" aria-label="Simbologia standard del diagramma Entità-Relazione">
+        <svg viewBox="0 0 620 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:620px;display:block;margin:0 auto;" aria-label="Simbologia standard del diagramma Entità-Relazione">
 
-          <!-- Titolo -->
-          <text x="340" y="22" text-anchor="middle" fill="#1F4E79" font-family="Georgia,serif" font-size="14" font-weight="700">Simbologia standard del diagramma E-R</text>
+          <text x="310" y="20" text-anchor="middle" fill="#1F4E79" font-family="Georgia,serif" font-size="14" font-weight="700">Simbologia standard del diagramma E-R</text>
 
-          <!-- Riga 1: Entità -->
-          <rect x="30" y="42" width="130" height="50" rx="6" fill="#EBF3FC" stroke="#2E75B6" stroke-width="2"/>
-          <text x="95" y="73" text-anchor="middle" fill="#1F4E79" font-family="Georgia,serif" font-size="14" font-weight="700">STUDENTE</text>
-          <text x="220" y="55" fill="#444" font-family="sans-serif" font-size="12" font-weight="700">Entità (rettangolo)</text>
-          <text x="220" y="72" fill="#666" font-family="sans-serif" font-size="11">Rappresenta un oggetto o concetto</text>
-          <text x="220" y="87" fill="#666" font-family="sans-serif" font-size="11">del mondo reale. Diventa una tabella.</text>
+          <!-- RIGA 1 sinistra: Entità -->
+          <rect x="20" y="36" width="120" height="46" rx="6" fill="#EBF3FC" stroke="#2E75B6" stroke-width="2"/>
+          <text x="80" y="65" text-anchor="middle" fill="#1F4E79" font-family="Georgia,serif" font-size="13" font-weight="700">STUDENTE</text>
+          <text x="158" y="50" fill="#444" font-family="sans-serif" font-size="12" font-weight="700">Entità (rettangolo)</text>
+          <text x="158" y="66" fill="#666" font-family="sans-serif" font-size="11">Oggetto o concetto del mondo reale.</text>
+          <text x="158" y="80" fill="#666" font-family="sans-serif" font-size="11">Diventa una tabella nel database.</text>
 
-          <!-- Riga 2: Attributo semplice -->
-          <ellipse cx="95" cy="148" rx="55" ry="24" fill="#fff" stroke="#2E75B6" stroke-width="1.5"/>
-          <text x="95" y="153" text-anchor="middle" fill="#2E75B6" font-family="sans-serif" font-size="12">cognome</text>
-          <text x="220" y="140" fill="#444" font-family="sans-serif" font-size="12" font-weight="700">Attributo semplice (ellisse)</text>
-          <text x="220" y="157" fill="#666" font-family="sans-serif" font-size="11">Singolo dato che descrive un'entità.</text>
-          <text x="220" y="172" fill="#666" font-family="sans-serif" font-size="11">Si collega all'entità con una linea.</text>
+          <!-- RIGA 1 destra: Relazione -->
+          <polygon points="490,36 550,59 490,82 430,59" fill="#FFF3CD" stroke="#7D4E00" stroke-width="2"/>
+          <text x="490" y="64" text-anchor="middle" fill="#7D4E00" font-family="Georgia,serif" font-size="11" font-weight="700">SOSTIENE</text>
+          <text x="158" y="96" fill="#444" font-family="sans-serif" font-size="11" font-weight="700">Rombo = Relazione tra entità. Può avere propri attributi di associazione.</text>
 
-          <!-- Riga 3: Chiave primaria (ellisse tratteggiata con testo sottolineato) -->
-          <ellipse cx="95" cy="222" rx="60" ry="24" fill="#fff" stroke="#1F4E79" stroke-width="2" stroke-dasharray="0"/>
-          <text x="95" y="227" text-anchor="middle" fill="#1F4E79" font-family="sans-serif" font-size="12" font-weight="700" text-decoration="underline">matricola</text>
-          <!-- Sottolineatura manuale per compatibilità SVG -->
-          <line x1="63" y1="230" x2="127" y2="230" stroke="#1F4E79" stroke-width="1.5"/>
-          <text x="220" y="214" fill="#444" font-family="sans-serif" font-size="12" font-weight="700">Attributo chiave primaria</text>
-          <text x="220" y="231" fill="#666" font-family="sans-serif" font-size="11">Il nome è sottolineato per indicare</text>
-          <text x="220" y="246" fill="#666" font-family="sans-serif" font-size="11">che è l'identificatore univoco dell'entità.</text>
+          <!-- Separatore -->
+          <line x1="20" y1="112" x2="600" y2="112" stroke="#D6E8F7" stroke-width="1"/>
 
-          <!-- Riga 4: Relazione (rombo) — colonna destra -->
-          <polygon points="490,42 560,72 490,102 420,72" fill="#FFF3CD" stroke="#7D4E00" stroke-width="2"/>
-          <text x="490" y="77" text-anchor="middle" fill="#7D4E00" font-family="Georgia,serif" font-size="12" font-weight="700">SOSTIENE</text>
-          <text x="590" y="58" fill="#444" font-family="sans-serif" font-size="12" font-weight="700">Relazione (rombo)</text>
-          <text x="590" y="75" fill="#666" font-family="sans-serif" font-size="11">Associazione tra due entità.</text>
-          <text x="590" y="90" fill="#666" font-family="sans-serif" font-size="11">Può avere propri attributi.</text>
+          <!-- RIGA 2 sinistra: Attributo semplice -->
+          <ellipse cx="80" cy="162" rx="52" ry="22" fill="#fff" stroke="#2E75B6" stroke-width="1.5"/>
+          <text x="80" y="167" text-anchor="middle" fill="#2E75B6" font-family="sans-serif" font-size="12">cognome</text>
+          <text x="158" y="148" fill="#444" font-family="sans-serif" font-size="12" font-weight="700">Attributo semplice (ellisse vuota)</text>
+          <text x="158" y="164" fill="#666" font-family="sans-serif" font-size="11">Singolo dato che descrive un'entità.</text>
+          <text x="158" y="179" fill="#666" font-family="sans-serif" font-size="11">Si collega all'entità con una linea.</text>
+
+          <!-- Separatore -->
+          <line x1="20" y1="200" x2="600" y2="200" stroke="#D6E8F7" stroke-width="1"/>
+
+          <!-- RIGA 3 sinistra: PK semplice -->
+          <circle cx="80" cy="218" r="6" fill="#1F4E79"/>
+          <line x1="80" y1="224" x2="80" y2="234" stroke="#1F4E79" stroke-width="1.5"/>
+          <ellipse cx="80" cy="255" rx="52" ry="22" fill="#fff" stroke="#1F4E79" stroke-width="2"/>
+          <text x="80" y="260" text-anchor="middle" fill="#1F4E79" font-family="sans-serif" font-size="12" font-weight="700">matricola</text>
+          <line x1="44" y1="263" x2="116" y2="263" stroke="#1F4E79" stroke-width="1.5"/>
+          <text x="158" y="218" fill="#444" font-family="sans-serif" font-size="12" font-weight="700">Chiave Primaria semplice</text>
+          <text x="158" y="234" fill="#666" font-family="sans-serif" font-size="11">Pallino pieno sul collegamento + nome</text>
+          <text x="158" y="249" fill="#666" font-family="sans-serif" font-size="11">sottolineato nell'ellisse.</text>
+
+          <!-- RIGA 3 destra: PK composta -->
+          <circle cx="430" cy="218" r="6" fill="#1F4E79"/>
+          <circle cx="490" cy="218" r="6" fill="#1F4E79"/>
+          <line x1="430" y1="224" x2="455" y2="238" stroke="#1F4E79" stroke-width="1.5"/>
+          <line x1="490" y1="224" x2="465" y2="238" stroke="#1F4E79" stroke-width="1.5"/>
+          <ellipse cx="430" cy="218" rx="0" ry="0"/>
+          <text x="424" y="214" fill="#1F4E79" font-family="sans-serif" font-size="10">attr1</text>
+          <text x="484" y="214" fill="#1F4E79" font-family="sans-serif" font-size="10">attr2</text>
+          <rect x="418" y="242" width="90" height="30" rx="4" fill="#EBF3FC" stroke="#1F4E79" stroke-width="1.5"/>
+          <text x="463" y="261" text-anchor="middle" fill="#1F4E79" font-family="sans-serif" font-size="10">ENTITÀ</text>
+          <text x="158" y="265" fill="#444" font-family="sans-serif" font-size="12" font-weight="700">Chiave Primaria composta</text>
+          <text x="158" y="281" fill="#666" font-family="sans-serif" font-size="11">Più pallini pieni: più attributi formano</text>
+          <text x="158" y="296" fill="#666" font-family="sans-serif" font-size="11">insieme la chiave univoca.</text>
 
         </svg>
-        <div class="svg-caption">Rettangolo = Entità · Ellisse = Attributo · Ellisse con nome sottolineato = Chiave Primaria · Rombo = Relazione</div>
+        <div class="svg-caption">Rettangolo = Entità · Ellisse vuota = Attributo · Pallino pieno + sottolineatura = Chiave Primaria · Rombo = Relazione</div>
       </div>
+
+      <!-- Immagine: esempio E-R completo con simbologia reale -->
+      <figure style="margin:1.5rem 0;">
+        <img src="img/database001.webp" alt="Diagramma E-R completo: Autore scrive Libro, Libro pubblicato da CasaEditrice" style="width:100%;border-radius:var(--radius);border:1px solid var(--blue-light);box-shadow:var(--shadow);">
+        <figcaption style="font-size:.78rem;color:var(--gray-mid);text-align:center;margin-top:.5rem;font-style:italic;">Esempio completo: AUTORE scrive LIBRO (N:M), LIBRO pubblicato da CASAEDITRICE (1:N). Pallino pieno = chiave primaria. Pallino vuoto = attributo semplice.</figcaption>
+      </figure>
 
       <p class="sub-title">Le cardinalità: leggere le molteplicità</p>
 
       <p>La <strong>cardinalità</strong> specifica quante istanze di un'entità possono essere associate a un'istanza dell'altra entità nella relazione. Si esprime come coppia <code>(min, max)</code> e si scrive <em>vicino all'entità a cui si riferisce</em>, sul lato della linea che la connette al rombo.</p>
 
-      <div class="box box-warn">
-        <div class="box-icon">⚠️</div>
-        <div><strong>Errore frequente:</strong> le cardinalità si scrivono vicino all'entità, non vicino al rombo. La coppia (min, max) descrive con quante istanze <em>di quella entità</em> può essere associata un'istanza dell'altra. Leggi sempre da destra verso sinistra e viceversa.</div>
+      <div class="box box-tip">
+        <div class="box-icon">📌</div>
+        <div><strong>Come leggere le cardinalità nel diagramma:</strong> la coppia <code>(min, max)</code> si scrive <em>vicino all'entità a cui si riferisce</em>, non vicino al rombo. Descrive con quante istanze <em>di quella entità</em> partecipa alla relazione. Leggi sempre in entrambe le direzioni: da sinistra a destra e da destra a sinistra.</div>
       </div>
 
       <!-- SVG Cardinalità Persona↔Automobile -->
@@ -923,6 +958,12 @@ p { margin-bottom: .85rem; font-size: .95rem; line-height: 1.75; color: #3a3a3a;
         </svg>
         <div class="svg-caption">Cardinalità dell'associazione POSSIEDE: lato AUTOMOBILE (1,1) — ogni auto appartiene a una sola persona; lato PERSONA (0,N) — una persona può possedere zero o più auto.</div>
       </div>
+
+      <!-- Immagine: attributi di associazione sul rombo -->
+      <figure style="margin:1.5rem 0;">
+        <img src="img/database003.webp" alt="Esempio di attributi di relazione: DataInizio e DataFine sul rombo POSSESSO tra Persona e Automobile" style="width:100%;border-radius:var(--radius);border:1px solid var(--blue-light);box-shadow:var(--shadow);">
+        <figcaption style="font-size:.78rem;color:var(--gray-mid);text-align:center;margin-top:.5rem;font-style:italic;">Attributi di associazione: DataInizio e DataFine appartengono al rombo POSSESSO, non a PERSONA né ad AUTOMOBILE — perché descrivono il fatto del possesso, non le entità singole.</figcaption>
+      </figure>
 
       <p class="sub-title">I tre tipi di relazione</p>
 
@@ -1019,6 +1060,12 @@ p { margin-bottom: .85rem; font-size: .95rem; line-height: 1.75; color: #3a3a3a;
         <div><strong>Esempio 1 — Media esami:</strong> se il modello contiene un'entità ESAME con attributo VOTO, e STUDENTE è collegato a ESAME tramite la relazione SOSTIENE, allora l'attributo <code>Media_Esami</code> nello STUDENTE è <strong>ridondante</strong>: si calcola con una query sulla tabella ESAME. Va eliminato.</div>
       </div>
 
+      <!-- Immagine: attributo ridondante MEDIA_ESAMI con croce -->
+      <figure style="margin:1.5rem 0;">
+        <img src="img/database004.webp" alt="Diagramma E-R che mostra MEDIA_ESAMI come attributo ridondante di STUDENTE, barrato con una croce" style="width:100%;border-radius:var(--radius);border:1px solid var(--blue-light);box-shadow:var(--shadow);">
+        <figcaption style="font-size:.78rem;color:var(--gray-mid);text-align:center;margin-top:.5rem;font-style:italic;">MEDIA_ESAMI è barrata perché calcolabile: tramite la relazione SOSTIENE si accede ai VOTI in ESAME. Inserirla nel modello sarebbe ridondanza — e ogni modifica ai voti richiederebbe di aggiornare anche la media.</figcaption>
+      </figure>
+
       <div class="box box-warn">
         <div class="box-icon">🚫</div>
         <div><strong>Esempio 2 — Numero di abitanti:</strong> se il modello ha un'entità COMUNE collegata a PERSONA, l'attributo <code>Numero_Abitanti</code> nel COMUNE è ridondante: si ottiene contando le istanze di PERSONA associate a quel comune. Va eliminato.</div>
@@ -1056,6 +1103,12 @@ p { margin-bottom: .85rem; font-size: .95rem; line-height: 1.75; color: #3a3a3a;
         <span class="note">-- Tabella associativa per relazione N:M Studenti↔Corsi</span><br>
         <span class="ent">ISCRIZIONI</span>(<span class="pk">*CodiceStudente</span>, <span class="pk">*CodiceCorso</span>, <span class="attr">DataIscrizione</span>, <span class="attr">Voto</span>)
       </div>
+
+      <!-- Immagine: schema logico scritto a mano + tabella fisica -->
+      <figure style="margin:1.5rem 0;">
+        <img src="img/database005.webp" alt="Schema logico scritto a mano con sintassi NOME(PK, attr, *FK) e relativa tabella con dati reali" style="width:100%;border-radius:var(--radius);border:1px solid var(--blue-light);box-shadow:var(--shadow);">
+        <figcaption style="font-size:.78rem;color:var(--gray-mid);text-align:center;margin-top:.5rem;font-style:italic;">La sintassi dello schema logico: NOME(PK sottolineata, attributi, *FK con asterisco). La freccia curva indica il riferimento tra chiave esterna e chiave primaria. Sotto: l'istanza concreta della tabella AUTO con i valori reali.</figcaption>
+      </figure>
 
       <p class="sub-title">Le sette regole di traduzione</p>
 

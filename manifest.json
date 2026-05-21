@@ -69,6 +69,34 @@
     ]
   },
   {
+    "path": "/database/guida-database/",
+    "label": "Basi di Dati — Dal dato al modello E-R",
+    "short": "Basi di Dati",
+    "cat": "guide",
+    "emoji": "🗃️",
+    "tags": [
+      "database",
+      "basi di dati",
+      "dbms",
+      "modello er",
+      "entità relazione",
+      "cardinalità",
+      "chiave primaria",
+      "chiave esterna",
+      "progettazione logica",
+      "afm",
+      "rim"
+    ],
+    "meta": "10 sezioni · Modello E-R · Livello base–intermedio",
+    "description": "Dato vs informazione, DBMS, progettazione concettuale e logica, diagrammi E-R, cardinalità e chiavi esterne.",
+    "featured": false,
+    "active": true,
+    "digcomp": ["DC 5.1", "DC 5.2"],
+    "digcomp_level": "foundation",
+    "digcomp_areas": ["problem-solving"],
+    "digcompedu": ["DCEdu 2.2", "DCEdu 6.5"]
+  },
+  {
     "path": "/marketing/guida-marketing/",
     "label": "Marketing & E-Commerce",
     "short": "Marketing",
